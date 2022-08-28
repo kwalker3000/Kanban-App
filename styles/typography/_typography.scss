@@ -1,0 +1,51 @@
+$font-stack: 'Plus Jakarta Sans', sans-serif;
+
+@mixin heading {
+  font-family: $font-stack;
+  font-weight: 700;
+  margin: 0;
+}
+
+@mixin body {
+  font-family: $font-stack;
+  margin: 0;
+}
+
+@mixin h1 {
+  @include: heading;
+  font-size: 1.5rem;
+  line-height: 1.25em;
+}
+
+@mixin h2 {
+  @include: heading;
+  font-size: 1.125rem;
+  line-height: 1.28em;
+}
+
+@mixin h3 {
+  @include: heading;
+  font-size: 0.938rem;
+  line-height: 1.27em;
+}
+
+@mixin h4 {
+  @include: heading;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  line-height: 1.25em;
+}
+
+@mixin p1 {
+  @include: body;
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.77em;
+}
+
+@mixin p2 {
+  @include: body;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25em;
+}
