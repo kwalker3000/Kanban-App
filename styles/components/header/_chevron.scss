@@ -1,0 +1,7 @@
+@use '../../elements/btn';
+@mixin chevron {
+  .chevron__btn {
+    @include btn.btn;
+    background-color: inherit;
+  }
+}

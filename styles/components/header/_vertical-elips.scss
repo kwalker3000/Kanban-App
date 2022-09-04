@@ -1,0 +1,8 @@
+@use '../../elements/btn';
+@mixin vertical-elips {
+  .vertical-elips__btn {
+    @include btn.btn;
+    background-color: inherit;
+    padding: 0;
+  }
+}

@@ -1,25 +1,42 @@
-import React from 'react'
-import { useAppContext } from '../../context/useAppContext'
-import { LogoDark } from '../elements/svg/logoDark'
-import { LogoLight } from '../elements/svg/logoLight'
+import React, { useState } from 'react'
+import { IconVerticalEllipsis } from '../elements/svg/iconVerticalEllipsis'
 
-//import { Theme, ContextType } from '../../@types/app'
-// type HeaderProps = {
-//   theme: string
-// }
+import { Title, Theme } from '../../@types/app'
+import { IconAddTask } from '../elements/svg/iconAddTask'
+import { LogoMobile } from '../elements/svg/logoMobile'
+import { IconChevron } from '../elements/svg/iconChevron'
 
-export const Header = () => {
-  let { theme } = useAppContext()
+type HeaderProps = {
+  title: Title
+  theme: Theme
+  isMobile: boolean | undefined
+}
+
+export const Header = ({
+  title,
+  theme,
+  isMobile,
+}: HeaderProps): JSX.Element => {
   return (
     <div id="header">
       <div className={`header ${theme}-theme`}>
-        <div>
-          <div>{theme == 'dark' ? <LogoLight /> : <LogoDark />}</div>
+        <div className="head-wrapper">
+          <div className="header__logo logo-wrapper">
+            <LogoMobile />
+          </div>
           <div></div>
+          <h2 className="header__head head_level-2">{title || undefined}</h2>
+          <div>
+            <IconChevron />
+          </div>
         </div>
-        <div>
-          <div></div>
-          <div></div>
+        <div className="header__cta-wrapper">
+          <div className="header__btn-wrapper">
+            <IconAddTask isMobile={isMobile} />
+          </div>
+          <div className="header__elips elips-wrapper">
+            <IconVerticalEllipsis />
+          </div>
         </div>
       </div>
     </div>

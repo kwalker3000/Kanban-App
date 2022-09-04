@@ -39,6 +39,6 @@ next-env.d.ts
 # styl
 .map
 
-# temp files
-.js~
-.scss~
+# temp files by Emacs and Vim
+.\#*
+*~

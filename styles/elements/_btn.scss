@@ -1,0 +1,7 @@
+@use '../util/util';
+@use '../typography/typography' as font;
+
+@mixin btn {
+  border: none;
+  cursor: pointer;
+}

@@ -1,9 +1,5 @@
 export type Theme = 'light' | 'dark'
-
-export type ContextType = {
-  theme: Theme
-  toggleTheme: (theme: Theme) => void
-}
+export type Title = string | undefined
 
 export type Path = string
 export type ImgProps = {
@@ -11,3 +7,6 @@ export type ImgProps = {
   text: string
   isRemote: boolean
 }
+
+type HEX = `#${string}`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`

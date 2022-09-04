@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const logoMobile = () => {
+export const LogoMobile = () => {
   return (
     <div>
       <svg width="24" height="25" xmlns="http://www.w3.org/2000/svg">
