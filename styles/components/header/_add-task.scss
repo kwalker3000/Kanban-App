@@ -7,9 +7,14 @@
     @include btn.btn;
     background-color: util.$purple;
     border-radius: 24px;
+    color: util.$white;
+    word-spacing: -2.5px;
     padding: 0.625rem 1.125rem 0.5rem;
 
     display: flex;
+    @media (min-width: util.$tablet) {
+      padding: 0.9375rem 1.5625rem 0.875rem 1.5rem;
+    }
   }
   .add-task__btn-text {
     @include font.h3;
@@ -18,5 +23,9 @@
   .add-task__btn svg {
     width: 12px;
     height: 12px;
+    @media (min-width: util.$tablet) {
+      transform: scale(0.6);
+      vertical-align: bottom;
+    }
   }
 }

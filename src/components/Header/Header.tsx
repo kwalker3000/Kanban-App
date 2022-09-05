@@ -21,16 +21,18 @@ export const Header = ({
     <div id="header">
       <div className={`header ${theme}-theme`}>
         <div className="head-wrapper">
-          <div className="header__logo logo-wrapper">
-            <LogoMobile />
-          </div>
+          {isMobile && (
+            <div className="header__logo logo-wrapper">
+              <LogoMobile />
+            </div>
+          )}
           <div></div>
           <h2 className="header__head head_level-2">{title || undefined}</h2>
           <div>
             <IconChevron />
           </div>
         </div>
-        <div className="header__cta-wrapper">
+        <div className="header__action-wrapper">
           <div className="header__btn-wrapper">
             <IconAddTask isMobile={isMobile} />
           </div>

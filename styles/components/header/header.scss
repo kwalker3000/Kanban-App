@@ -11,6 +11,12 @@
 
   .head_level-2 {
     @include font.h2;
+    @media (min-width: util.$tablet) {
+      font-size: 1.25rem;
+    }
+    @media (min-width: util.$desktop) {
+      @include font.h1;
+    }
   }
 
   .header {
@@ -20,6 +26,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (min-width: util.$desktop) {
+      padding-top: 1.25rem;
+      padding-bottom: 1.75rem;
+    }
   }
 
   .header__head {
@@ -30,24 +40,27 @@
   .head-wrapper {
     display: flex;
     margin-top: 4px;
+    @media (min-width: util.$tablet) {
+      margin: 0;
+    }
   }
 
   .header__logo {
     margin-right: 1rem;
   }
 
-  .header__cta-wrapper {
-    width: 70px;
-
+  .header__action-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
   }
 
   .header__elips {
     position: relative;
     height: 20px;
-    padding: 0;
+    margin-left: 1rem;
+    @media (min-width: util.$tablet) {
+      margin-left: 1.5rem;
+    }
   }
 }
 

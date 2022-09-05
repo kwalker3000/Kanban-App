@@ -18,8 +18,15 @@
   cursor: pointer;
   background-color: #635fc7;
   border-radius: 24px;
+  color: #fff;
+  word-spacing: -2.5px;
   padding: 0.625rem 1.125rem 0.5rem;
   display: flex;
+}
+@media (min-width: 685px) {
+  #header .add-task__btn {
+    padding: 0.9375rem 1.5625rem 0.875rem 1.5rem;
+  }
 }
 #header .add-task__btn-text {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -32,6 +39,12 @@
 #header .add-task__btn svg {
   width: 12px;
   height: 12px;
+}
+@media (min-width: 685px) {
+  #header .add-task__btn svg {
+    transform: scale(0.6);
+    vertical-align: bottom;
+  }
 }
 #header .chevron__btn {
   border: none;
@@ -51,12 +64,32 @@
   font-size: 1.125rem;
   line-height: 1.28em;
 }
+@media (min-width: 685px) {
+  #header .head_level-2 {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 1150px) {
+  #header .head_level-2 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.25em;
+  }
+}
 #header .header {
   padding-top: 1rem;
   padding-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media (min-width: 1150px) {
+  #header .header {
+    padding-top: 1.25rem;
+    padding-bottom: 1.75rem;
+  }
 }
 #header .header__head {
   color: #fff;
@@ -66,19 +99,27 @@
   display: flex;
   margin-top: 4px;
 }
+@media (min-width: 685px) {
+  #header .head-wrapper {
+    margin: 0;
+  }
+}
 #header .header__logo {
   margin-right: 1rem;
 }
-#header .header__cta-wrapper {
-  width: 70px;
+#header .header__action-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 #header .header__elips {
   position: relative;
   height: 20px;
-  padding: 0;
+  margin-left: 1rem;
+}
+@media (min-width: 685px) {
+  #header .header__elips {
+    margin-left: 1.5rem;
+  }
 }
 
 .dark-theme {
