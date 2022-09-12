@@ -1,35 +1,16 @@
 import React, { useState, createContext, useContext } from 'react'
-import { Theme, ContextType } from '../@types/app'
+import { Theme } from '../@types/app'
+import { Kanban } from '../@types/board'
 
-type Status = 'todo' | 'doing' | 'done'
-type Subtas = {
-  description: string
-  status: Status
+type ContextType = {
+  theme: Theme
+  kanban: Kanban
+  toggleTheme: (theme: Theme) => void
 }
-
-type Task = {
-  title: string
-  description: string
-  status: Status
-  subtasks: Subtas[]
-}
-
-type Column = {
-  title: Status
-  tasks: Task[]
-}
-
-type Board = {
-  name: string
-  todo: Column
-  doing?: Column
-  done?: Column
-}
-
-type Kanban = Board[]
 
 const AppContext = createContext<ContextType>({
   theme: 'dark',
+  kanban: [{ name: 'my project' }],
   toggleTheme: () => {},
 })
 
@@ -39,7 +20,7 @@ type Props = {
 
 export const AppWrapper = ({ children }: Props): JSX.Element => {
   const [theme, setTheme] = useState<Theme>('dark') // TODO systems default
-  const [kanban, setKanban] = useState<Kanban>()
+  const [kanban, setKanban] = useState<Kanban>([{ name: 'my project' }])
 
   let toggleTheme = () => {
     setTheme((curTheme) => (curTheme == 'dark' ? 'light' : 'dark'))
