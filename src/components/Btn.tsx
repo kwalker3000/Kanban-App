@@ -1,11 +1,26 @@
-type BtnProps = {
-  text: string
+import React from 'react'
+import { Theme } from '../@types/app'
+
+type BtnProp = {
+  action: string
+  btnText: string
+  theme: Theme
 }
 
-export const Btn = ({ text }: BtnProps): JSX.Element => {
+export const Btn = ({ action, btnText, theme }: BtnProp): JSX.Element => {
+  const [act, _] = action.split(' ')
   return (
-    <button className="btn">
-      <span className="btn-text">{text}</span>
+    <button className={`btn btn_${theme} btn_${action}`}>
+      {act == 'add' && (
+        <span>
+          <svg aria-hidden={true} xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z" />
+          </svg>
+        </span>
+      )}
+      <span className={`btn-text btn-text_${theme} btn-text_${action}`}>
+        {btnText}
+      </span>
     </button>
   )
 }

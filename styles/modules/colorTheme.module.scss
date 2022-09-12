@@ -1,0 +1,16 @@
+//module.scss exports
+@use '../util/util';
+:export {
+  black: util.$black;
+  bgthemeverydarkgray: util.$bg-theme_very-dark-gray;
+  bgthemelightgray: util.$bg-theme_light-grey;
+  darkgray: util.$dark-grey;
+  linesdark: util.$lines_dark;
+  lineslight: util.$lines_light;
+  mediumgray: util.$medium-grey;
+  white: util.$white;
+  purple: util.$purple;
+  purplehover: util.$purple_hover;
+  red: util.$red;
+  redhover: util.$red_hover;
+}

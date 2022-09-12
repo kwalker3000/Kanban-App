@@ -1,0 +1,54 @@
+@use '../../util/util';
+@use '../../typography/typography' as font;
+@use '../../elements/btn';
+
+@mixin task-btn {
+  .btn {
+    @include btn.btn;
+    background-color: util.$white;
+    border-radius: 24px;
+    color: util.$purple;
+    word-spacing: -2.5px;
+
+    padding: 0.5rem 0 0.56rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .btn-text {
+    @include font.p1;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  .btn svg {
+    width: 12px;
+    height: 12px;
+    fill: util.$purple;
+    vertical-align: bottom;
+    transform: scale(0.7);
+  }
+  .btn_create {
+    background-color: util.$purple;
+    color: util.$white;
+  }
+  .btn_create:hover,
+  .btn_create:focus {
+    background: util.$purple_hover;
+    transition: background-color 0.5s;
+  }
+}
+
+@mixin cross-btn {
+  .cross-btn {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    fill: util.$medium-grey;
+    padding: 0;
+  }
+  .cross-btn:hover,
+  .cross-btn:focus {
+    fill: util.$red;
+    transition: background-color 0.5s;
+  }
+}

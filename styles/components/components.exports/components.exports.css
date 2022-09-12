@@ -1,18 +1,3 @@
-/* :export {
-   black: $black;
-   bgThemeVeryDarkGray: $bg-theme_very-dark-gray;
-   bgThemeLightGray: $bg-theme_light-grey;
-   DarkGray: $dark-grey;
-   linesDark: $lines_dark; 
-   linesLight: $lines_light;
-   mediumGray: $medium-grey;
-   white: $white;
-   purple: $purple;
-   purpleHover: $purple_hover;
-   red: $red;
-   redHover: $red_hover;
-
-   } */
 #header .add-task__btn {
   border: none;
   cursor: pointer;
@@ -122,8 +107,160 @@
   }
 }
 
-.dark-theme {
+.header-dark {
   background-color: #2b2c37;
+}
+
+.head-dark {
+  color: #fff;
+}
+
+.header-light {
+  background-color: #fff;
+}
+
+.head-light {
+  color: #000112;
+}
+
+#task-form {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+}
+#task-form .btn {
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 24px;
+  color: #635fc7;
+  word-spacing: -2.5px;
+  padding: 0.5rem 0 0.56rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#task-form .btn-text {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.77em;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+#task-form .btn svg {
+  width: 12px;
+  height: 12px;
+  fill: #635fc7;
+  vertical-align: bottom;
+  transform: scale(0.7);
+}
+#task-form .btn_create {
+  background-color: #635fc7;
+  color: #fff;
+}
+#task-form .btn_create:hover,
+#task-form .btn_create:focus {
+  background: #a8a4ff;
+  transition: background-color 0.5s;
+}
+#task-form .cross-btn {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  fill: #828fa3;
+  padding: 0;
+}
+#task-form .cross-btn:hover,
+#task-form .cross-btn:focus {
+  fill: #ea5555;
+  transition: background-color 0.5s;
+}
+#task-form .task-form_dark {
+  background-color: #2b2c37;
+}
+#task-form .task-form_light {
+  background-color: #fff;
+}
+#task-form .head_level-2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.28em;
+}
+#task-form .task-form {
+  padding: 1.5rem;
+  border-radius: 6px;
+}
+#task-form .task-form .header_dark {
+  color: #fff;
+}
+#task-form .task-form .header_light {
+  color: #000112;
+}
+#task-form .task-form .task-form__head {
+  margin-bottom: 1.5rem;
+}
+#task-form .form {
+  /* display: flex;
+  flex-direction: column; */
+}
+#task-form .form .form__label {
+  display: flex;
+  flex-direction: column;
+}
+#task-form .form .form__label_dark {
+  color: #fff;
+}
+#task-form .form .form__label_light {
+  color: #828fa3;
+}
+#task-form .form .label {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25em;
+  margin-bottom: 1.5rem;
+}
+#task-form .form .input {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.77em;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(130, 143, 163, 0.25);
+  border-radius: 4px;
+  padding: 0.5rem 1rem 0.5rem;
+  opacity: 1 important;
+}
+#task-form .form .input_dark {
+  background-color: #2b2c37;
+  color: #fff;
+}
+#task-form .form .input_dark::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+#task-form .form .input_light {
+  background-color: #fff;
+  color: #000112;
+}
+#task-form .form .input_light::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+#task-form .form .input_subtask {
+  margin-bottom: 0.75rem;
+  margin-right: 1rem;
+  width: 100%;
+}
+#task-form .form textarea {
+  height: 104px;
+}
+#task-form .form .subtask-wrapper {
+  display: flex;
 }
 
 /*# sourceMappingURL=components.exports.css.map */

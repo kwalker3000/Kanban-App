@@ -1,0 +1,101 @@
+@use '../../util/util';
+@use '../../typography/typography' as font;
+@use './btn';
+
+#task-form {
+    @include btn.task-btn;
+    @include btn.cross-btn;
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+
+	.task-form_dark {
+	    background-color: util.$dark-grey;
+	}
+	.task-form_light {
+	    background-color: util.$white;
+	}
+
+.head_level-2 {
+    @include font.h2;
+}
+
+.task-form {
+    padding: 1.5rem;
+    border-radius: 6px;
+
+	.header_dark {
+	    color: util.$white;
+	}
+	.header_light {
+	    color: util.$black;
+	}
+
+	.task-form__head {
+	    margin-bottom: 1.5rem;
+	}
+}
+
+  .task-form__form {
+  }
+
+.form {
+    /* display: flex;
+	 flex-direction: column; */
+
+	.form__label {
+	    display: flex;
+	    flex-direction: column;
+	}
+
+	.form__label_dark {
+	    color: util.$white;
+	}
+	.form__label_light {
+	    color: util.$medium-grey;
+	}
+
+	.label {
+	    @include font.p2;
+	    margin-bottom: 1.5rem;
+	}
+
+	.input {
+	    @include font.p1;
+	    margin-top: 0.5rem;
+	    border: 1px solid rgba(130, 143, 163, 0.25);
+	    border-radius: 4px;
+	    padding: 0.5rem 1rem 0.5rem;
+
+	    opacity: 1 important;
+	}
+	.input_dark {
+	    background-color: util.$dark-grey;
+	    color: util.$white;
+	}
+	.input_dark::placeholder { 
+	    color: rgba(255, 255, 255, 0.5);
+	}
+	.input_light {
+	    background-color: util.$white;
+	    color: util.$black;
+	}
+	.input_light::placeholder { 
+	    color: rgba(0, 0, 0, 0.5);
+	}
+	.input_subtask {
+	    margin-bottom: 0.75rem;
+	    margin-right: 1rem;
+	    width: 100%;
+	}
+
+    textarea {
+	height: 104px;
+    }
+
+	.subtask-wrapper {
+	    display: flex;
+	}
+}
+
+}

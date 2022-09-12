@@ -1,18 +1,3 @@
-/* :export {
-   black: $black;
-   bgThemeVeryDarkGray: $bg-theme_very-dark-gray;
-   bgThemeLightGray: $bg-theme_light-grey;
-   DarkGray: $dark-grey;
-   linesDark: $lines_dark; 
-   linesLight: $lines_light;
-   mediumGray: $medium-grey;
-   white: $white;
-   purple: $purple;
-   purpleHover: $purple_hover;
-   red: $red;
-   redHover: $red_hover;
-
-   } */
 #header .add-task__btn {
   border: none;
   cursor: pointer;
@@ -122,8 +107,20 @@
   }
 }
 
-.dark-theme {
+.header-dark {
   background-color: #2b2c37;
+}
+
+.head-dark {
+  color: #fff;
+}
+
+.header-light {
+  background-color: #fff;
+}
+
+.head-light {
+  color: #000112;
 }
 
 /*# sourceMappingURL=header.css.map */

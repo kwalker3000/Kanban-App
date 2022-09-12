@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { IconVerticalEllipsis } from '../elements/svg/iconVerticalEllipsis'
-
 import { Title, Theme } from '../../@types/app'
-import { IconAddTask } from '../elements/svg/iconAddTask'
+
+import colorTheme from '../../../styles/modules/colorTheme.module.scss'
+
+import { IconVerticalEllipsis } from '../elements/svg/iconVerticalEllipsis'
+import { AddTaskBtn } from './AddTaskBtn'
 import { LogoMobile } from '../elements/svg/logoMobile'
 import { IconChevron } from '../elements/svg/iconChevron'
 
@@ -19,7 +21,14 @@ export const Header = ({
 }: HeaderProps): JSX.Element => {
   return (
     <div id="header">
-      <div className={`header ${theme}-theme`}>
+      <div
+        className="header"
+        style={{
+          backgroundColor: `${
+            theme == 'dark' ? colorTheme.darkgray : colorTheme.white
+          }`,
+        }}
+      >
         <div className="head-wrapper">
           {isMobile && (
             <div className="header__logo logo-wrapper">
@@ -27,14 +36,21 @@ export const Header = ({
             </div>
           )}
           <div></div>
-          <h2 className="header__head head_level-2">{title || undefined}</h2>
+          <h2
+            className="header__head head_level-2"
+            style={{
+              color: `${theme == 'dark' ? colorTheme.white : colorTheme.black}`,
+            }}
+          >
+            {title || undefined}
+          </h2>
           <div>
             <IconChevron />
           </div>
         </div>
         <div className="header__action-wrapper">
           <div className="header__btn-wrapper">
-            <IconAddTask isMobile={isMobile} />
+            <AddTaskBtn isMobile={isMobile} />
           </div>
           <div className="header__elips elips-wrapper">
             <IconVerticalEllipsis />

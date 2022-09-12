@@ -15,5 +15,34 @@ describe('Header', () => {
 
     expect(button).toBeInTheDocument()
   })
+
+  it('renders Header with light theme', () => {
+    let { container } = render(
+      <Header title="project" theme="light" isMobile="true" />
+    )
+
+    const header = container.getElementsByClassName('header')
+    const head = container.getElementsByClassName('header__head')
+    const styleHeader = window.getComputedStyle(header[0])
+    const styleHead = window.getComputedStyle(head[0])
+
+    expect(styleHeader.backgroundColor).toBe('white')
+    expect(styleHead.color).toBe('black')
+  })
+
+  it('renders Header with dark theme', () => {
+    let { container } = render(
+      <Header title="project" theme="dark" isMobile="true" />
+    )
+
+    const header = container.getElementsByClassName('header')
+    const head = container.getElementsByClassName('header__head')
+    const styleHeader = window.getComputedStyle(header[0])
+    const styleHead = window.getComputedStyle(head[0])
+
+    expect(styleHeader.backgroundColor).toBe('darkgray')
+    expect(styleHead.color).toBe('white')
+  })
+
   //TODO test chevron up or down
 })
