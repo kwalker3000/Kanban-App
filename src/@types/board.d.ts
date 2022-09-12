@@ -1,10 +1,10 @@
 type Status = 'todo' | 'doing' | 'done'
-type Subtask = {
+export type Subtask = {
   description: string
   status: Status
 }
 
-type Task = {
+export type Task = {
   title: string
   description: string
   status: Status

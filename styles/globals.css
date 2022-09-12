@@ -262,6 +262,22 @@
 #task-form .form .subtask-wrapper {
   display: flex;
 }
+#task-form .form .fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+#task-form .form .fieldset > legend,
+#task-form .form .fieldset > label {
+  margin: 0;
+}
+#task-form .form .btn-wrapper {
+  margin-bottom: 1.5rem;
+}
+#task-form .form select {
+  text-transform: capitalize;
+  padding: 1rem;
+}
 
 body,
 html {

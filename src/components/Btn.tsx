@@ -5,12 +5,23 @@ type BtnProp = {
   action: string
   btnText: string
   theme: Theme
+  addSubtask: () => void
 }
 
-export const Btn = ({ action, btnText, theme }: BtnProp): JSX.Element => {
+export const Btn = ({
+  action,
+  btnText,
+  theme,
+  addSubtask,
+}: BtnProp): JSX.Element => {
   const [act, _] = action.split(' ')
   return (
-    <button className={`btn btn_${theme} btn_${action}`}>
+    <button
+      type="button"
+      aria-label={`${act} subtask`}
+      className={`btn btn_${theme} btn_${action}`}
+      onClick={addSubtask}
+    >
       {act == 'add' && (
         <span>
           <svg aria-hidden={true} xmlns="http://www.w3.org/2000/svg">

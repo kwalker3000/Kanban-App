@@ -96,6 +96,25 @@
 	.subtask-wrapper {
 	    display: flex;
 	}
+
+    .fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+    }
+    .fieldset > legend,
+    .fieldset > label {
+	margin: 0;
+    }
+
+    .btn-wrapper {
+	margin-bottom: 1.5rem;
+    }
+
+    select {
+	text-transform: capitalize;
+	padding: 1rem;
+    }
 }
 
 }
