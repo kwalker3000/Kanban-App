@@ -3,7 +3,7 @@ import { Kanban } from '../../src/@types/board'
 let mockBoardData: Kanban = [
   {
     name: 'my project',
-    todo: {
+    todoCol: {
       title: 'todo',
       tasks: [
         {

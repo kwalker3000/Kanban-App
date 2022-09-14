@@ -18,9 +18,9 @@ type Column = {
 
 type Board = {
   name: string
-  todo?: Column
-  doing?: Column
-  done?: Column
+  todoCol?: Column
+  doingCol?: Column
+  doneCol?: Column
 }
 
 export type Kanban = Board[]
