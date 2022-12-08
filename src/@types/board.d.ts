@@ -9,10 +9,11 @@ export type Task = {
   description: string
   status: Status
   subtasks: Subtask[]
+  // an compiler doesn't recognize undefined 'subtasks', requires work around
 }
 
 type Column = {
-  title: Status
+  status: Status
   tasks: Task[]
 }
 

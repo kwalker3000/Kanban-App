@@ -41,10 +41,10 @@ let initialState: Task = {
   ],
 }
 
-interface TaskType {
-  task: Task
-  setTask: (task: Task) => void
-}
+// interface TaskType {
+//   task: Task
+//   setTask: (task: Task) => void
+// }
 
 export const TaskForm = ({ theme }: FormProps) => {
   const [task, setTask] = useState<Task>(initialState)
@@ -146,7 +146,7 @@ a little."
             <label className={`form__label label form__label_${theme}`}>
               Status
               <select
-                type="text"
+                // type="text"
                 name="status"
                 className={`input input_${theme}`}
                 style={{ paddingTop: '0.7rem', paddingBottom: '0.7rem' }}
@@ -155,7 +155,12 @@ a little."
               </select>
             </label>
             <div>
-              <Btn action="create task" btnText="create task" theme={theme} />
+              <Btn
+                action="create task"
+                btnText="create task"
+                theme={theme}
+                addSubtask={addSubtask}
+              />
             </div>
           </form>
         </div>
