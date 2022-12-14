@@ -1,56 +1,41 @@
-import React, { useReducer } from 'react'
-import { Kanban, Board } from '../@types/board'
+import React from 'react'
+import { Subtask } from '../@types/board'
 
-export const useKanban = (state: Board, action: any): Board => {
+export const useSubtask = (state: Subtask[], action: any): Subtask[] => {
   let { key, value } = action.payload
-  console.log(value)
+  value = value.target.value
 
   switch (action.type) {
-    case 'CREATE NEW BOARD':
-      return {
-        ...state,
-        [key]: value,
-      }
-    case 'EDIT BOARD':
-      return {
-        ...state,
-        [key]: value,
-      }
-
-    case 'DELETE BOARD':
-      return {
-        ...state,
-        [key]: value,
-      }
     // default new tasks to todo column and disable status choice
-    case 'CREATE NEW TASK':
-      let { todoCol, doingCol, doneCol } = state
-      let col =
-        key == 'todoCol' ? todoCol : key == 'doingCol' ? doingCol : doneCol
-      let { tasks } = todoCol
+    case 'ADD SUBTASK':
+      let subtask: Subtask = {
+	description: '',
+	status: 'todo'
+      }
+      return [
+         ...state,
+        subtask
+        // [key]: value,
+      ]
+    case 'EDIT SUBTASK':
+      value = value.target.value
+      let tempSubtasks = [...state]
+tempSubtasks[0] = { ...tempSubtasks[0], [key]: value}
+      return tempSubtasks
+	// [key]: [value]
+        // [key]: value,
+      
+    case 'REMOVE SUBTASK':
       return {
         ...state,
-        todoCol: {
-          status: 'todo',
-          tasks: [...tasks, value],
-        },
+        subtasks: state.subtasks.filter((subtask, index) => index !== value),
+        // [key]: value,
       }
-    case 'EDIT TASK':
+    case 'EDIT SUBTASK':
       return {
         ...state,
         [key]: value,
       }
-    case 'DELETE NEW TASK':
-      return {
-        ...state,
-        [key]: value,
-      }
-    // case 'CREATE NEW SUBTASK':  // try first with using task logic
-    //   return {
-    //     ...state,
-    //     [key]: value,
-    //   }
-
     default:
       throw new Error(`Unknown action ${action.type}`)
   }

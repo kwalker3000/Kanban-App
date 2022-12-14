@@ -10,3 +10,8 @@ export type ImgProps = {
 
 type HEX = `#${string}`
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+
+export type InputEvent =
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLTextAreaElement>
+  | React.ChangeEvent<HTMLSelectElement>

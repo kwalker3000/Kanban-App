@@ -8,28 +8,28 @@ export type Task = {
   title: string
   description: string
   status: Status
-  subtasks: Subtask[]
-  // an compiler doesn't recognize undefined 'subtasks', requires work around
+  subtasks: Subtask[] | []
+  // compiler doesn't recognize undefined 'subtasks', requires work around
 }
 
 type Column = {
   status: Status
-  tasks: Task[]
+  tasks: Task[] | []
 }
 
-type Board = {
+export type Board = {
   name: string
-  todoCol?: Column
-  doingCol?: Column
-  doneCol?: Column
+  todoCol: Column
+  doingCol: Column
+  doneCol: Column
 }
 
 export type Kanban = Board[]
 
 // [{
 //   boardName: "my project",
-//   todo: {
-//     title: todo,
+//   todoCol: {
+//     status: todo,
 //     tasks: [
 //       {
 // 	title: 'bug#121',
@@ -49,4 +49,10 @@ export type Kanban = Board[]
 // type Subtask = {
 //   description: string
 //   status: Status
+// }
+
+// export type setKanban = {
+//   type: string
+//   name: string
+//   value: string
 // }

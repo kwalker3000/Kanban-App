@@ -1,19 +1,21 @@
 import React from 'react'
 import { Theme } from '../../@types/app'
-// import { Task } from '../../@types/board'
+import { Task } from '../../@types/board'
 
 type BtnProp = {
   action: string
   btnText: string
   theme: Theme
-  addSubtask: () => void
+  task: Task
+  addTask: (task: Task) => void
 }
 
-export const SubTaskBtn = ({
+export const TaskBtn = ({
   action,
   btnText,
   theme,
-  addSubtask,
+  task,
+  addTask,
 }: BtnProp): JSX.Element => {
   const [act, _] = action.split(' ')
   return (
@@ -21,7 +23,7 @@ export const SubTaskBtn = ({
       type="button"
       aria-label={`${act} subtask`}
       className={`btn btn_${theme} btn_${action}`}
-      onClick={addSubtask}
+      onClick={() => addTask(task)}
     >
       {act == 'add' && (
         <span>

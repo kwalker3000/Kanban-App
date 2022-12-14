@@ -1,79 +1,55 @@
-import React, { useState } from 'react'
-import { Theme } from '../../@types/app'
+import React, { useState, useEffect, useReducer } from 'react'
+import { Theme, InputEvent } from '../../@types/app'
 import { Subtask, Task } from '../../@types/board'
 
 import { IconCross } from '../elements/svg/iconCross'
-import { Btn } from '../Btn'
+// import { Btn } from '../Btn'
+
+import { useAppContext } from '../../context/useAppContext'
+import { useTask } from '../../hooks/useTask'
+// import { useSubtask } from '../../hooks/useSubTask'
+import { SubTaskBtn } from './SubTaskBtn'
+import { TaskBtn } from './TaskBtn'
 
 type FormProps = {
   theme: Theme
 }
 
-// interface Subtask = {
-//   description
-// }
-
-// [
-//   {
-//     description: 'e.g. Make Coffee',
-//     status: 'todo'
-//   },
-//   {
-//     description: 'e.g. Drink coffee & smile',
-//     status: 'todo'
-//   }
-// ]
-
-let initialState: Task = {
-  title: 'e.g. Take coffee break',
-  description:
-    'e.g. It’s always good to take a break. This 15 minute break will recharge the batteries a little.',
+let initialTaskState: Task = {
+  title: '',
+  description: '',
   status: 'todo',
-  subtasks: [
-    {
-      description: 'e.g. Make Coffee',
-      status: 'todo',
-    },
-    {
-      description: 'e.g. Drink coffee & smile',
-      status: 'todo',
-    },
-  ],
+  subtasks: [],
 }
 
-// interface TaskType {
-//   task: Task
-//   setTask: (task: Task) => void
-// }
-
 export const TaskForm = ({ theme }: FormProps) => {
-  const [task, setTask] = useState<Task>(initialState)
+  let { kanban, setKanban } = useAppContext()
+  const [task, setTask] = useReducer(useTask, initialTaskState)
+
+  const setAction = (
+    type: string,
+    key: string,
+    value: string | number | InputEvent,
+    index = 0
+  ) => {
+    setTask({
+      type: type,
+      payload: { key, value, index },
+    })
+  }
+  console.log(task)
 
   let removeSubtask = (id: number): void => {
-    //e.preventDefault()
-    setTask((prevTask) => ({
-      ...prevTask,
-      subtasks: prevTask.subtasks.filter((subtask, index) => index !== id),
-    }))
+    setAction('REMOVE SUBTASK', '', id)
   }
 
   let addSubtask = () => {
-    let newSubtask: Subtask = {
-      description: '',
-      status: 'todo',
-    }
-    setTask((prevTask) => ({
-      ...prevTask,
-      subtasks: [...prevTask.subtasks, newSubtask],
-    }))
+    // create empty field
+    setAction('ADD SUBTASK', '', '')
   }
 
   let status = ['todo', 'doing', 'done'].map((stat, i) => (
-    <option
-      key={i}
-      className={`input input_${theme} option`}
-      value={task.status}
-    >
+    <option key={i} className={`input input_${theme} option`} value={stat}>
       {stat}
     </option>
   ))
@@ -90,7 +66,9 @@ export const TaskForm = ({ theme }: FormProps) => {
           type="text"
           name="subtask"
           className={`input input_${theme} input_subtask`}
-          placeholder={task.subtasks[index].description}
+          placeholder="e.g. Make Coffee"
+          value={subtask.description}
+          onChange={(e) => setAction('EDIT SUBTASK', 'description', e, index)}
         />
         <IconCross
           action={`remove subtask-${index}`}
@@ -100,6 +78,17 @@ export const TaskForm = ({ theme }: FormProps) => {
       </div>
     )
   })
+
+  //TODO handle adding Tasks
+  // treat new task and edit task same?
+  let addTask = (newTask: Task) => {
+    // let key = 'New Project'['todoCol']
+    setKanban('CREATE NEW TASK', 'todoCol', newTask)
+    console.log('adding task...')
+  }
+  useEffect(() => {
+    // console.log(kanban)
+  }, [])
 
   return (
     <div id="task-form">
@@ -116,6 +105,8 @@ export const TaskForm = ({ theme }: FormProps) => {
                 name="title"
                 className={`input input_${theme}`}
                 placeholder="e.g. Take Coffee Break"
+                onChange={(e) => setAction('EDIT TASK', 'title', e)}
+                value={task.title}
               />
             </label>
             <label className={`form__label label form__label_${theme}`}>
@@ -126,6 +117,8 @@ export const TaskForm = ({ theme }: FormProps) => {
                 placeholder="e.g. It’s always good to take a break. This 
 15 minute break will  recharge the batteries 
 a little."
+                onChange={(e) => setAction('EDIT TASK', 'description', e)}
+                value={task.description}
               />
             </label>
             <fieldset className="form__fieldset fieldset">
@@ -135,7 +128,7 @@ a little."
               {subtasks}
             </fieldset>
             <div className="btn-wrapper">
-              <Btn
+              <SubTaskBtn
                 action="add subtask"
                 btnText="add new subtask"
                 theme={theme}
@@ -146,20 +139,22 @@ a little."
             <label className={`form__label label form__label_${theme}`}>
               Status
               <select
-                // type="text"
                 name="status"
                 className={`input input_${theme}`}
                 style={{ paddingTop: '0.7rem', paddingBottom: '0.7rem' }}
+                value={task.status}
+                onChange={(e) => setAction('UPDATE STATUS', 'status', e)}
               >
                 {status}
               </select>
             </label>
             <div>
-              <Btn
+              <TaskBtn
                 action="create task"
                 btnText="create task"
                 theme={theme}
-                addSubtask={addSubtask}
+                addTask={addTask}
+                task={task}
               />
             </div>
           </form>
@@ -168,53 +163,3 @@ a little."
     </div>
   )
 }
-
-// type Status = 'todo' | 'doing' | 'done'
-// type Subtas = {
-//   description: string
-//   status: Status
-// }
-
-// type Task = {
-//   title: string
-//   description: string
-//   status: Status
-//   subtasks: Subtas[]
-// }
-
-// type Column = {
-//   title: Status
-//   tasks: Task[]
-// }
-
-// type Board = {
-//   name: string
-//   todo: Column
-//   doing?: Column
-//   done?: Column
-// }
-
-// type Kanban = Board[]
-
-// let subtasks1 = task.subtasks.map((subtask, index) => {
-//   return (
-//     <div
-//       className="subtask-wrapper"
-//       key={index}
-//       data-testid={`subtask-${index}`}
-//     >
-//       <input
-//         title="orange"
-//         type="text"
-//         name="subtask"
-//         className={`input input_${theme} input_subtask`}
-//         placeholder={task.subtasks[index].description}
-//       />
-//       <IconCross
-//         action={`remove subtask-${index}`}
-//         id={index}
-//         removeSubtask={removeSubtask}
-//       />
-//     </div>
-//   )
-// })
