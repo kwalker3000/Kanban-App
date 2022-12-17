@@ -19,37 +19,53 @@ type ContextType = {
   // setKanban: setKanban
 }
 
-const AppContext = createContext<ContextType>({
-  theme: 'dark',
-  kanban: [{ name: 'my project' }],
-  toggleTheme: () => {},
-  setKanban: () => {},
-  // setKanban,
-})
+// sets initial values
+// const AppContext = createContext<ContextType>({
+//   theme: 'dark',
+//   // toggleTheme: () => {},
+//   // setKanban: () => {},
+//   kanban: Kanban,
+// })
+const AppContext = createContext<ContextType>({} as ContextType)
 
 type Props = {
   children: React.ReactNode
 }
 
 export const AppWrapper = ({ children }: Props): JSX.Element => {
-  let initialState: Board = {
-    name: 'New Project',
-    todoCol: {
-      status: 'todo',
-      tasks: [],
+  let initialState: Kanban = [
+    {
+      name: 'New Project',
+      todoCol: {
+        status: 'todo',
+        tasks: [],
+      },
+      doingCol: {
+        status: 'doing',
+        tasks: [],
+      },
+      doneCol: {
+        status: 'done',
+        tasks: [],
+      },
     },
-    doingCol: {
-      status: 'doing',
-      tasks: [],
+    {
+      name: 'New Project 2',
+      todoCol: {
+        status: 'todo',
+        tasks: [],
+      },
+      doingCol: {
+        status: 'doing',
+        tasks: [],
+      },
+      doneCol: {
+        status: 'done',
+        tasks: [],
+      },
     },
-    doneCol: {
-      status: 'done',
-      tasks: [],
-    },
-  }
+  ]
   const [theme, setTheme] = useState<Theme>('dark') // TODO systems default
-  // const [kanban, setKanban] = useState<Kanban>([{ name: 'my project' }])
-  // const [kanban, { setAction }] = useKanban()
   const [kanban, dispatch] = useReducer(useKanban, initialState)
 
   let toggleTheme = () => {

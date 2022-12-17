@@ -1,0 +1,50 @@
+@use '../../util/util';
+
+@mixin slider {
+
+  .slider {
+    background-color: util.$bg-theme_very-dark-gray;
+    border-radius: 6px;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+
+    display: flex;
+    justify-content: center;
+  }
+
+    .slider__content {
+	display: flex;
+	align-items: center;
+    }
+
+	.slider__content > svg {
+	    padding: 0 1.4rem 0 1.4rem;
+	}
+	.slider__btn-wrapper {
+	    background-color: util.$purple;
+	    border-radius: 1rem;
+	    width: 40px;
+
+	    display: flex;
+	    cursor: pointer;
+	}
+
+	    .slider__btn {
+		all: unset;
+
+		background-color: util.$white;
+		border-radius: 50%;
+
+		padding: 0.45rem;
+		margin: 3px;
+	    }
+
+	    .slide-right {
+		transform: translateX(135%);
+		transition: transform 450ms ease-out;
+	    }
+	    .slide-left {
+		transform: translateX(0);
+		transition: transform 450ms ease-out;
+	    }
+}

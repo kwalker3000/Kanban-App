@@ -19,7 +19,7 @@ let initialTaskState: Task = {
   title: '',
   description: '',
   status: 'todo',
-  // subtasks: [],
+  subtasks: [],
 }
 
 export const TaskForm = ({ theme }: FormProps) => {

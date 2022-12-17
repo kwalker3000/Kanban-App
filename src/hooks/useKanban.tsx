@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import { Kanban, Board } from '../@types/board'
 
-export const useKanban = (state: Board, action: any): Board => {
+export const useKanban = (state: Kanban, action: any): Kanban => {
   let { key, value } = action.payload
   console.log(value)
 
@@ -24,16 +24,9 @@ export const useKanban = (state: Board, action: any): Board => {
       }
     // default new tasks to todo column and disable status choice
     case 'CREATE NEW TASK':
-      let { todoCol, doingCol, doneCol } = state
-      let col =
-        key == 'todoCol' ? todoCol : key == 'doingCol' ? doingCol : doneCol
-      let { tasks } = todoCol
       return {
         ...state,
-        todoCol: {
-          status: 'todo',
-          tasks: [...tasks, value],
-        },
+        [key]: value,
       }
     case 'EDIT TASK':
       return {
