@@ -25,7 +25,7 @@ export const Header = ({
         className="header"
         style={{
           backgroundColor: `${
-            theme == 'dark' ? colorTheme.darkgray : colorTheme.white
+            theme == 'dark' ? colorTheme.darkgrey : colorTheme.white
           }`,
         }}
       >

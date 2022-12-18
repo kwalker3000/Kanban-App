@@ -19,7 +19,7 @@ let initialTaskState: Task = {
   title: '',
   description: '',
   status: 'todo',
-  // subtasks: [],
+  subtasks: [],
 }
 
 export const TaskForm = ({ theme }: FormProps) => {
@@ -69,6 +69,7 @@ export const TaskForm = ({ theme }: FormProps) => {
           value={subtask.description}
           onChange={(e) => setAction('EDIT SUBTASK', 'description', e, index)}
         />
+        {/*TODO move out of svg folder because has functionality */}
         <IconCross
           action={`remove subtask-${index}`}
           id={index}

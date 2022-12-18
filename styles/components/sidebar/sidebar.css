@@ -1,9 +1,13 @@
 #sidebar {
   position: relative;
-  z-index: 1;
+}
+#sidebar .slider_dark {
+  background-color: #20212c;
+}
+#sidebar .slider_light {
+  background-color: #f4f7fd;
 }
 #sidebar .slider {
-  background-color: #20212c;
   border-radius: 6px;
   padding-top: 0.9rem;
   padding-bottom: 0.9rem;
@@ -54,8 +58,15 @@
   transform: translateX(0);
   transition: transform 450ms ease-out 250ms;
 }
-#sidebar .sidebar {
+#sidebar .sidebar_dark {
   background-color: #2b2c37;
+  border-right: 1px solid #3e3f4e;
+}
+#sidebar .sidebar_light {
+  background-color: #fff;
+  border-right: 1px solid #e4ebfa;
+}
+#sidebar .sidebar {
   color: #828fa3;
   fill: #828fa3;
   max-width: 300px;
@@ -64,23 +75,62 @@
   flex-direction: column;
   justify-content: space-between;
 }
+@media (max-width: 574px) {
+  #sidebar .sidebar {
+    border-radius: 8px;
+    position: absolute;
+    min-width: 265px;
+    top: 50%;
+    left: 50%;
+    height: fit-content;
+    transform: translate(-50%, 10%);
+    padding-bottom: 1rem;
+  }
+}
 #sidebar .sidebar .sidebar__list {
   padding-right: 1.5rem;
+}
+#sidebar .sidebar .sidebar__list-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  line-height: 1.25em;
+  text-transform: uppercase;
+  padding: 1.25rem 0 1.25rem 2rem;
+}
+#sidebar .sidebar .sidebar__list-item--btn > svg {
+  padding: 0 1rem 0 2rem;
+}
+#sidebar .sidebar .sidebar__list-item--btn {
+  all: unset;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0 100px 100px 0;
+  display: flex;
+  padding-top: 0.9375em;
+  padding-bottom: 0.9375em;
 }
 #sidebar .sidebar ._selected {
   background-color: #635fc7;
   color: #fff;
   fill: #fff;
 }
-#sidebar .sidebar .sidebar__list-item > svg {
-  padding: 0 1rem 0 2rem;
+#sidebar .sidebar .operator {
+  /* padding-top: 5px;
+       padding-right: 2px;
+       transform: scale(0.6);
+       width: 12px;
+       height: 12px; */
+  padding-top: 3px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
 }
-#sidebar .sidebar .sidebar__list-item {
-  width: 100%;
-  border-radius: 0 100px 100px 0;
-  display: flex;
-  padding-top: 0.9375em;
-  padding-bottom: 0.9375em;
+#sidebar .sidebar .add {
+  fill: #635fc7;
+  color: #635fc7;
+  padding-bottom: 2rem;
 }
 #sidebar .sidebar .sidebar-slider__wrapper {
   padding: 0 1.5rem 0 1.5rem;

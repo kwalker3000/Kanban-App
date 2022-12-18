@@ -1,11 +1,12 @@
 @use '../../util/util';
 @use '../../typography/typography' as font;
 @use './slider';
+@use '../../elements/icon-add';
 
 #sidebar {
     @include slider.slider;
     position: relative;
-    z-index: 1;
+    // z-index: 1;
 
 .head_level-3 {
     @include font.h3;
@@ -20,9 +21,16 @@
     transition: transform 450ms ease-out 250ms;
 }
     
+.sidebar_dark {
+    background-color: util.$dark-grey;
+    border-right: 1px solid util.$lines_dark;
+}
+.sidebar_light {
+    background-color: util.$white;
+    border-right: 1px solid util.$lines_light;
+}
 
   .sidebar {
-    background-color: util.$dark-grey;
     color: util.$medium-grey;
     fill: util.$medium-grey; // svg
 
@@ -33,20 +41,35 @@
     flex-direction: column;
     justify-content: space-between;
 
+    // TODO maybe? changes display mode too early
+    // issue is app mobile setting different from css
+    @media (max-width: util.$tablet - 111px) {
+	border-radius: util.$radius;
+	position: absolute;
+	min-width: 265px;
+	top: 50%;
+	left: 50%;
+	height: fit-content;
+	transform: translate(-50%, 10%);
+	padding-bottom: 1rem;
+    }
 
 	.sidebar__list {
 	    padding-right: 1.5rem;
 	}
-	._selected {
-	    background-color: util.$purple;
-	    color: util.$white;
-	    fill: util.$white; // svg
-	}
 
-	    .sidebar__list-item > svg {
+      .sidebar__list-title {
+	  @include font.h4;
+	  text-transform: uppercase;
+	  padding: 1.25rem 0 1.25rem 2rem;
+      }
+
+	    .sidebar__list-item--btn > svg {
 		padding: 0 1rem 0 2rem;
 	    }
-	    .sidebar__list-item {
+	    .sidebar__list-item--btn {
+		all: unset;
+		cursor: pointer;
 		width: 100%;
 		border-radius: 0 100px 100px 0;
 
@@ -54,6 +77,20 @@
 		padding-top: 0.9375em;
 		padding-bottom: 0.9375em;
 
+	    }
+          // because of cascading place after button reset
+	    ._selected {
+		background-color: util.$purple;
+		color: util.$white;
+		fill: util.$white; // svg
+	    }
+	    .operator {
+		@include icon-add.icon-add;
+	    }
+	    .add {
+		fill: util.$purple;
+		color: util.$purple;
+		padding-bottom: 2rem;
 	    }
 
 	    .sidebar-slider__wrapper {

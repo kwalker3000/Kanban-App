@@ -33,6 +33,7 @@ $font-stack: 'Plus Jakarta Sans', sans-serif;
 }
 
 @mixin h4 {
+  // S
   @include heading;
   font-size: 0.75rem;
   letter-spacing: 0.2em;

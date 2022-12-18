@@ -2,8 +2,14 @@
 
 @mixin slider {
 
+.slider_dark {
+    background-color: util.$bg-theme_very-dark-grey;
+}
+.slider_light {
+    background-color: util.$bg-theme_light-grey;
+}
+
   .slider {
-    background-color: util.$bg-theme_very-dark-gray;
     border-radius: 6px;
     padding-top: 0.9rem;
     padding-bottom: 0.9rem;

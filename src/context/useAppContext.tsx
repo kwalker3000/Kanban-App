@@ -13,7 +13,8 @@ type BoardObj = Task
 type ContextType = {
   theme: Theme
   kanban: Kanban
-  toggleTheme: (theme: Theme) => void
+  // toggleTheme: (theme: Theme) => void
+  toggleTheme: () => void
   // setKanban: (type: string, name: string, e: InputEvent) => void
   setKanban: (type: string, key: string, value: BoardObj) => void
   // setKanban: setKanban
@@ -69,6 +70,7 @@ export const AppWrapper = ({ children }: Props): JSX.Element => {
   const [kanban, dispatch] = useReducer(useKanban, initialState)
 
   let toggleTheme = () => {
+    console.log('heyhey')
     setTheme((curTheme) => (curTheme == 'dark' ? 'light' : 'dark'))
   }
 
