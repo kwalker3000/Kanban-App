@@ -33,12 +33,11 @@ export const Sidebar = ({ theme, isMobile, toggleTheme }: SidebarProps) => {
         }`}
       >
         <IconBoard />
-        <h3 className="head_level-3">{board.name}</h3>
+        <span className="head_level-3">{board.name}</span>
       </button>
     )
   })
 
-  console.log(typeof theme)
   return (
     <div id="sidebar">
       <div
@@ -47,14 +46,14 @@ export const Sidebar = ({ theme, isMobile, toggleTheme }: SidebarProps) => {
         }`}
       >
         <div className="sidebar__list">
-          <h2 className="sidebar__list-title">all boards ({kanban.length})</h2>
+          <h3 className="sidebar__list-title">all boards ({kanban.length})</h3>
           {boards}
 
           <button className={`sidebar__list-item--btn add`}>
             <IconBoard />
 
             <span className="operator head_level-3">+</span>
-            <h3 className="head_level-3">Create New Board</h3>
+            <span className="head_level-3">Create New Board</span>
           </button>
         </div>
 

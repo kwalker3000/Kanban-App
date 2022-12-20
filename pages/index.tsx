@@ -10,6 +10,7 @@ import { useAppContext } from '../src/context/useAppContext'
 // Components
 import { Header } from '../src/components/Header/Header'
 import { TaskForm } from '../src/components/Forms/TaskForm'
+import { Board } from '../src/components/Board/Board'
 import { Sidebar } from '../src/components/Sidebar/Sidebar'
 
 const Home: NextPage = () => {
@@ -17,11 +18,6 @@ const Home: NextPage = () => {
   const [workspaceTitle, setWorkspaceTitle] = useState<Title>('new project') // TODO add character limit
   const [isMobile, setIsMobile] = useState<boolean>(true)
   let { kanban, toggleTheme, theme } = useAppContext()
-
-  console.log(theme)
-  // let toggleTheme = () => {
-  //   setTheme((curTheme) => (curTheme == 'dark' ? 'light' : 'dark'))
-  // }
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,7 +45,8 @@ const Home: NextPage = () => {
       <header>
         <Header theme={theme} title={workspaceTitle} isMobile={isMobile} />
       </header>
-      <Sidebar isMobile={isMobile} theme={theme} toggleTheme={toggleTheme} />
+      {/*<Sidebar isMobile={isMobile} theme={theme} toggleTheme={toggleTheme} />*/}
+      <Board theme={theme} currentBoard={kanban[0]} />
     </div>
   )
 }

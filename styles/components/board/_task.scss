@@ -1,0 +1,38 @@
+@use '../../util/util';
+@use '../../typography/typography' as font;
+
+@mixin task {
+
+.task_dark {
+    background-color: util.$dark-grey;
+    color: util.$white
+}
+.task_light {
+    background-color: util.$white;
+    color: util.$black;
+}
+
+  .task {
+    border-radius: util.$radius;
+    width: 280px;
+    padding: 1.5rem 1rem;
+
+    filter: drop-shadow(0 4px 6px rgba(0,0,0, 0.1));
+
+
+    .task__head {
+	margin-bottom: 0.5rem;
+    }
+
+	.title {
+	    @include font.h2;
+	    text-align: left;
+	}
+
+    .body {
+	color: util.$medium-grey;
+	@include font.p2;
+	text-align: left;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@use '../../util/util';
+@use './add-column';
+@use './column';
+// @use './task';
+// @use '../../typography/typography' as font;
+
+// only for layout
+
+#board {
+
+.board_dark {
+    background-color: util.$bg-theme_very-dark-grey;
+}
+.board_light {
+    background-color: util.$bg-theme_light-grey;
+}
+
+    .board {
+	border: 0.5px solid red;
+	height: 100vh;
+	display: flex;
+	// padding: 1.5rem; 
+	// align-items: center;
+	overflow: scroll;
+    }
+    .board__column-wrapper {
+	@include column.column;
+	margin: 1.5rem;
+    }
+    .board__add-column-wrapper {
+	@include add-column.add-column;
+	// height: 100%;
+	margin-top: 1rem;
+	margin-right: 1.5rem;
+
+	display: flex;
+	align-items: center;
+	// @include task.task;
+    }
+    
+}

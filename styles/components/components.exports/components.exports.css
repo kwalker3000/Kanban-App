@@ -404,8 +404,9 @@
        transform: scale(0.6);
        width: 12px;
        height: 12px; */
-  padding-top: 3px;
   font-size: 0.7rem;
+  font-weight: 700;
+  /* padding-top: 2px; */
   letter-spacing: 2px;
 }
 #sidebar .sidebar .add {
@@ -451,6 +452,165 @@
   transition: transform 450ms ease-in;
   position: absolute;
   bottom: 0;
+}
+
+.bg-color {
+  width: 280px;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: linear-gradient(rgba(43, 44, 55, 0.3), rgba(43, 44, 55, 0.2));
+}
+
+#board .board_dark {
+  background-color: #20212c;
+}
+#board .board_light {
+  background-color: #f4f7fd;
+}
+#board .board {
+  border: 0.5px solid red;
+  height: 100vh;
+  display: flex;
+  overflow: scroll;
+}
+#board .board__column-wrapper {
+  margin: 1.5rem;
+}
+#board .board__column-wrapper .column .column__head {
+  margin-bottom: 1.5rem;
+  display: flex;
+}
+#board .board__column-wrapper .column .column__head .head_level-4 {
+  color: #828fa3;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  line-height: 1.25em;
+  text-transform: uppercase;
+}
+#board .board__column-wrapper .column .column__head .status_theme {
+  background-color: red;
+  border-radius: 100%;
+  padding: 0.45rem;
+  margin-right: 0.75rem;
+}
+#board .board__column-wrapper .column .column__task-wrapper {
+  margin-bottom: 1.25rem;
+}
+#board .board__column-wrapper .column .column__task-wrapper .task_dark {
+  background-color: #2b2c37;
+  color: #fff;
+}
+#board .board__column-wrapper .column .column__task-wrapper .task_light {
+  background-color: #fff;
+  color: #000112;
+}
+#board .board__column-wrapper .column .column__task-wrapper .task {
+  border-radius: 8px;
+  width: 280px;
+  padding: 1.5rem 1rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+#board .board__column-wrapper .column .column__task-wrapper .task .task__head {
+  margin-bottom: 0.5rem;
+}
+#board .board__column-wrapper .column .column__task-wrapper .task .title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.28em;
+  text-align: left;
+}
+#board .board__column-wrapper .column .column__task-wrapper .task .body {
+  color: #828fa3;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25em;
+  text-align: left;
+}
+#board .board__add-column-wrapper {
+  margin-top: 1rem;
+  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+#board .board__add-column-wrapper .add-column_dark {
+  background-color: #20212c;
+}
+#board .board__add-column-wrapper .add-column_light {
+  background-color: #f4f7fd;
+}
+#board .board__add-column-wrapper .add-column {
+  transform: translate(0%, -2.5rem);
+}
+#board .board__add-column-wrapper .add-column .add-column__head {
+  margin-bottom: 1.5rem;
+}
+#board .board__add-column-wrapper .add-column .add-column__head-text {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.28em;
+  text-align: center;
+  color: #828fa3;
+  padding: 0 0.5rem;
+}
+#board .board__add-column-wrapper .add-column .operator {
+  /* padding-top: 5px;
+       padding-right: 2px;
+       transform: scale(0.6);
+       width: 12px;
+       height: 12px; */
+  font-size: 0.7rem;
+  font-weight: 700;
+  /* padding-top: 2px; */
+  letter-spacing: 2px;
+}
+#board .board__add-column-wrapper .add-column .add-column__btn {
+  border: none;
+  cursor: pointer;
+  background-color: #635fc7;
+  color: #fff;
+  border-radius: 24px;
+  padding: 0.9375rem 1.125rem;
+}
+#board .board__add-column-wrapper .add-column .btn-text {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 0.938rem;
+  line-height: 1.27em;
+}
+#board .board__add-column-wrapper .add-column .btn-text_column {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25em;
+  color: #828fa3;
+}
+#board .board__add-column-wrapper .add-column .operator_column {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25em;
+  font-size: 1.25rem;
+  color: #828fa3;
+  letter-spacing: 2px;
+}
+#board .board__add-column-wrapper .add-column .btn_theme {
+  background-color: #20212c;
+  background-color: transparent;
 }
 
 /*# sourceMappingURL=components.exports.css.map */
