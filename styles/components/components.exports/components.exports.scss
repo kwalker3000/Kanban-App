@@ -1,4 +1,7 @@
 @use '../header/header';
 @use '../forms/task-form';
+@use '../forms/subtask-form';
+@use '../forms/board-form';
+@use '../forms/remove';
 @use '../sidebar/sidebar';
 @use '../board/board';

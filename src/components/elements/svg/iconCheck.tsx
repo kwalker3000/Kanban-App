@@ -3,7 +3,12 @@ import React from 'react'
 export const IconCheck = () => {
   return (
     <div>
-      <svg width="10" height="8" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        aria-hidden={true}
+        width="10"
+        height="8"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           stroke="#FFF"
           strokeWidth="2"

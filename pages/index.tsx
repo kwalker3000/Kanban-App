@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
+import styles from '../styles/modules/App.module.css'
 import { Theme, Title } from '../src/@types/app'
 
 import { useAppContext } from '../src/context/useAppContext'
@@ -10,14 +11,51 @@ import { useAppContext } from '../src/context/useAppContext'
 // Components
 import { Header } from '../src/components/Header/Header'
 import { TaskForm } from '../src/components/Forms/TaskForm'
+import { SubtaskForm } from '../src/components/Forms/SubtaskForm'
+import { BoardForm } from '../src/components/Forms/BoardForm'
+import { Remove } from '../src/components/Forms/Remove'
 import { Board } from '../src/components/Board/Board'
 import { Sidebar } from '../src/components/Sidebar/Sidebar'
+import { Overlay } from '../src/components/Overlay'
+
+const initialPopupState = {
+  taskPopup: false,
+  subtaskPopup: false,
+  boardPopup: false,
+  removePopup: false,
+}
 
 const Home: NextPage = () => {
   // const [theme, setTheme] = useState<Theme>('dark')
   const [workspaceTitle, setWorkspaceTitle] = useState<Title>('new project') // TODO add character limit
   const [isMobile, setIsMobile] = useState<boolean>(true)
+  const [isTaskOpen, setIsTaskOpen] = useState(false)
+  const [isPopupOpen, setIsPopupOpen] = useState(initialPopupState)
+  const [isSubtaskOpen, setIsSubtaskOpen] = useState(false)
   let { kanban, toggleTheme, theme } = useAppContext()
+
+  let isOpen = () => {
+    let key: keyof typeof initialPopupState
+    for (key in isPopupOpen) {
+      if (isPopupOpen[key]) {
+        return true
+      }
+    }
+    return false
+  }
+
+  let openPopup = (key: string) => {
+    setIsPopupOpen((prevState) => {
+      return {
+        ...prevState,
+        [key]: true,
+      }
+    })
+    // setIsTaskOpen((prevState) => !prevState)
+  }
+  let closePopup = () => {
+    setIsPopupOpen(initialPopupState)
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,10 +81,29 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header>
-        <Header theme={theme} title={workspaceTitle} isMobile={isMobile} />
+        <Header
+          theme={theme}
+          title={workspaceTitle}
+          isMobile={isMobile}
+          openPopup={openPopup}
+        />
       </header>
-      {/*<Sidebar isMobile={isMobile} theme={theme} toggleTheme={toggleTheme} />*/}
-      <Board theme={theme} currentBoard={kanban[0]} />
+      <Overlay isOpen={isOpen} closePopup={closePopup} />
+      <main>
+        {isOpen() && (
+          <div className={`${styles.popup}`} onClick={() => closePopup()}>
+            <div className={`${styles.popupWrapper}`}>
+              {isPopupOpen.taskPopup && <TaskForm theme={theme} />}
+              {isPopupOpen.subtaskPopup && <SubtaskForm theme={theme} />}
+              {isPopupOpen.boardPopup && <BoardForm theme={theme} />}
+              {isPopupOpen.removePopup && <Remove theme={theme} />}
+            </div>
+          </div>
+        )}
+        <Board theme={theme} currentBoard={kanban[0]} />
+        <div style={{ position: 'absolute' }}></div>
+        {/*<div style={{ position: 'absolute', top: '80px' }}></div>*/}
+      </main>
     </div>
   )
 }
@@ -56,3 +113,7 @@ export default Home
 // <div>
 //   <TaskForm theme={theme} />
 // </div>
+
+// <SubtaskForm theme={theme} />
+
+// <Sidebar isMobile={isMobile} theme={theme} toggleTheme={toggleTheme} />

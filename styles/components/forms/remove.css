@@ -1,0 +1,99 @@
+#remove .btn {
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 24px;
+  color: #635fc7;
+  word-spacing: -2.5px;
+  padding: 0.5rem 0 0.56rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#remove .btn-text {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.77em;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+#remove .btn svg {
+  width: 12px;
+  height: 12px;
+  fill: #635fc7;
+  vertical-align: bottom;
+  transform: scale(0.7);
+}
+#remove .btn_create {
+  background-color: #635fc7;
+  color: #fff;
+}
+#remove .btn_create:hover,
+#remove .btn_create:focus {
+  background: #a8a4ff;
+  transition: background-color 0.5s;
+}
+#remove .btn_delete {
+  background-color: #ea5555;
+  color: #fff;
+}
+#remove .btn_delete:hover,
+#remove .btn_delete:focus {
+  background: #a8a4ff;
+  transition: background-color 0.5s;
+}
+#remove .btn_cancel--light {
+  background-color: #ea5555;
+  color: #fff;
+}
+#remove .btn_cancel--light:hover,
+#remove .btn_cancel--light:focus {
+  background: #a8a4ff;
+  transition: background-color 0.5s;
+}
+#remove .remove_dark {
+  background-color: #2b2c37;
+}
+#remove .remove_light {
+  background-color: #fff;
+}
+#remove .head_level-2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.28em;
+}
+#remove .body_level-1 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.77em;
+  color: #828fa3;
+}
+#remove .remove {
+  padding: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 6px;
+}
+#remove .remove .header_dark {
+  color: #fff;
+}
+#remove .remove .header_light {
+  color: #000112;
+}
+#remove .remove .remove__head {
+  margin-bottom: 1.5rem;
+  display: flex;
+}
+#remove .remove .remove__body {
+  margin-bottom: 1.5rem;
+}
+#remove .remove .remove__btn-wrapper > button {
+  margin-bottom: 1rem;
+}
+
+/*# sourceMappingURL=remove.css.map */

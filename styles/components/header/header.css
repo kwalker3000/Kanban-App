@@ -107,19 +107,19 @@
   }
 }
 
-.header-dark {
+.header_dark {
   background-color: #2b2c37;
 }
 
-.head-dark {
+.head_dark {
   color: #fff;
 }
 
-.header-light {
+.header_light {
   background-color: #fff;
 }
 
-.head-light {
+.head_light {
   color: #000112;
 }
 

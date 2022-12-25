@@ -1,0 +1,21 @@
+.popup {
+  width: 100vw;
+  /* left: 0;
+       right: 0;
+       margin-left: auto;
+       margin-right: auto; */
+  border: 1px solid blue;
+  height: calc(100vh - 4rem);
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popupWrapper {
+  width: 90%;
+  max-width: 480px;
+}
+
+/*# sourceMappingURL=App.module.css.map */

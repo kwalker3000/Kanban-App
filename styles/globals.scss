@@ -1,7 +1,9 @@
 @use 'components/components.exports/components.exports';
+@use 'elements/overlay';
 
 body,
 html {
   margin: 0;
   padding: 0;
+  @include overlay.overlay;
 }

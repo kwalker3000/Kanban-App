@@ -1,0 +1,155 @@
+#subtask-form input[type=checkbox] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+#subtask-form .checkbox {
+  background-color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 0px 0.2rem;
+  margin-right: 1rem;
+  display: inline-block;
+}
+#subtask-form .checkbox_active {
+  background-color: #635fc7;
+}
+#subtask-form .subtask-form_dark {
+  background-color: #2b2c37;
+}
+#subtask-form .subtask-form_light {
+  background-color: #fff;
+}
+#subtask-form .head_level-2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.28em;
+}
+#subtask-form .body_level-1 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.77em;
+  color: #828fa3;
+}
+#subtask-form .subtask-form {
+  padding: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 6px;
+}
+#subtask-form .subtask-form .header_dark {
+  color: #fff;
+}
+#subtask-form .subtask-form .header_light {
+  color: #000112;
+}
+#subtask-form .subtask-form .subtask-form__head {
+  margin-bottom: 1.5rem;
+  display: flex;
+}
+#subtask-form .subtask-form .subtask-form__body {
+  margin-bottom: 1.5rem;
+}
+#subtask-form .form .form__label {
+  display: flex;
+  flex-direction: column;
+}
+#subtask-form .form .form__label_dark {
+  color: #fff;
+}
+#subtask-form .form .form__label_light {
+  color: #828fa3;
+}
+#subtask-form .form .label {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25em;
+  margin-bottom: 1.5rem;
+}
+#subtask-form .form .input {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.77em;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(130, 143, 163, 0.25);
+  border-radius: 4px;
+  padding: 0.5rem 1rem 0.5rem;
+  opacity: 1 important;
+}
+#subtask-form .form .input_dark {
+  background-color: #2b2c37;
+  color: #fff;
+}
+#subtask-form .form .input_dark::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+#subtask-form .form .input_light {
+  background-color: #fff;
+  color: #000112;
+}
+#subtask-form .form .input_light::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+#subtask-form .form .input_subtask {
+  margin-bottom: 0.75rem;
+  margin-right: 1rem;
+  width: 100%;
+}
+#subtask-form .form textarea {
+  height: 104px;
+}
+#subtask-form .form .subtask-wrapper {
+  display: flex;
+}
+#subtask-form .form .fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+#subtask-form .form .fieldset > legend,
+#subtask-form .form .fieldset > label {
+  margin-bottom: 1rem;
+}
+#subtask-form .form .btn-wrapper {
+  margin-bottom: 1.5rem;
+}
+#subtask-form .form select {
+  text-transform: capitalize;
+  padding: 1rem;
+}
+
+.wrapper_dark {
+  border-radius: 4px;
+  background-color: #20212c;
+  margin-bottom: 0.5rem;
+}
+
+.subtask-wrapper .subtask__label {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.9125em 0.25em 1em 0.75em;
+}
+.subtask-wrapper .description_active {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/*# sourceMappingURL=subtask-form.css.map */

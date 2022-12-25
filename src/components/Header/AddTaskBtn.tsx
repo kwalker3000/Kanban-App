@@ -2,11 +2,17 @@ import React from 'react'
 
 type Props = {
   isMobile: boolean | undefined
+  openPopup: (key: string) => void
 }
 
-export const AddTaskBtn = ({ isMobile }: Props) => {
+export const AddTaskBtn = ({ isMobile, openPopup }: Props) => {
   return (
-    <button id="add-task__btn" className="add-task__btn" aria-label="add task">
+    <button
+      id="add-task__btn"
+      className="add-task__btn"
+      aria-label="add task"
+      onClick={() => openPopup('taskPopup')}
+    >
       <span>
         <svg
           aria-hidden={true}

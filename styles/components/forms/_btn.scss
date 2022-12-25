@@ -36,6 +36,25 @@
     background: util.$purple_hover;
     transition: background-color 0.5s;
   }
+  .btn_delete {
+    background-color: util.$red;
+    color: util.$white;
+  }
+  .btn_delete:hover,
+  .btn_delete:focus {
+    background: util.$purple_hover;
+    transition: background-color 0.5s;
+  }
+  //TODO
+  .btn_cancel--light {
+    background-color: util.$red;
+    color: util.$white;
+  }
+  .btn_cancel--light:hover,
+  .btn_cancel--light:focus {
+    background: util.$purple_hover;
+    transition: background-color 0.5s;
+  }
 }
 
 @mixin cross-btn {

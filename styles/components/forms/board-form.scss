@@ -2,27 +2,22 @@
 @use '../../typography/typography' as font;
 @use './btn';
 
-#task-form {
-  @include btn.task-btn;
-  @include btn.cross-btn;
-  /* width: 90%;
-       max-width: 480px; */
-  /* position: absolute;
-       left: 1rem;
-       right: 1rem; */
+#board-form {
+    @include btn.task-btn;
+    /* @include btn.cross-btn; */
 
-  .task-form_dark {
+.board-form_dark {
     background-color: util.$dark-grey;
-  }
-  .task-form_light {
+}
+.board-form_light {
     background-color: util.$white;
-  }
+}
 
   .head_level-2 {
     @include font.h2;
   }
 
-  .task-form {
+  .board-form {
     padding: 1.5rem;
     border-radius: 6px;
 
@@ -33,12 +28,12 @@
       color: util.$black;
     }
 
-    .task-form__head {
+    .board-form__head {
       margin-bottom: 1.5rem;
     }
   }
 
-  .task-form__form {
+  .board-form__form {
   }
 
   .form {
@@ -85,37 +80,5 @@
     .input_light::placeholder {
       color: rgba(0, 0, 0, 0.5);
     }
-    .input_subtask {
-      margin-bottom: 0.75rem;
-      margin-right: 1rem;
-      width: 100%;
-    }
-
-    textarea {
-      height: 104px;
-    }
-
-    .subtask-wrapper {
-      display: flex;
-    }
-
-    .fieldset {
-      border: none;
-      padding: 0;
-      margin: 0;
-    }
-    .fieldset > legend,
-    .fieldset > label {
-      margin: 0;
-    }
-
-    .btn-wrapper {
-      margin-bottom: 1.5rem;
-    }
-
-    select {
-      text-transform: capitalize;
-      padding: 1rem;
-    }
-  }
+}
 }

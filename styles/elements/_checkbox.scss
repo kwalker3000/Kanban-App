@@ -1,0 +1,31 @@
+@use '../util/util';
+
+@mixin checkbox {
+    
+    // hide native checkbox
+    input[type='checkbox'] {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+    }
+
+    .checkbox {
+	background-color: #fff;
+	border-radius: 2px;
+	cursor: pointer;
+
+	padding: 0px .2rem;
+	margin-right: 1rem;
+
+	display: inline-block;
+    }
+
+    .checkbox_active {
+	background-color: util.$purple;
+    }
+
+}
