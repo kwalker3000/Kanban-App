@@ -1,27 +1,34 @@
 import React, { useState } from 'react'
 import { Title, Theme } from '../../@types/app'
+import { Board } from '../../@types/board'
 
 import { IconVerticalEllipsis } from '../elements/svg/iconVerticalEllipsis'
 import { AddTaskBtn } from './AddTaskBtn'
 import { LogoMobile } from '../elements/svg/logoMobile'
-import { IconChevron } from '../elements/svg/iconChevron'
+import { IconChevron } from './iconChevron'
 
 type HeaderProps = {
-  title: Title
   theme: Theme
   isMobile: boolean | undefined
   openPopup: (key: string) => void
+  closePopup: () => void
+  isSidebarOpen: boolean
+  board: Board
 }
 
 export const Header = ({
-  title,
   theme,
   isMobile,
   openPopup,
+  closePopup,
+  isSidebarOpen,
+  board,
 }: HeaderProps): JSX.Element => {
   return (
     <div id="header">
-      <div className={`header header_${theme}`}>
+      <div
+        className={`header header_${theme} ${isSidebarOpen && 'sidebar-state'}`}
+      >
         <div className="head-wrapper">
           {isMobile && (
             <div className="header__logo logo-wrapper">
@@ -30,15 +37,20 @@ export const Header = ({
           )}
           <div></div>
           <h2 className={`header__head head_${theme} head_level-2`}>
-            {title || undefined}
+            {board.name || undefined}
           </h2>
           <div>
-            <IconChevron />
+            <IconChevron openPopup={openPopup} isSidebarOpen={isSidebarOpen} />
           </div>
         </div>
         <div className="header__action-wrapper">
           <div className="header__btn-wrapper">
-            <AddTaskBtn isMobile={isMobile} openPopup={openPopup} />
+            <AddTaskBtn
+              isMobile={isMobile}
+              openPopup={openPopup}
+              closePopup={closePopup}
+              isSidebarOpen={isSidebarOpen}
+            />
           </div>
           <div className="header__elips elips-wrapper">
             <IconVerticalEllipsis />

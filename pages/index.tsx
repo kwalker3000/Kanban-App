@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 import styles from '../styles/modules/App.module.css'
 import { Theme, Title } from '../src/@types/app'
+import { Board as BoardType, Task, Status } from '../src/@types/board'
 
 import { useAppContext } from '../src/context/useAppContext'
+import { useBoard } from '../src/hooks/useBoard'
 
 // Components
 import { Header } from '../src/components/Header/Header'
@@ -23,16 +25,60 @@ const initialPopupState = {
   subtaskPopup: false,
   boardPopup: false,
   removePopup: false,
+  sidebarPopup: false,
+}
+type SubtaskEditType = {
+  status: Status
+  index: number
+}
+const initialSubtaskEditKey: SubtaskEditType = {
+  status: 'todo',
+  index: -1,
+}
+export type Action = {
+  type: string
 }
 
 const Home: NextPage = () => {
-  // const [theme, setTheme] = useState<Theme>('dark')
-  const [workspaceTitle, setWorkspaceTitle] = useState<Title>('new project') // TODO add character limit
+  // TODO add character limit
   const [isMobile, setIsMobile] = useState<boolean>(true)
-  const [isTaskOpen, setIsTaskOpen] = useState(false)
   const [isPopupOpen, setIsPopupOpen] = useState(initialPopupState)
-  const [isSubtaskOpen, setIsSubtaskOpen] = useState(false)
-  let { kanban, toggleTheme, theme } = useAppContext()
+  const [subtaskEditKey, setSubtaskEditKey] = useState<SubtaskEditType>(
+    initialSubtaskEditKey
+  )
+
+  let {
+    kanban,
+    actionKanban,
+    toggleTheme,
+    theme,
+    activeBoard,
+    handleActiveBoard,
+    boardList,
+  } = useAppContext()
+
+  const [board, setBoard] = useReducer(useBoard, activeBoard)
+
+  let { status: taskStatus, index: taskIndex } = subtaskEditKey
+  let tas = board.tasks.find((task) => task.id == taskIndex)!
+
+  type BoardObj = Task
+  let actionBoard = (type: string, key: string, value: Task | BoardType) => {
+    setBoard({
+      type,
+      payload: { key, value },
+    })
+  }
+
+  let updateSubtaskEditKey = (status: Status, i: number) => {
+    setSubtaskEditKey((prevState) => {
+      return {
+        ...prevState,
+        status,
+        index: i,
+      }
+    })
+  }
 
   let isOpen = () => {
     let key: keyof typeof initialPopupState
@@ -46,18 +92,21 @@ const Home: NextPage = () => {
 
   let openPopup = (key: string) => {
     setIsPopupOpen((prevState) => {
+      let value = key == 'sidebarPopup' ? !prevState[key] : true
       return {
         ...prevState,
-        [key]: true,
+        [key]: value,
       }
     })
-    // setIsTaskOpen((prevState) => !prevState)
   }
   let closePopup = () => {
     setIsPopupOpen(initialPopupState)
+    setSubtaskEditKey(initialSubtaskEditKey)
   }
 
   useEffect(() => {
+    actionKanban('EDIT BOARD', '', board)
+    actionBoard('INITIALIZE BOARD', '', activeBoard)
     const handleResize = () => {
       if (window.innerWidth < 575) {
         setIsMobile(true)
@@ -71,7 +120,7 @@ const Home: NextPage = () => {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [activeBoard])
 
   return (
     <div className="" style={{ position: 'relative' }}>
@@ -83,37 +132,58 @@ const Home: NextPage = () => {
       <header>
         <Header
           theme={theme}
-          title={workspaceTitle}
           isMobile={isMobile}
           openPopup={openPopup}
+          isSidebarOpen={isPopupOpen.sidebarPopup}
+          board={board}
+          closePopup={closePopup}
         />
       </header>
       <Overlay isOpen={isOpen} closePopup={closePopup} />
       <main>
         {isOpen() && (
-          <div className={`${styles.popup}`} onClick={() => closePopup()}>
-            <div className={`${styles.popupWrapper}`}>
-              {isPopupOpen.taskPopup && <TaskForm theme={theme} />}
-              {isPopupOpen.subtaskPopup && <SubtaskForm theme={theme} />}
-              {isPopupOpen.boardPopup && <BoardForm theme={theme} />}
-              {isPopupOpen.removePopup && <Remove theme={theme} />}
-            </div>
+          <div className={`${styles.popupWrapper}`}>
+            {isPopupOpen.taskPopup && <TaskForm theme={theme} />}
+            {isPopupOpen.subtaskPopup && (
+              <SubtaskForm
+                theme={theme}
+                taskObj={tas}
+                actionBoard={actionBoard}
+              />
+            )}
+            {isPopupOpen.boardPopup && (
+              <BoardForm
+                theme={theme}
+                actionKanban={actionKanban}
+                closePopup={closePopup}
+              />
+            )}
+            {isPopupOpen.removePopup && <Remove theme={theme} />}
           </div>
         )}
-        <Board theme={theme} currentBoard={kanban[0]} />
+        {isPopupOpen.sidebarPopup && (
+          <Sidebar
+            isMobile={isMobile}
+            theme={theme}
+            toggleTheme={toggleTheme}
+            boardList={boardList}
+            board={board}
+            handleActiveBoard={handleActiveBoard}
+            openPopup={openPopup}
+            closePopup={closePopup}
+          />
+        )}
+        <Board
+          theme={theme}
+          board={board}
+          openPopup={openPopup}
+          updateSubtaskEditKey={updateSubtaskEditKey}
+          // handleKanban={handleKanban}
+        />
         <div style={{ position: 'absolute' }}></div>
-        {/*<div style={{ position: 'absolute', top: '80px' }}></div>*/}
       </main>
     </div>
   )
 }
 
 export default Home
-
-// <div>
-//   <TaskForm theme={theme} />
-// </div>
-
-// <SubtaskForm theme={theme} />
-
-// <Sidebar isMobile={isMobile} theme={theme} toggleTheme={toggleTheme} />

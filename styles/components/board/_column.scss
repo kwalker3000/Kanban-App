@@ -6,37 +6,34 @@
 // @include add-column.add-column;
 
 @mixin column {
-
-
   .column {
+    .column__head {
+      margin-bottom: 1.5rem;
+      display: flex;
 
-
-      .column__head {
-	  margin-bottom: 1.5rem;
-	  display: flex;
-
-
-	    .head_level-4 {
-		color: util.$medium-grey;
-		@include font.h4;
-		text-transform: uppercase;
-	    }
-
-	    .status_theme {
-		background-color: red;
-		border-radius: 100%;
-		padding: 0.45rem; 
-
-		margin-right: 0.75rem;
-	    }
+      .head_level-4 {
+        color: util.$medium-grey;
+        @include font.h4;
+        text-transform: uppercase;
       }
 
+      .status_theme {
+        background-color: red;
+        border-radius: 100%;
+        padding: 0.45rem;
 
-      .column__task-wrapper {
-	@include task.task;
-	margin-bottom: 1.25rem;
+        margin-right: 0.75rem;
       }
+    }
 
+    .column__task-wrapper {
+      @include task.task;
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+    }
+    // inside Task Component
+    .column__task-wrapper:hover > .task {
+      color: util.$purple;
+    }
   }
 }
-

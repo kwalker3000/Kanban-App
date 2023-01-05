@@ -15,3 +15,5 @@ export type InputEvent =
   | React.ChangeEvent<HTMLInputElement>
   | React.ChangeEvent<HTMLTextAreaElement>
   | React.ChangeEvent<HTMLSelectElement>
+
+export type FormEvent = React.FormEvent<HTMLFormElement>

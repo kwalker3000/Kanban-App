@@ -4,31 +4,31 @@
 @use '../../elements/icon-add';
 
 #sidebar {
-    @include slider.slider;
-    position: relative;
-    // z-index: 1;
+  @include slider.slider;
+  position: relative;
+  z-index: 2;
 
-.head_level-3 {
+  .head_level-3 {
     @include font.h3;
-}
+  }
 
-.is-hidden {
+  .is-hidden {
     transform: translateX(-100%);
     transition: transform 450ms ease-out;
-}
-.is-not-hidden-side {
+  }
+  .is-not-hidden-side {
     transform: translateX(0);
     transition: transform 450ms ease-out 250ms;
-}
-    
-.sidebar_dark {
+  }
+
+  .sidebar_dark {
     background-color: util.$dark-grey;
     border-right: 1px solid util.$lines_dark;
-}
-.sidebar_light {
+  }
+  .sidebar_light {
     background-color: util.$white;
     border-right: 1px solid util.$lines_light;
-}
+  }
 
   .sidebar {
     color: util.$medium-grey;
@@ -44,97 +44,94 @@
     // TODO maybe? changes display mode too early
     // issue is app mobile setting different from css
     @media (max-width: util.$tablet - 111px) {
-	border-radius: util.$radius;
-	position: absolute;
-	min-width: 265px;
-	top: 50%;
-	left: 50%;
-	height: fit-content;
-	transform: translate(-50%, 10%);
-	padding-bottom: 1rem;
+      border-radius: util.$radius;
+      position: absolute;
+      min-width: 265px;
+      top: 50%;
+      left: 50%;
+      height: fit-content;
+      transform: translate(-50%, 10%);
+      padding-bottom: 1rem;
     }
 
-	.sidebar__list {
-	    padding-right: 1.5rem;
-	}
+    .sidebar__list {
+      padding-right: 1.5rem;
+    }
 
-      .sidebar__list-title {
-	  @include font.h4;
-	  text-transform: uppercase;
-	  padding: 1.25rem 0 1.25rem 2rem;
-      }
+    .sidebar__list-title {
+      @include font.h4;
+      text-transform: uppercase;
+      padding: 1.25rem 0 1.25rem 2rem;
+    }
 
-	    .sidebar__list-item--btn > svg {
-		padding: 0 1rem 0 2rem;
-	    }
-	    .sidebar__list-item--btn {
-		all: unset;
-		cursor: pointer;
-		width: 100%;
-		border-radius: 0 100px 100px 0;
+    .sidebar__list-item--btn > svg {
+      padding: 0 1rem 0 2rem;
+    }
+    .sidebar__list-item--btn {
+      all: unset;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 0 100px 100px 0;
 
-		display: flex;
-		padding-top: 0.9375em;
-		padding-bottom: 0.9375em;
+      display: flex;
+      padding-top: 0.9375em;
+      padding-bottom: 0.9375em;
+    }
+    // because of cascading place after button reset
+    ._selected {
+      background-color: util.$purple;
+      color: util.$white;
+      fill: util.$white; // svg
+    }
+    .operator {
+      @include icon-add.icon-add;
+    }
+    .add {
+      fill: util.$purple;
+      color: util.$purple;
+      padding-bottom: 2rem;
+    }
 
-	    }
-          // because of cascading place after button reset
-	    ._selected {
-		background-color: util.$purple;
-		color: util.$white;
-		fill: util.$white; // svg
-	    }
-	    .operator {
-		@include icon-add.icon-add;
-	    }
-	    .add {
-		fill: util.$purple;
-		color: util.$purple;
-		padding-bottom: 2rem;
-	    }
+    .sidebar-slider__wrapper {
+      padding: 0 1.5rem 0 1.5rem;
+    }
+    .sidebar__toggle-btn {
+      all: unset;
+      cursor: pointer;
 
-	    .sidebar-slider__wrapper {
-		padding: 0 1.5rem 0 1.5rem;
-	    }
-	    .sidebar__toggle-btn {
-		all: unset;
-		cursor: pointer;
+      padding: 0.9rem 1.25rem 0.9rem 0;
+      margin-bottom: 2.0375rem;
+      margin-top: 0.55rem;
 
-		padding: 0.9rem 1.25rem 0.9rem 0;
-		margin-bottom: 2.0375rem;
-		margin-top: 0.55rem;
+      display: flex;
+      border-radius: 0 100px 100px 0;
+    }
+    .sidebar__toggle-btn:nth-child(odd) {
+      fill: util.$white;
+    }
+    .sidebar__toggle-text {
+      @include font.h3;
+      text-transform: capitalize;
+      margin-left: 0.9735rem;
+      margin-right: 1.25rem;
+    }
+    .is-not-hidden {
+      background-color: util.$purple;
 
-		display: flex;
-		border-radius: 0 100px 100px 0;
-	    }
-	    .sidebar__toggle-btn:nth-child(odd) {
-		fill: util.$white;
-	    }
-	    .sidebar__toggle-text {
-		@include font.h3;
-		text-transform: capitalize;
-		margin-left: 0.9735rem;
-		margin-right: 1.25rem;
-	    }
-	    .is-not-hidden {
-		background-color: util.$purple;
+      transform: translateX(60%);
+      transition: transform 450ms ease-out 350ms;
 
-		transform: translateX(60%);
-		transition: transform 450ms ease-out 350ms;
+      position: absolute;
+      bottom: 0;
+    }
+    .underneath {
+      fill: util.$white;
 
-		position: absolute;
-		bottom: 0;
-	    }
-	    .underneath {
-		fill: util.$white;
+      transform: translateX(-115%);
+      transition: transform 450ms ease-in;
 
-		transform: translateX(-115%);
-		transition: transform 450ms ease-in;
-
-		position: absolute;
-		bottom: 0;
-	    }
+      position: absolute;
+      bottom: 0;
+    }
   }
-
-
 }

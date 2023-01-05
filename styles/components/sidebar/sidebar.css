@@ -1,5 +1,6 @@
 #sidebar {
   position: relative;
+  z-index: 2;
 }
 #sidebar .slider_dark {
   background-color: #20212c;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Theme } from '../../@types/app'
+import { Board } from '../../@types/board'
 import { useAppContext } from '../../context/useAppContext'
 
 // Components
@@ -13,27 +14,43 @@ type SidebarProps = {
   theme: Theme
   isMobile: boolean | undefined
   toggleTheme: () => void
+  board: Board
+  boardList: string[]
+  handleActiveBoard: (index: number) => void
+  openPopup: (key: string) => void
+  closePopup: () => void
 }
 
 // TODO pass theme
-export const Sidebar = ({ theme, isMobile, toggleTheme }: SidebarProps) => {
+export const Sidebar = ({
+  theme,
+  isMobile,
+  toggleTheme,
+  board,
+  boardList,
+  handleActiveBoard,
+  openPopup,
+  closePopup,
+}: SidebarProps) => {
   // TODO probably better to pass from index.tsx
-  let { kanban } = useAppContext()
-  const [activeBoard, setActiveBoard] = useState(kanban[0].name)
   const [isHidden, setIsHidden] = useState(false)
 
-  // TODO
-  // loop kanban boards and make list
-  let boards = kanban.map((board, index) => {
+  let handlePopup = () => {
+    closePopup()
+    openPopup('boardPopup')
+  }
+
+  let boards = boardList.map((name, index) => {
     return (
       <button
         key={index}
+        onClick={() => handleActiveBoard(index)}
         className={`sidebar__list-item--btn ${
-          board.name == activeBoard && '_selected'
+          name == board.name && '_selected'
         }`}
       >
         <IconBoard />
-        <span className="head_level-3">{board.name}</span>
+        <span className="head_level-3">{name}</span>
       </button>
     )
   })
@@ -46,10 +63,15 @@ export const Sidebar = ({ theme, isMobile, toggleTheme }: SidebarProps) => {
         }`}
       >
         <div className="sidebar__list">
-          <h3 className="sidebar__list-title">all boards ({kanban.length})</h3>
+          <h3 className="sidebar__list-title">
+            all boards ({boardList.length})
+          </h3>
           {boards}
 
-          <button className={`sidebar__list-item--btn add`}>
+          <button
+            className={`sidebar__list-item--btn add`}
+            onClick={() => handlePopup()}
+          >
             <IconBoard />
 
             <span className="operator head_level-3">+</span>

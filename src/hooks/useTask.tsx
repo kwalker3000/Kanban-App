@@ -1,6 +1,8 @@
 import React from 'react'
 import { Task, Subtask } from '../@types/board'
 
+// TODO
+// change 'any'
 export const useTask = (state: Task, action: any): Task => {
   let { key, value, index } = action.payload
   console.log(index)
@@ -60,46 +62,4 @@ export const useTask = (state: Task, action: any): Task => {
     default:
       throw new Error(`Unknown action ${action.type}`)
   }
-  // }
-
-  // const [state, dispatch] = useReducer(reducer, initialState)
-
-  // const handleBoad
-
-  // const handleTask
-
-  // const inputAction = (event) => {
-  //   dispatch({
-  //     type: 'UPDATE',
-  //     payload: { key: event.target.name, value: event.target.value },
-  //   })
-  // }
-
-  // const replaceAction = (city) => {
-  //   dispatch({
-  //     type: 'REPLACE CITY',
-  //     payload: { key: 'city', value: city },
-  //   })
-  // }
-
-  // return [state, { setAction }]
 }
-
-// let initialState: Kanban = [
-//   {
-//     name: 'New Project',
-//   },
-// ]
-
-// type setAction = {
-//   type: string
-//   name: string
-//   value: string
-// }
-
-// export const setAction = (type: string, name: string, value: string) => {
-//   dispatch({
-//     type: type,
-//     payload: { key: name, value: value },
-//   })
-// }

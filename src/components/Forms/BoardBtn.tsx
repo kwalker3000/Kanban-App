@@ -20,7 +20,7 @@ BtnProp): JSX.Element => {
   const [act, _] = action.split(' ')
   return (
     <button
-      type="button"
+      type="submit"
       aria-label={`${act} subtask`}
       className={`btn btn_${theme} btn_${action}`}
       // onClick={() => addTask(task)}

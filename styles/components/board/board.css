@@ -8,6 +8,10 @@
   background: linear-gradient(rgba(43, 44, 55, 0.3), rgba(43, 44, 55, 0.2));
 }
 
+#board {
+  /* position: relative;
+     z-index: 1; */
+}
 #board .board_dark {
   background-color: #20212c;
 }
@@ -45,6 +49,7 @@
 }
 #board .board__column-wrapper .column .column__task-wrapper {
   margin-bottom: 1.25rem;
+  cursor: pointer;
 }
 #board .board__column-wrapper .column .column__task-wrapper .task_dark {
   background-color: #2b2c37;
@@ -59,6 +64,9 @@
   width: 280px;
   padding: 1.5rem 1rem;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  /* .task__head:hover {
+  color: red;
+  } */
 }
 #board .board__column-wrapper .column .column__task-wrapper .task .task__head {
   margin-bottom: 0.5rem;
@@ -79,6 +87,9 @@
   font-weight: 700;
   line-height: 1.25em;
   text-align: left;
+}
+#board .board__column-wrapper .column .column__task-wrapper:hover > .task {
+  color: #635fc7;
 }
 #board .board__add-column-wrapper {
   margin-top: 1rem;

@@ -13,6 +13,9 @@
     padding: 0.9375rem 1.5625rem 0.875rem 1.5rem;
   }
 }
+#header .add-task__btn:disabled {
+  cursor: not-allowed;
+}
 #header .add-task__btn-text {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
@@ -41,6 +44,10 @@
   cursor: pointer;
   background-color: inherit;
   padding: 0;
+}
+#header .sidebar-state {
+  position: relative;
+  z-index: 2;
 }
 #header .head_level-2 {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -77,7 +84,6 @@
   }
 }
 #header .header__head {
-  color: #fff;
   margin-right: 0.25rem;
 }
 #header .head-wrapper {
@@ -123,13 +129,6 @@
   color: #000112;
 }
 
-#task-form {
-  /* width: 90%;
-       max-width: 480px; */
-  /* position: absolute;
-       left: 1rem;
-       right: 1rem; */
-}
 #task-form .btn {
   border: none;
   cursor: pointer;
@@ -299,6 +298,15 @@
   padding: 1rem;
 }
 
+#subtask-form {
+  width: 100%;
+  max-width: 480px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  z-index: 2;
+}
 #subtask-form input[type=checkbox] {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -354,6 +362,7 @@
 #subtask-form .subtask-form .subtask-form__head {
   margin-bottom: 1.5rem;
   display: flex;
+  justify-content: space-between;
 }
 #subtask-form .subtask-form .subtask-form__body {
   margin-bottom: 1.5rem;
@@ -686,6 +695,7 @@
 
 #sidebar {
   position: relative;
+  z-index: 2;
 }
 #sidebar .slider_dark {
   background-color: #20212c;
@@ -869,6 +879,10 @@
   background: linear-gradient(rgba(43, 44, 55, 0.3), rgba(43, 44, 55, 0.2));
 }
 
+#board {
+  /* position: relative;
+     z-index: 1; */
+}
 #board .board_dark {
   background-color: #20212c;
 }
@@ -906,6 +920,7 @@
 }
 #board .board__column-wrapper .column .column__task-wrapper {
   margin-bottom: 1.25rem;
+  cursor: pointer;
 }
 #board .board__column-wrapper .column .column__task-wrapper .task_dark {
   background-color: #2b2c37;
@@ -920,6 +935,9 @@
   width: 280px;
   padding: 1.5rem 1rem;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  /* .task__head:hover {
+  color: red;
+  } */
 }
 #board .board__column-wrapper .column .column__task-wrapper .task .task__head {
   margin-bottom: 0.5rem;
@@ -940,6 +958,9 @@
   font-weight: 700;
   line-height: 1.25em;
   text-align: left;
+}
+#board .board__column-wrapper .column .column__task-wrapper:hover > .task {
+  color: #635fc7;
 }
 #board .board__add-column-wrapper {
   margin-top: 1rem;

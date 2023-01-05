@@ -5,6 +5,7 @@ export type Subtask = {
 }
 
 export type Task = {
+  id: number
   title: string
   description: string
   status: Status
@@ -12,47 +13,16 @@ export type Task = {
   // compiler doesn't recognize undefined 'subtasks', requires work around
 }
 
-type Column = {
+export type Column = {
   status: Status
   tasks: Task[] | []
 }
 
 export type Board = {
   name: string
-  todoCol: Column
-  doingCol: Column
-  doneCol: Column
+  tasks: Task[]
 }
 
 export type Kanban = Board[]
 
-// [{
-//   boardName: "my project",
-//   todoCol: {
-//     status: todo,
-//     tasks: [
-//       {
-// 	title: 'bug#121',
-// 	description: 'user cannot log in',
-// 	status: 'todo',
-// 	subtasks: [
-// 	  {
-// 	    description: 'refactor getUser function',
-// 	    status: 'todo'
-// 	  }
-// 	]
-//       }
-//     ]
-//   }
-// }]
-
-// type Subtask = {
-//   description: string
-//   status: Status
-// }
-
-// export type setKanban = {
-//   type: string
-//   name: string
-//   value: string
-// }
+// TODO boards may need id or restrict to unique names

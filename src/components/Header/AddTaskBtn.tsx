@@ -3,15 +3,26 @@ import React from 'react'
 type Props = {
   isMobile: boolean | undefined
   openPopup: (key: string) => void
+  isSidebarOpen: boolean
+  closePopup: () => void
 }
 
-export const AddTaskBtn = ({ isMobile, openPopup }: Props) => {
+export const AddTaskBtn = ({
+  isMobile,
+  openPopup,
+  closePopup,
+  isSidebarOpen,
+}: Props) => {
+  let handlePopup = () => {
+    closePopup()
+    openPopup('taskPopup')
+  }
   return (
     <button
       id="add-task__btn"
       className="add-task__btn"
       aria-label="add task"
-      onClick={() => openPopup('taskPopup')}
+      onClick={() => handlePopup()}
     >
       <span>
         <svg

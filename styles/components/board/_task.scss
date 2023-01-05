@@ -23,6 +23,9 @@
     .task__head {
 	margin-bottom: 0.5rem;
     }
+      /* .task__head:hover {
+	 color: red;
+	 } */
 
 	.title {
 	    @include font.h2;

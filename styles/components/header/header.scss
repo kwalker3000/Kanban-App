@@ -9,6 +9,11 @@
   @include chevron.chevron;
   @include elips.vertical-elips;
 
+  .sidebar-state {
+    position: relative;
+    z-index: 2;
+  }
+
   .head_level-2 {
     @include font.h2;
     @media (min-width: util.$tablet) {
@@ -34,7 +39,6 @@
   }
 
   .header__head {
-    color: util.$white;
     margin-right: 0.25rem;
   }
 

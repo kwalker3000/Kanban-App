@@ -1,6 +1,10 @@
 import React from 'react'
 import { Subtask } from '../@types/board'
 
+//TODO
+// is this being used?
+// change 'any'
+// fix errors
 export const useSubtask = (state: Subtask[], action: any): Subtask[] => {
   let { key, value } = action.payload
   value = value.target.value

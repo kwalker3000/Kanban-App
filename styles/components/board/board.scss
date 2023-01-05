@@ -7,6 +7,8 @@
 // only for layout
 
 #board {
+    /* position: relative;
+       z-index: 1; */
 
 .board_dark {
     background-color: util.$bg-theme_very-dark-grey;

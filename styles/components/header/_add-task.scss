@@ -16,6 +16,9 @@
       padding: 0.9375rem 1.5625rem 0.875rem 1.5rem;
     }
   }
+  .add-task__btn:disabled {
+    cursor: not-allowed;
+  }
   .add-task__btn-text {
     @include font.h3;
     text-transform: capitalize;

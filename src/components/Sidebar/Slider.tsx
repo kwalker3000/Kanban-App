@@ -19,7 +19,6 @@ export const Slider = ({ theme, toggleTheme }: SliderProps) => {
     toggleTheme()
   }
 
-  console.log(theme)
   return (
     <div className={`slider slider_${theme}`}>
       <div className="slider__content">

@@ -1,3 +1,12 @@
+#subtask-form {
+  width: 100%;
+  max-width: 480px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  z-index: 2;
+}
 #subtask-form input[type=checkbox] {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -53,6 +62,7 @@
 #subtask-form .subtask-form .subtask-form__head {
   margin-bottom: 1.5rem;
   display: flex;
+  justify-content: space-between;
 }
 #subtask-form .subtask-form .subtask-form__body {
   margin-bottom: 1.5rem;

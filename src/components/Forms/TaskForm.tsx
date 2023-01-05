@@ -16,6 +16,7 @@ type FormProps = {
 }
 
 let initialTaskState: Task = {
+  id: 1,
   title: '',
   description: '',
   status: 'todo',
@@ -86,9 +87,6 @@ export const TaskForm = ({ theme }: FormProps) => {
     setKanban('CREATE NEW TASK', 'todoCol', newTask)
     console.log('adding task...')
   }
-  useEffect(() => {
-    // console.log(kanban)
-  }, [])
 
   return (
     <div id="task-form">
