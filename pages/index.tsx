@@ -35,9 +35,6 @@ const initialSubtaskEditKey: SubtaskEditType = {
   status: 'todo',
   index: -1,
 }
-export type Action = {
-  type: string
-}
 
 const Home: NextPage = () => {
   // TODO add character limit
@@ -60,7 +57,14 @@ const Home: NextPage = () => {
   const [board, setBoard] = useReducer(useBoard, activeBoard)
 
   let { status: taskStatus, index: taskIndex } = subtaskEditKey
-  let tas = board.tasks.find((task) => task.id == taskIndex)!
+  // TODO should be able to simplify
+  // also, below may return undefined
+  // do i need safety check or can i use to my advantage?
+  // i am using id property but some places i refer to it as index
+  console.log(board.tasks)
+  let t = board.tasks.find((task) => task.id == taskIndex)!
+  let nextTaskId =
+    board.tasks.length > 0 ? board.tasks[board.tasks.length - 1].id + 1 : 1
 
   type BoardObj = Task
   let actionBoard = (type: string, key: string, value: Task | BoardType) => {
@@ -99,13 +103,16 @@ const Home: NextPage = () => {
       }
     })
   }
-  let closePopup = () => {
+  let closePopup = (exception: boolean = false) => {
+    console.log(exception)
     setIsPopupOpen(initialPopupState)
-    setSubtaskEditKey(initialSubtaskEditKey)
+    if (!exception) {
+      setSubtaskEditKey(initialSubtaskEditKey)
+    }
   }
 
   useEffect(() => {
-    actionKanban('EDIT BOARD', '', board)
+    actionKanban('UPDATE BOARD', '', board)
     actionBoard('INITIALIZE BOARD', '', activeBoard)
     const handleResize = () => {
       if (window.innerWidth < 575) {
@@ -143,12 +150,22 @@ const Home: NextPage = () => {
       <main>
         {isOpen() && (
           <div className={`${styles.popupWrapper}`}>
-            {isPopupOpen.taskPopup && <TaskForm theme={theme} />}
+            {isPopupOpen.taskPopup && (
+              <TaskForm
+                theme={theme}
+                nextTaskId={nextTaskId}
+                taskObj={t}
+                actionBoard={actionBoard}
+                closePopup={closePopup}
+              />
+            )}
             {isPopupOpen.subtaskPopup && (
               <SubtaskForm
                 theme={theme}
-                taskObj={tas}
+                taskObj={t} //task
                 actionBoard={actionBoard}
+                openPopup={openPopup}
+                closePopup={closePopup}
               />
             )}
             {isPopupOpen.boardPopup && (

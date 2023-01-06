@@ -32,6 +32,13 @@ export const Board = ({
     }
     return col
   }
+  useEffect(() => {
+    if (board.tasks.length > 0) {
+      setIsNewBoard(false)
+    } else {
+      setIsNewBoard(true)
+    }
+  }, [board.tasks])
 
   let getColumns = () => {
     let cols = sortTasks(board)
@@ -64,13 +71,25 @@ export const Board = ({
       <div className={`board board_${theme}`}>
         {<>{getColumns()}</>}
         <div className="board__add-column-wrapper">
-          {isNewBoard ? (
+          {
+            isNewBoard ? (
+              <AddColumn
+                theme={theme}
+                isNewBoard={isNewBoard}
+                openPopup={openPopup}
+              />
+            ) : (
+              ''
+            ) /*(
             <AddColumn theme={theme} isNewBoard={isNewBoard} />
-          ) : (
-            <AddColumn theme={theme} isNewBoard={isNewBoard} />
-          )}
+          )*/
+          }
         </div>
       </div>
     </div>
   )
 }
+
+// Currently the ability to add and remove whole columns
+// has been removed. It is not a necessary feature of the app
+// so may or may not add it later

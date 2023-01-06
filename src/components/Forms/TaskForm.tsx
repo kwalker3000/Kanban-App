@@ -5,7 +5,7 @@ import { Subtask, Task } from '../../@types/board'
 import { IconCross } from '../elements/svg/iconCross'
 // import { Btn } from '../Btn'
 
-import { useAppContext } from '../../context/useAppContext'
+// import { useAppContext } from '../../context/useAppContext'
 import { useTask } from '../../hooks/useTask'
 // import { useSubtask } from '../../hooks/useSubTask'
 import { SubTaskBtn } from './SubTaskBtn'
@@ -13,19 +13,30 @@ import { TaskBtn } from './TaskBtn'
 
 type FormProps = {
   theme: Theme
+  taskObj: Task
+  nextTaskId: number
+  actionBoard: (type: string, key: string, value: Task) => void
+  closePopup: () => void
 }
 
-let initialTaskState: Task = {
-  id: 1,
-  title: '',
-  description: '',
-  status: 'todo',
-  subtasks: [],
-}
-
-export const TaskForm = ({ theme }: FormProps) => {
-  let { kanban, setKanban } = useAppContext()
-  const [task, setTask] = useReducer(useTask, initialTaskState)
+export const TaskForm = ({
+  theme,
+  taskObj,
+  nextTaskId,
+  actionBoard,
+  closePopup,
+}: FormProps) => {
+  // let { kanban, setKanban } = useAppContext()
+  // TODO will this cause issue like board when changing??
+  let initialTaskState: Task = {
+    id: nextTaskId,
+    title: '',
+    description: '',
+    status: 'todo',
+    subtasks: [],
+  }
+  const [task, setTask] = useReducer(useTask, taskObj || initialTaskState)
+  console.log(task)
 
   const setAction = (
     type: string,
@@ -43,11 +54,13 @@ export const TaskForm = ({ theme }: FormProps) => {
     setAction('REMOVE SUBTASK', '', id)
   }
 
+  // TODO should this be a requirement?
   let addSubtask = () => {
     // create empty field
     setAction('ADD SUBTASK', '', '')
   }
 
+  // for frontend should be capitalize but will it affect data?
   let status = ['todo', 'doing', 'done'].map((stat, i) => (
     <option key={i} className={`input input_${theme} option`} value={stat}>
       {stat}
@@ -83,8 +96,10 @@ export const TaskForm = ({ theme }: FormProps) => {
   //TODO handle adding Tasks
   // treat new task and edit task same?
   let addTask = (newTask: Task) => {
+    closePopup()
+    actionBoard('CREATE NEW TASK', 'tasks', newTask)
     // let key = 'New Project'['todoCol']
-    setKanban('CREATE NEW TASK', 'todoCol', newTask)
+    // setKanban('CREATE NEW TASK', 'todoCol', newTask)
     console.log('adding task...')
   }
 
@@ -92,7 +107,9 @@ export const TaskForm = ({ theme }: FormProps) => {
     <div id="task-form">
       <div className={`task-form task-form_${theme}`}>
         <div className="task-form__head">
-          <h2 className={`head_level-2 header_${theme}`}>Add New Task</h2>
+          <h2 className={`head_level-2 header_${theme}`}>
+            {taskObj ? 'Edit Task' : 'Add New Task'}
+          </h2>
         </div>
         <div className="task-form__form">
           <form className="form">

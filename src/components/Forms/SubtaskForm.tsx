@@ -10,8 +10,10 @@ import { Checkbox } from './FormComponents/Checkbox'
 
 type FormProps = {
   theme: Theme
-  taskObj?: Task
+  taskObj: Task //TODO removed previous '?'
   actionBoard: (type: string, key: string, value: Task) => void
+  openPopup: (key: string) => void
+  closePopup: (exception?: boolean) => void
 }
 let initialState: Task = {
   title: 'Get some coffee from the coffee shop.',
@@ -36,10 +38,32 @@ let initialState: Task = {
 }
 //TODO i am checking status count 2x here and once in Task component
 // can i consolidate??
-export const SubtaskForm = ({ theme, taskObj, actionBoard }: FormProps) => {
+export const SubtaskForm = ({
+  theme,
+  taskObj,
+  actionBoard,
+  openPopup,
+  closePopup,
+}: FormProps) => {
   const [task, setTask] = useState(taskObj || initialState)
+  const [isSubmenu, setIsSubmenu] = useState(false)
   const [subtasksCompleted, setSubtasksCompleted] = useState(0)
 
+  let toggleSubmenu = () => {
+    //TODO
+    // menu covers ellipse for larger title names
+    // because of absolute positioning
+    setIsSubmenu((prev) => !prev)
+  }
+  let handleSubmenu = (action: string) => {
+    if (action == 'EDIT') {
+      closePopup(true)
+      openPopup('taskPopup')
+    } else {
+      closePopup()
+      actionBoard('DELETE TASK', 'tasks', task)
+    }
+  }
   // updates the status of the subtasks and tasks
   let handleClick = (index: number) => {
     let status: keyof typeof task
@@ -66,6 +90,8 @@ export const SubtaskForm = ({ theme, taskObj, actionBoard }: FormProps) => {
       }
     })
   }
+  let handleTask
+
   let updateSubtasksCompleted = () => {
     let score = 0
     task.subtasks.forEach((subtask) => {
@@ -77,7 +103,7 @@ export const SubtaskForm = ({ theme, taskObj, actionBoard }: FormProps) => {
     return score
   }
   useEffect(() => {
-    actionBoard('UPDATE TASK', '', task)
+    actionBoard('UPDATE TASK', 'tasks', task)
     updateSubtasksCompleted()
   }, [task])
 
@@ -108,7 +134,29 @@ export const SubtaskForm = ({ theme, taskObj, actionBoard }: FormProps) => {
       <div className={`subtask-form subtask-form_${theme}`}>
         <div className="subtask-form__head">
           <h2 className={`head_level-2 header_${theme}`}>{task.title}</h2>
-          <Edit /> {/* wrapped in button */}
+          <Edit toggleSubmenu={toggleSubmenu} /> {/* wrapped in button */}
+          {isSubmenu && (
+            <div className={`subtask-form__submenu-wrapper submenu_${theme}`}>
+              <div>
+                <button
+                  onClick={() => handleSubmenu('EDIT')}
+                  className="submenu__btn"
+                >
+                  <span className="submenu__btn-txt body_level-1">
+                    Edit Task
+                  </span>
+                </button>
+                <button
+                  onClick={() => handleSubmenu('DELETE')}
+                  className="submenu__btn"
+                >
+                  <span className="submenu__btn-txt body_level-1 _delete">
+                    Delete Task
+                  </span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         <div className="subtask-form__body">
           <p className="body_level-1">{task.description}</p>

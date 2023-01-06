@@ -359,6 +359,12 @@
 #subtask-form .subtask-form .header_light {
   color: #000112;
 }
+#subtask-form .subtask-form .submenu_dark {
+  background-color: #20212c;
+}
+#subtask-form .subtask-form .submenu_light {
+  background-color: #fff;
+}
 #subtask-form .subtask-form .subtask-form__head {
   margin-bottom: 1.5rem;
   display: flex;
@@ -366,6 +372,26 @@
 }
 #subtask-form .subtask-form .subtask-form__body {
   margin-bottom: 1.5rem;
+}
+#subtask-form .subtask-form .subtask-form__submenu-wrapper {
+  border-radius: 8px;
+  position: absolute;
+  right: 1rem;
+  top: 3rem;
+}
+#subtask-form .subtask-form .subtask-form__submenu-wrapper .submenu__btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+#subtask-form .subtask-form .subtask-form__submenu-wrapper ._delete {
+  color: #ea5555;
+}
+#subtask-form .subtask-form .subtask-form__submenu-wrapper > div {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
 }
 #subtask-form .form .form__label {
   display: flex;
@@ -879,10 +905,6 @@
   background: linear-gradient(rgba(43, 44, 55, 0.3), rgba(43, 44, 55, 0.2));
 }
 
-#board {
-  /* position: relative;
-     z-index: 1; */
-}
 #board .board_dark {
   background-color: #20212c;
 }
@@ -890,19 +912,19 @@
   background-color: #f4f7fd;
 }
 #board .board {
-  border: 0.5px solid red;
   height: 100vh;
   display: flex;
   overflow: scroll;
 }
-#board .board__column-wrapper {
+
+.board__column-wrapper {
   margin: 1.5rem;
 }
-#board .board__column-wrapper .column .column__head {
+.board__column-wrapper .column .column__head {
   margin-bottom: 1.5rem;
   display: flex;
 }
-#board .board__column-wrapper .column .column__head .head_level-4 {
+.board__column-wrapper .column .column__head .head_level-4 {
   color: #828fa3;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
@@ -912,25 +934,25 @@
   line-height: 1.25em;
   text-transform: uppercase;
 }
-#board .board__column-wrapper .column .column__head .status_theme {
+.board__column-wrapper .column .column__head .status_theme {
   background-color: red;
   border-radius: 100%;
   padding: 0.45rem;
   margin-right: 0.75rem;
 }
-#board .board__column-wrapper .column .column__task-wrapper {
+.board__column-wrapper .column .column__task-wrapper {
   margin-bottom: 1.25rem;
   cursor: pointer;
 }
-#board .board__column-wrapper .column .column__task-wrapper .task_dark {
+.board__column-wrapper .column .column__task-wrapper .task_dark {
   background-color: #2b2c37;
   color: #fff;
 }
-#board .board__column-wrapper .column .column__task-wrapper .task_light {
+.board__column-wrapper .column .column__task-wrapper .task_light {
   background-color: #fff;
   color: #000112;
 }
-#board .board__column-wrapper .column .column__task-wrapper .task {
+.board__column-wrapper .column .column__task-wrapper .task {
   border-radius: 8px;
   width: 280px;
   padding: 1.5rem 1rem;
@@ -939,10 +961,10 @@
   color: red;
   } */
 }
-#board .board__column-wrapper .column .column__task-wrapper .task .task__head {
+.board__column-wrapper .column .column__task-wrapper .task .task__head {
   margin-bottom: 0.5rem;
 }
-#board .board__column-wrapper .column .column__task-wrapper .task .title {
+.board__column-wrapper .column .column__task-wrapper .task .title {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin: 0;
@@ -950,7 +972,7 @@
   line-height: 1.28em;
   text-align: left;
 }
-#board .board__column-wrapper .column .column__task-wrapper .task .body {
+.board__column-wrapper .column .column__task-wrapper .task .body {
   color: #828fa3;
   font-family: "Plus Jakarta Sans", sans-serif;
   margin: 0;
@@ -959,28 +981,31 @@
   line-height: 1.25em;
   text-align: left;
 }
-#board .board__column-wrapper .column .column__task-wrapper:hover > .task {
+.board__column-wrapper .column .column__task-wrapper:hover > .task {
   color: #635fc7;
 }
-#board .board__add-column-wrapper {
-  margin-top: 1rem;
-  margin-right: 1.5rem;
+
+.board__add-column-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-#board .board__add-column-wrapper .add-column_dark {
+.board__add-column-wrapper .add-column_dark {
   background-color: #20212c;
 }
-#board .board__add-column-wrapper .add-column_light {
+.board__add-column-wrapper .add-column_light {
   background-color: #f4f7fd;
 }
-#board .board__add-column-wrapper .add-column {
+.board__add-column-wrapper .add-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transform: translate(0%, -2.5rem);
 }
-#board .board__add-column-wrapper .add-column .add-column__head {
+.board__add-column-wrapper .add-column .add-column__head {
   margin-bottom: 1.5rem;
 }
-#board .board__add-column-wrapper .add-column .add-column__head-text {
+.board__add-column-wrapper .add-column .add-column__head-text {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin: 0;
@@ -990,7 +1015,7 @@
   color: #828fa3;
   padding: 0 0.5rem;
 }
-#board .board__add-column-wrapper .add-column .operator {
+.board__add-column-wrapper .add-column .operator {
   /* padding-top: 5px;
        padding-right: 2px;
        transform: scale(0.6);
@@ -1001,7 +1026,7 @@
   /* padding-top: 2px; */
   letter-spacing: 2px;
 }
-#board .board__add-column-wrapper .add-column .add-column__btn {
+.board__add-column-wrapper .add-column .add-column__btn {
   border: none;
   cursor: pointer;
   background-color: #635fc7;
@@ -1009,14 +1034,14 @@
   border-radius: 24px;
   padding: 0.9375rem 1.125rem;
 }
-#board .board__add-column-wrapper .add-column .btn-text {
+.board__add-column-wrapper .add-column .btn-text {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin: 0;
   font-size: 0.938rem;
   line-height: 1.27em;
 }
-#board .board__add-column-wrapper .add-column .btn-text_column {
+.board__add-column-wrapper .add-column .btn-text_column {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin: 0;
@@ -1024,7 +1049,7 @@
   line-height: 1.25em;
   color: #828fa3;
 }
-#board .board__add-column-wrapper .add-column .operator_column {
+.board__add-column-wrapper .add-column .operator_column {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin: 0;
@@ -1034,7 +1059,7 @@
   color: #828fa3;
   letter-spacing: 2px;
 }
-#board .board__add-column-wrapper .add-column .btn_theme {
+.board__add-column-wrapper .add-column .btn_theme {
   background-color: #20212c;
   background-color: transparent;
 }

@@ -12,8 +12,6 @@
     left: 50%;
     transform: translate(-50%, 10%);
     z-index: 2;
-    // max-width: 343px;
-
 
 	.subtask-form_dark {
 	    background-color: util.$dark-grey;
@@ -42,6 +40,12 @@
 	.header_light {
 	    color: util.$black;
 	}
+	.submenu_dark {
+	    background-color: util.$bg-theme_very-dark-grey;
+	}
+	.submenu_light {
+	    background-color: util.$white;
+	}
 
 	.subtask-form__head {
 	    margin-bottom: 1.5rem;
@@ -51,8 +55,30 @@
 	.subtask-form__body {
 	    margin-bottom: 1.5rem;
 	}
-}
+	.subtask-form__submenu-wrapper {
+	    border-radius: util.$radius;
 
+	    position: absolute;
+	    right: 1rem;
+	    top: 3rem;
+
+	    .submenu__btn {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0.25rem;
+	    }
+	    ._delete {
+		color: util.$red;
+	    }
+	}
+	.subtask-form__submenu-wrapper > div {
+	    padding: 0.5rem 0.75rem;
+
+	    display: flex;
+	    flex-direction: column;
+	}
+}
 
 .form {
 
@@ -162,3 +188,4 @@
 	opacity: 0.5;
     }
 }
+

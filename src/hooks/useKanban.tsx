@@ -12,7 +12,7 @@ export const useKanban = (state: Kanban, action: any): Kanban => {
       }
       return [...state, newBoard]
 
-    case 'EDIT BOARD': {
+    case 'UPDATE BOARD': {
       let index
       for (let i = 0; i < state.length; i++) {
         if (state[i].name == value.name) {

@@ -22,9 +22,9 @@ export const Column = ({
   openPopup,
   updateSubtaskEditKey,
 }: ColumnProps) => {
-  //TODO not sure what is happening with state
-  const [isSubtaskFormOpen, setIsSubtaskFormOpen] = useState(false)
-  const [subtaskForm, setSubtaskForm] = useState<number | null>(null)
+  //TODO not sure what is happening with state/ * currently not
+  // const [isSubtaskFormOpen, setIsSubtaskFormOpen] = useState(false)
+  // const [subtaskForm, setSubtaskForm] = useState<number | null>(null)
 
   let tasks = taskArray.map((task, index) => {
     return (
@@ -37,7 +37,7 @@ export const Column = ({
         <Task
           theme={theme}
           task={task}
-          isSubtaskFormOpen={subtaskForm == index && isSubtaskFormOpen}
+          // isSubtaskFormOpen={subtaskForm == index && isSubtaskFormOpen}
         />
       </div>
     )

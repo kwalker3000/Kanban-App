@@ -59,6 +59,12 @@
 #subtask-form .subtask-form .header_light {
   color: #000112;
 }
+#subtask-form .subtask-form .submenu_dark {
+  background-color: #20212c;
+}
+#subtask-form .subtask-form .submenu_light {
+  background-color: #fff;
+}
 #subtask-form .subtask-form .subtask-form__head {
   margin-bottom: 1.5rem;
   display: flex;
@@ -66,6 +72,26 @@
 }
 #subtask-form .subtask-form .subtask-form__body {
   margin-bottom: 1.5rem;
+}
+#subtask-form .subtask-form .subtask-form__submenu-wrapper {
+  border-radius: 8px;
+  position: absolute;
+  right: 1rem;
+  top: 3rem;
+}
+#subtask-form .subtask-form .subtask-form__submenu-wrapper .submenu__btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+#subtask-form .subtask-form .subtask-form__submenu-wrapper ._delete {
+  color: #ea5555;
+}
+#subtask-form .subtask-form .subtask-form__submenu-wrapper > div {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
 }
 #subtask-form .form .form__label {
   display: flex;

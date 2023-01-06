@@ -8,11 +8,10 @@ import { SubtaskForm } from '../Forms/SubtaskForm'
 type TaskProps = {
   theme: Theme
   task: TaskType
-  isSubtaskFormOpen: boolean
 }
 
 //TODO currently not using highlighted variables
-export const Task = ({ theme, task, isSubtaskFormOpen }: TaskProps) => {
+export const Task = ({ theme, task }: TaskProps) => {
   let getSubtasksCompleted = () => {
     let subtasksCompleted = 0
     for (let subtask of task.subtasks) {

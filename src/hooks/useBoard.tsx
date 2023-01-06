@@ -19,18 +19,20 @@ export const useBoard = (state: Board, action: Action): Board => {
     case 'CREATE NEW TASK':
       return {
         ...state,
-        [key]: value,
+        [key]: [...state.tasks, value],
       }
     case 'EDIT TASK':
       return {
         ...state,
         [key]: value,
       }
-    case 'DELETE NEW TASK':
+    case 'DELETE TASK': {
+      let taskArray = state.tasks.filter((task) => task.id != value.id)
       return {
         ...state,
-        [key]: value,
+        [key]: taskArray,
       }
+    }
     case 'UPDATE TASK': {
       let task = state.tasks.find((task) => task.id == value.id)!
       let check = task.subtasks.every(
@@ -43,7 +45,7 @@ export const useBoard = (state: Board, action: Action): Board => {
       updatedTasks.push(value)
       return {
         ...state,
-        tasks: updatedTasks,
+        [key]: updatedTasks,
       }
     }
 

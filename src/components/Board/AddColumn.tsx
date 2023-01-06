@@ -1,12 +1,16 @@
 import React from 'react'
 import { Theme } from '../../@types/app'
 
+//Components
+import { TaskBtn } from '../Forms/TaskBtn'
+
 type BoardProps = {
   theme: Theme
   isNewBoard: boolean
+  openPopup: (key: string) => void
 }
 
-export const AddColumn = ({ theme, isNewBoard }: BoardProps) => {
+export const AddColumn = ({ theme, isNewBoard, openPopup }: BoardProps) => {
   return (
     <div
       className={`add-column add-column_${theme} ${!isNewBoard && 'bg-color'}`}
@@ -19,11 +23,15 @@ export const AddColumn = ({ theme, isNewBoard }: BoardProps) => {
         )}
       </div>
       <div className="add-column__body">
-        <button className={`add-column__btn ${!isNewBoard && 'btn_theme'}`}>
+        <button
+          onClick={() => openPopup('taskPopup')}
+          className={`add-column__btn ${!isNewBoard && 'btn_theme'}`}
+        >
           {isNewBoard ? (
             <>
               <span className="operator head_level-3">+</span>
-              <span className="btn-text head_level-3">Add New Column</span>
+              {/*<span className="btn-text head_level-3">Add New Column</span>*/}
+              <span className="btn-text head_level-3">Add New Task</span>
             </>
           ) : (
             <>
