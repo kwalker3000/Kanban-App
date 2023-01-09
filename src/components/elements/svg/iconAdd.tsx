@@ -5,7 +5,7 @@ export const IconAdd = () => {
     <svg
       aria-hidden={true}
       role="img"
-      aria-labelledby="" //TODO
+      aria-labelledby="" //TODO currently not being used
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

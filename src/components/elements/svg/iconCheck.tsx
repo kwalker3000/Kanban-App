@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const IconCheck = () => {
+type IconPropType = {
+  isChecked: boolean
+}
+
+export const IconCheck = ({ isChecked }: IconPropType) => {
   return (
     <div>
       <svg
@@ -10,7 +14,7 @@ export const IconCheck = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          stroke="#FFF"
+          stroke={isChecked ? '#FFF' : 'none'}
           strokeWidth="2"
           fill="none"
           d="m1.276 3.066 2.756 2.756 5-5"

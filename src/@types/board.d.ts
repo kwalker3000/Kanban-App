@@ -9,8 +9,7 @@ export type Task = {
   title: string
   description: string
   status: Status
-  subtasks: Subtask[] | []
-  // compiler doesn't recognize undefined 'subtasks', requires work around
+  subtasks: Subtask[] // | []
 }
 
 export type Column = {
@@ -24,5 +23,3 @@ export type Board = {
 }
 
 export type Kanban = Board[]
-
-// TODO boards may need id or restrict to unique names

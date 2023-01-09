@@ -1,6 +1,3 @@
-#board-form {
-  /* @include btn.cross-btn; */
-}
 #board-form .btn {
   border: none;
   cursor: pointer;
@@ -47,13 +44,28 @@
   background: #a8a4ff;
   transition: background-color 0.5s;
 }
-#board-form .btn_cancel--light {
-  background-color: #ea5555;
+#board-form .btn_delete {
+  color: #ea5555;
   color: #fff;
 }
-#board-form .btn_cancel--light:hover,
-#board-form .btn_cancel--light:focus {
-  background: #a8a4ff;
+#board-form .btn_active--delete_light:hover,
+#board-form .btn_active--delete_light:focus,
+#board-form .btn_active--delete_dark:hover,
+#board-form .btn_active--delete_dark:focus {
+  background: #ff9898;
+  transition: background-color 0.5s;
+}
+#board-form .btn_active:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+#board-form .btn_light--minor,
+#board-form .btn_cancel--light {
+  background-color: rgba(99, 95, 199, 0.1);
+}
+#board-form .btn_active--subtask:hover,
+#board-form .btn_active--cancel_light:hover {
+  background: rgba(99, 95, 199, 0.25);
   transition: background-color 0.5s;
 }
 #board-form .board-form_dark {
@@ -82,13 +94,10 @@
 #board-form .board-form .board-form__head {
   margin-bottom: 1.5rem;
 }
-#board-form .form {
-  /* display: flex;
-  flex-direction: column; */
-}
 #board-form .form .form__label {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 #board-form .form .form__label_dark {
   color: #fff;
@@ -114,6 +123,7 @@
   border: 1px solid rgba(130, 143, 163, 0.25);
   border-radius: 4px;
   padding: 0.5rem 1rem 0.5rem;
+  outline: 1px solid #635fc7;
   opacity: 1 important;
 }
 #board-form .form .input_dark {
@@ -129,6 +139,9 @@
 }
 #board-form .form .input_light::placeholder {
   color: rgba(0, 0, 0, 0.5);
+}
+#board-form .form .input_board--error {
+  outline: 1px solid #ea5555;
 }
 
 /*# sourceMappingURL=board-form.css.map */

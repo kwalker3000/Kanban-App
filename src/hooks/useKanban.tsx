@@ -23,12 +23,17 @@ export const useKanban = (state: Kanban, action: any): Kanban => {
       boards[index] = value
       return boards
     }
-    case 'DELETE BOARD':
-      return {
-        ...state,
-        [key]: value,
+    case 'DELETE BOARD': {
+      let boards = state.filter((board) => board.name !== value.name)
+      if (boards.length == 0) {
+        let newBoard: Board = {
+          name: 'New Board',
+          tasks: [],
+        }
+        return [newBoard]
       }
-
+      return boards
+    }
     default:
       throw new Error(`Unknown action ${action.type}`)
   }

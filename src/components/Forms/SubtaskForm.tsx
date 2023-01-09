@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Theme } from '../../@types/app'
+import { Theme, InputEvent } from '../../@types/app'
 import { Status, Task } from '../../@types/board'
 
 // Components
@@ -12,7 +12,7 @@ type FormProps = {
   theme: Theme
   taskObj: Task //TODO removed previous '?'
   actionBoard: (type: string, key: string, value: Task) => void
-  openPopup: (key: string) => void
+  openPopup: (key: string, isNewBoard: boolean, objToDelete?: string) => void
   closePopup: (exception?: boolean) => void
 }
 let initialState: Task = {
@@ -50,18 +50,17 @@ export const SubtaskForm = ({
   const [subtasksCompleted, setSubtasksCompleted] = useState(0)
 
   let toggleSubmenu = () => {
-    //TODO
-    // menu covers ellipse for larger title names
-    // because of absolute positioning
     setIsSubmenu((prev) => !prev)
   }
   let handleSubmenu = (action: string) => {
     if (action == 'EDIT') {
       closePopup(true)
-      openPopup('taskPopup')
+      openPopup('taskPopup', false)
     } else {
-      closePopup()
-      actionBoard('DELETE TASK', 'tasks', task)
+      closePopup(true)
+      openPopup('removePopup', false, 'task')
+      // closePopup()
+      // actionBoard('DELETE TASK', 'tasks', task)
     }
   }
   // updates the status of the subtasks and tasks
@@ -90,7 +89,27 @@ export const SubtaskForm = ({
       }
     })
   }
-  let handleTask
+  let updateTask = (type: string = '', key: string, value: InputEvent) => {
+    let val = value.target.value.toLowerCase()
+    if (val)
+      setTask((preState) => {
+        let updatedSubtasks = [...preState.subtasks]
+        for (let i = 0; i < subtasks.length; i++) {
+          if (val == 'done') {
+            updatedSubtasks[i].status = 'done'
+          } else if (val == 'todo') {
+            console.log('inside todo')
+            updatedSubtasks[i].status = 'todo'
+          }
+        }
+
+        return {
+          ...preState,
+          [key]: val,
+          subtasks: updatedSubtasks,
+        }
+      })
+  }
 
   let updateSubtasksCompleted = () => {
     let score = 0
@@ -109,12 +128,18 @@ export const SubtaskForm = ({
 
   let subtasks = task.subtasks.map((subtask, index) => {
     return (
-      <div key={index} className="subtask-wrapper wrapper_dark">
+      <div
+        key={index}
+        onClick={() => handleClick(index)}
+        className={`subtask-wrapper wrapper_${theme}`}
+        tabIndex={0}
+      >
         <label className={`subtask__label form__label_${theme} `}>
           <Checkbox
             isMarked={subtask.status === 'done'}
             handleClick={handleClick}
             index={index}
+            theme={theme}
           />
           <span
             className={`subtask__description ${
@@ -134,7 +159,7 @@ export const SubtaskForm = ({
       <div className={`subtask-form subtask-form_${theme}`}>
         <div className="subtask-form__head">
           <h2 className={`head_level-2 header_${theme}`}>{task.title}</h2>
-          <Edit toggleSubmenu={toggleSubmenu} /> {/* wrapped in button */}
+          <Edit toggleSubmenu={toggleSubmenu} />
           {isSubmenu && (
             <div className={`subtask-form__submenu-wrapper submenu_${theme}`}>
               <div>
@@ -172,9 +197,8 @@ export const SubtaskForm = ({
           <Dropdown
             theme={theme}
             label="Current Status"
-            // action="UPDATE SUBTASK STATUS"
-            action="UPDATE TASK STATUS"
             taskStatus={task.status}
+            updateTask={updateTask}
           />
         </form>
       </div>

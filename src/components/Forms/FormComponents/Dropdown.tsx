@@ -1,23 +1,23 @@
 import React from 'react'
-import { Theme } from '../../../@types/app'
-import { Status } from '../../../@types/board'
+import { Theme, InputEvent } from '../../../@types/app'
 
 type DropdownProps = {
   theme: Theme
   label: string
-  action: 'UPDATE SUBTASK STATUS' | 'UPDATE TASK STATUS'
   taskStatus: string
+  updateTask: (type: string, key: string, value: InputEvent) => void
 }
 
 export const Dropdown = ({
   theme,
   label,
-  action,
   taskStatus,
+  updateTask,
 }: DropdownProps) => {
-  let status = ['Todo', 'Doing', 'Done'].map((stat, i) => (
+  //Todo i could pass dynamic list from useContext
+  let status = ['todo', 'doing', 'done'].map((stat, i) => (
     <option key={i} className={`input input_${theme} option`} value={stat}>
-      {stat}
+      {stat[0].toUpperCase() + stat.slice(1)}
     </option>
   ))
 
@@ -32,8 +32,8 @@ export const Dropdown = ({
           paddingBottom: '0.7rem',
           cursor: 'pointer',
         }}
-        // value={taskStatus}
-        // onChange={(e) => setAction('UPDATE STATUS', 'status', e)}
+        value={taskStatus}
+        onChange={(e) => updateTask('UPDATE STATUS', 'status', e)}
       >
         {status}
       </select>

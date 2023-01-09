@@ -5,13 +5,14 @@ type Props = {
   openPopup: (key: string) => void
   isSidebarOpen: boolean
   closePopup: () => void
+  taskSize: number
 }
 
 export const AddTaskBtn = ({
   isMobile,
   openPopup,
   closePopup,
-  isSidebarOpen,
+  taskSize,
 }: Props) => {
   let handlePopup = () => {
     closePopup()
@@ -20,15 +21,16 @@ export const AddTaskBtn = ({
   return (
     <button
       id="add-task__btn"
-      className="add-task__btn"
+      className="add-task__btn btn_active"
       aria-label="add task"
       onClick={() => handlePopup()}
+      disabled={taskSize == 0}
     >
       <span>
         <svg
           aria-hidden={true}
           role="img"
-          aria-labelledby="" //TODO
+          aria-label="add task"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path

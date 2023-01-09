@@ -44,13 +44,28 @@
   background: #a8a4ff;
   transition: background-color 0.5s;
 }
-#task-form .btn_cancel--light {
-  background-color: #ea5555;
+#task-form .btn_delete {
+  color: #ea5555;
   color: #fff;
 }
-#task-form .btn_cancel--light:hover,
-#task-form .btn_cancel--light:focus {
-  background: #a8a4ff;
+#task-form .btn_active--delete_light:hover,
+#task-form .btn_active--delete_light:focus,
+#task-form .btn_active--delete_dark:hover,
+#task-form .btn_active--delete_dark:focus {
+  background: #ff9898;
+  transition: background-color 0.5s;
+}
+#task-form .btn_active:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+#task-form .btn_light--minor,
+#task-form .btn_cancel--light {
+  background-color: rgba(99, 95, 199, 0.1);
+}
+#task-form .btn_active--subtask:hover,
+#task-form .btn_active--cancel_light:hover {
+  background: rgba(99, 95, 199, 0.25);
   transition: background-color 0.5s;
 }
 #task-form .cross-btn {
@@ -94,10 +109,14 @@
 #task-form .form {
   /* display: flex;
   flex-direction: column; */
+  /* .input_error {
+  outline: 1px solid util.$red;
+  } */
 }
 #task-form .form .form__label {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 #task-form .form .form__label_dark {
   color: #fff;
@@ -123,7 +142,9 @@
   border: 1px solid rgba(130, 143, 163, 0.25);
   border-radius: 4px;
   padding: 0.5rem 1rem 0.5rem;
-  opacity: 1 important;
+}
+#task-form .form .input:focus {
+  outline: 1px solid #635fc7;
 }
 #task-form .form .input_dark {
   background-color: #2b2c37;
@@ -144,20 +165,33 @@
   margin-right: 1rem;
   width: 100%;
 }
+#task-form .form .input_subtask--error,
+#task-form .form .input_title--error,
+#task-form .form .input_description--error {
+  outline: 1px solid #ea5555;
+}
 #task-form .form textarea {
   height: 104px;
 }
 #task-form .form .subtask-wrapper {
+  position: relative;
   display: flex;
 }
 #task-form .form .fieldset {
   border: none;
   padding: 0;
   margin: 0;
+  padding-top: 0.5rem;
+}
+#task-form .form .fieldset:nthchild(even) {
+  background-color: red;
 }
 #task-form .form .fieldset > legend,
 #task-form .form .fieldset > label {
   margin: 0;
+}
+#task-form .form .fieldset > div > input {
+  margin-top: 0;
 }
 #task-form .form .btn-wrapper {
   margin-bottom: 1.5rem;
@@ -165,6 +199,23 @@
 #task-form .form select {
   text-transform: capitalize;
   padding: 1rem;
+}
+
+.msg_error {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0;
+  font-size: 0.813rem;
+  font-weight: 500;
+  line-height: 1.77em;
+  color: #ea5555;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+}
+
+.msg_error--subtask {
+  top: 1rem;
+  right: 3rem;
 }
 
 /*# sourceMappingURL=task-form.css.map */

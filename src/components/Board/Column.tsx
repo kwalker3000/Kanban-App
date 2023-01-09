@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Theme } from '../../@types/app'
-import {
-  Column as ColumnType,
-  Task as TaskType,
-  Status,
-} from '../../@types/board'
+import { Task as TaskType, Status } from '../../@types/board'
 
 // Components
 import { Task } from './Task'
@@ -22,10 +18,6 @@ export const Column = ({
   openPopup,
   updateSubtaskEditKey,
 }: ColumnProps) => {
-  //TODO not sure what is happening with state/ * currently not
-  // const [isSubtaskFormOpen, setIsSubtaskFormOpen] = useState(false)
-  // const [subtaskForm, setSubtaskForm] = useState<number | null>(null)
-
   let tasks = taskArray.map((task, index) => {
     return (
       <div
@@ -34,11 +26,7 @@ export const Column = ({
         className="column__task-wrapper"
         tabIndex={0}
       >
-        <Task
-          theme={theme}
-          task={task}
-          // isSubtaskFormOpen={subtaskForm == index && isSubtaskFormOpen}
-        />
+        <Task theme={theme} task={task} />
       </div>
     )
   })

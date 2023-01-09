@@ -22,7 +22,7 @@
 
 .head_level-2 {
     @include font.h2;
-    // width: 50%;
+    width: 95%;
 }
 .body_level-1 {
     @include font.p1;
@@ -57,9 +57,10 @@
 	}
 	.subtask-form__submenu-wrapper {
 	    border-radius: util.$radius;
+	    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 
 	    position: absolute;
-	    right: 1rem;
+	    right: 2.25rem;
 	    top: 3rem;
 
 	    .submenu__btn {
@@ -107,6 +108,12 @@
 	    padding: 0.5rem 1rem 0.5rem;
 
 	    opacity: 1 important;
+	}
+	.input:focus {
+	    outline: 1px solid util.$purple;
+	}
+	.input_error {
+	    outline: 1px solid util.$red;
 	}
 	.input_dark {
 	    background-color: util.$dark-grey;
@@ -159,18 +166,19 @@
 }
 
     
-}
 
 .wrapper_dark {
-    border-radius: 4px;
     background-color: util.$bg-theme_very-dark-grey;
-    margin-bottom: 0.5rem;
-
-
+}
+.wrapper_light {
+    background-color: util.$bg-theme_light-grey;
 }
 
 .subtask-wrapper {
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
 
+    cursor: pointer;
     // .subtask-wrapper > .checkbox {
     // 	background-color: red;
     // 	opacity: 0.5;
@@ -189,3 +197,10 @@
     }
 }
 
+.subtask-wrapper:hover,
+.subtask-wrapper:focus {
+    background-color: rgba(99,95,199, 0.25);
+    //opacity: 0.25;
+}
+
+}

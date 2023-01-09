@@ -16,8 +16,10 @@
 }
 #board .board {
   height: 100vh;
+  /* height: 1000px; */
   display: flex;
-  overflow: scroll;
+  /* overflow: scroll; */
+  position: relative;
 }
 
 .board__column-wrapper {
@@ -44,7 +46,7 @@
   margin-right: 0.75rem;
 }
 .board__column-wrapper .column .column__task-wrapper {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.45rem;
   cursor: pointer;
 }
 .board__column-wrapper .column .column__task-wrapper .task_dark {
@@ -136,6 +138,11 @@
   color: #fff;
   border-radius: 24px;
   padding: 0.9375rem 1.125rem;
+}
+.board__add-column-wrapper .add-column .btn_active:hover,
+.board__add-column-wrapper .add-column .btn_active:focus {
+  background: #a8a4ff;
+  transition: background-color 0.5s;
 }
 .board__add-column-wrapper .add-column .btn-text {
   font-family: "Plus Jakarta Sans", sans-serif;

@@ -16,12 +16,15 @@ export const useBoard = (state: Board, action: Action): Board => {
   switch (action.type) {
     case 'INITIALIZE BOARD':
       return value
-    case 'CREATE NEW TASK':
+    case 'CREATE NEW TASK': {
+      let taskArray = state.tasks.filter((task) => task.id != value.id)
       return {
         ...state,
-        [key]: [...state.tasks, value],
+        [key]: [...taskArray, value],
       }
+    }
     case 'EDIT TASK':
+      //TODO when edit large task bodies it extends past boundaries
       return {
         ...state,
         [key]: value,
@@ -35,12 +38,15 @@ export const useBoard = (state: Board, action: Action): Board => {
     }
     case 'UPDATE TASK': {
       let task = state.tasks.find((task) => task.id == value.id)!
-      let check = task.subtasks.every(
-        (subtask, index) => subtask.status == value.subtasks[index].status
-      )
-      if (check) {
-        return state
-      }
+      //TODO
+      // prevent task from moving if stays in column
+      // confliction with dropdown
+      // let check = task.subtasks.every(
+      //   (subtask, index) => subtask.status == value.subtasks[index].status
+      // )
+      // if (check) {
+      //   return state
+      // }
       let updatedTasks = state.tasks.filter((task) => task.id != value.id)
       updatedTasks.push(value)
       return {

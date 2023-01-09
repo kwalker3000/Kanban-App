@@ -1,15 +1,8 @@
 import React, { useState, createContext, useContext, useReducer } from 'react'
 import { Theme } from '../@types/app'
-import { Kanban, Task, Board } from '../@types/board'
+import { Kanban, Board } from '../@types/board'
 import { useKanban } from '../hooks/useKanban'
 import data from '../../lib/testData'
-
-// type InputEvent =
-//   | React.ChangeEvent<HTMLInputElement>
-//   | React.ChangeEvent<HTMLTextAreaElement>
-//   | React.ChangeEvent<HTMLSelectElement>
-
-// type BoardObj = Task
 
 type ContextType = {
   theme: Theme
@@ -28,19 +21,8 @@ type Props = {
 }
 
 export const AppWrapper = ({ children }: Props): JSX.Element => {
-  // let initialState: Kanban = [
-  //   {
-  //     name: 'New Project',
-  //     tasks: [],
-  //   },
-  //   {
-  //     name: 'New Project 2',
-  //     tasks: [],
-  //   },
-  // ]
-
   // TODO handle duplicate boards, task, subtasks
-  const [theme, setTheme] = useState<Theme>('dark') // TODO systems default
+  const [theme, setTheme] = useState<Theme>('dark')
   const [kanban, dispatch] = useReducer(useKanban, data)
   const [activeBoard, setActiveBoard] = useState<Board>(kanban[1])
 

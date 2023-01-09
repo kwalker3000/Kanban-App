@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useReducer } from 'react'
-import { Theme, InputEvent } from '../../@types/app'
-import { Subtask, Task } from '../../@types/board'
+import { Theme, InputEvent, FormEvent } from '../../@types/app'
+import { Task } from '../../@types/board'
 
-import { IconCross } from '../elements/svg/iconCross'
-// import { Btn } from '../Btn'
-
-// import { useAppContext } from '../../context/useAppContext'
 import { useTask } from '../../hooks/useTask'
-// import { useSubtask } from '../../hooks/useSubTask'
+
+//Components
+import { Cross } from './FormComponents/Cross'
+import { Dropdown } from './FormComponents/Dropdown'
 import { SubTaskBtn } from './SubTaskBtn'
 import { TaskBtn } from './TaskBtn'
 
@@ -18,6 +17,11 @@ type FormProps = {
   actionBoard: (type: string, key: string, value: Task) => void
   closePopup: () => void
 }
+let initialErrorStates = {
+  isTitleError: false,
+  isDescriptionError: false,
+  isSubtaskError: false,
+}
 
 export const TaskForm = ({
   theme,
@@ -26,8 +30,6 @@ export const TaskForm = ({
   actionBoard,
   closePopup,
 }: FormProps) => {
-  // let { kanban, setKanban } = useAppContext()
-  // TODO will this cause issue like board when changing??
   let initialTaskState: Task = {
     id: nextTaskId,
     title: '',
@@ -36,9 +38,10 @@ export const TaskForm = ({
     subtasks: [],
   }
   const [task, setTask] = useReducer(useTask, taskObj || initialTaskState)
-  console.log(task)
+  const [errorStates, setErrorStates] = useState(initialErrorStates)
 
-  const setAction = (
+  let { isTitleError, isDescriptionError, isSubtaskError } = errorStates
+  const actionTask = (
     type: string,
     key: string,
     value: string | number | InputEvent,
@@ -48,25 +51,29 @@ export const TaskForm = ({
       type: type,
       payload: { key, value, index },
     })
+    setErrorStates(initialErrorStates)
   }
 
-  let removeSubtask = (id: number): void => {
-    setAction('REMOVE SUBTASK', '', id)
+  let checkValidForm = (form: Task) => {
+    let isInvalid = [
+      form.title.length == 0,
+      form.description.length == 0,
+      // form.subtasks.some((subtask) => subtask.description.length == 0),
+      form.subtasks.length > 0 && form.subtasks[0].description.length == 0,
+    ]
+    setErrorStates((prevState) => {
+      return {
+        ...prevState,
+        isTitleError: isInvalid[0],
+        isDescriptionError: false, // currently allowing empty field
+        isSubtaskError: isInvalid[2],
+      }
+    })
+
+    return isInvalid.every((error) => error == false)
   }
 
-  // TODO should this be a requirement?
-  let addSubtask = () => {
-    // create empty field
-    setAction('ADD SUBTASK', '', '')
-  }
-
-  // for frontend should be capitalize but will it affect data?
-  let status = ['todo', 'doing', 'done'].map((stat, i) => (
-    <option key={i} className={`input input_${theme} option`} value={stat}>
-      {stat}
-    </option>
-  ))
-
+  console.log(task)
   let subtasks = task.subtasks.map((subtask, index) => {
     return (
       <div
@@ -78,29 +85,34 @@ export const TaskForm = ({
           aria-label="subtask"
           type="text"
           name="subtask"
-          className={`input input_${theme} input_subtask`}
+          className={`input input_${theme} input_subtask ${
+            isSubtaskError && 'input_subtask--error'
+          }`}
           placeholder="e.g. Make Coffee"
           value={subtask.description}
-          onChange={(e) => setAction('EDIT SUBTASK', 'description', e, index)}
+          onChange={(e) => actionTask('EDIT SUBTASK', 'description', e, index)}
         />
-        {/*TODO move out of svg folder because has functionality */}
-        <IconCross
+        {isSubtaskError && index == 0 && (
+          <p className="msg_error msg_error--subtask">Can&apos;t be empty</p>
+        )}
+        <Cross
           action={`remove subtask-${index}`}
           id={index}
-          removeSubtask={removeSubtask}
+          actionTask={actionTask}
         />
       </div>
     )
   })
+  let updateTask = (type: string, key: string, value: InputEvent) => {
+    actionTask(type, key, value)
+  }
 
-  //TODO handle adding Tasks
-  // treat new task and edit task same?
-  let addTask = (newTask: Task) => {
-    closePopup()
-    actionBoard('CREATE NEW TASK', 'tasks', newTask)
-    // let key = 'New Project'['todoCol']
-    // setKanban('CREATE NEW TASK', 'todoCol', newTask)
-    console.log('adding task...')
+  let handleSubmit = (e: FormEvent, form: Task) => {
+    e.preventDefault()
+    if (checkValidForm(form)) {
+      closePopup()
+      actionBoard('CREATE NEW TASK', 'tasks', form)
+    }
   }
 
   return (
@@ -112,27 +124,32 @@ export const TaskForm = ({
           </h2>
         </div>
         <div className="task-form__form">
-          <form className="form">
+          <form className="form" onSubmit={(e) => handleSubmit(e, task)}>
             <label className={`form__label label form__label_${theme}`}>
               Title
               <input
                 type="text"
                 name="title"
-                className={`input input_${theme}`}
+                className={`input input_${theme} ${
+                  isTitleError && 'input_title--error'
+                }`}
                 placeholder="e.g. Take Coffee Break"
-                onChange={(e) => setAction('EDIT TASK', 'title', e)}
+                onChange={(e) => actionTask('EDIT TASK', 'title', e)}
                 value={task.title}
               />
+              {isTitleError && <p className="msg_error">Can&apos;t be empty</p>}
             </label>
             <label className={`form__label label form__label_${theme}`}>
               Description
               <textarea
-                className={`input input_${theme}`}
+                className={`input input_${theme} ${
+                  isDescriptionError && 'input_description--error'
+                }`}
                 name="description"
                 placeholder="e.g. It’s always good to take a break. This 
 15 minute break will  recharge the batteries 
 a little."
-                onChange={(e) => setAction('EDIT TASK', 'description', e)}
+                onChange={(e) => actionTask('EDIT TASK', 'description', e)}
                 value={task.description}
               />
             </label>
@@ -147,29 +164,22 @@ a little."
                 action="add subtask"
                 btnText="add new subtask"
                 theme={theme}
-                addSubtask={addSubtask}
+                actionTask={actionTask}
+                subtaskCount={task.subtasks.length}
               />
             </div>
 
-            <label className={`form__label label form__label_${theme}`}>
-              Status
-              <select
-                name="status"
-                className={`input input_${theme}`}
-                style={{ paddingTop: '0.7rem', paddingBottom: '0.7rem' }}
-                value={task.status}
-                onChange={(e) => setAction('UPDATE STATUS', 'status', e)}
-              >
-                {status}
-              </select>
-            </label>
+            <Dropdown
+              theme={theme}
+              label="Status"
+              updateTask={updateTask}
+              taskStatus={task.status}
+            />
             <div>
               <TaskBtn
                 action="create task"
                 btnText="create task"
                 theme={theme}
-                addTask={addTask}
-                task={task}
               />
             </div>
           </form>

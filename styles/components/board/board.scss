@@ -1,8 +1,6 @@
 @use '../../util/util';
 @use './add-column';
 @use './column';
-// @use './task';
-// @use '../../typography/typography' as font;
 
 // only for layout
 
@@ -17,11 +15,14 @@
 
     .board {
 	height: 100vh;
+	/* height: 1000px; */
 	display: flex;
-	overflow: scroll;
+	/* overflow: scroll; */
+	position: relative;
     }
     
 }
+// is this necessary?
     .board__column-wrapper {
 	@include column.column;
 	margin: 1.5rem;

@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import { Theme } from '../../../@types/app'
 
 //Components
 import { IconCheck } from '../../elements/svg/iconCheck'
 
 type CheckboxProps = {
+  theme: Theme
   isMarked: boolean
   index: number
   handleClick: (index: number) => void
 }
 
-export const Checkbox = ({ isMarked, handleClick, index }: CheckboxProps) => {
+export const Checkbox = ({
+  isMarked,
+  handleClick,
+  index,
+  theme,
+}: CheckboxProps) => {
   const [isChecked, setIsChecked] = useState(isMarked)
 
   let handleChange = (index: number) => {
@@ -17,11 +24,18 @@ export const Checkbox = ({ isMarked, handleClick, index }: CheckboxProps) => {
     setIsChecked(!isChecked)
   }
 
+  useEffect(() => {
+    setIsChecked(isMarked)
+  }, [isMarked])
   return (
     <>
       <input type="checkbox" onChange={() => handleChange(index)} />
-      <span className={`checkbox ${isChecked && 'checkbox_active'}`}>
-        <IconCheck />
+      <span
+        className={`checkbox checkbox_${theme} ${
+          isChecked && 'checkbox_active'
+        }`}
+      >
+        <IconCheck isChecked={isChecked} />
       </span>
     </>
   )

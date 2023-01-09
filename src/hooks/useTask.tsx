@@ -1,14 +1,14 @@
 import React from 'react'
 import { Task, Subtask } from '../@types/board'
 
-// TODO
-// change 'any'
-export const useTask = (state: Task, action: any): Task => {
+type Action = {
+  type: string
+  payload: { key: string; value: any; index: number }
+}
+export const useTask = (state: Task, action: Action): Task => {
   let { key, value, index } = action.payload
-  console.log(index)
 
   switch (action.type) {
-    // default new tasks to todo column and disable status choice
     case 'CREATE NEW TASK':
       return {
         ...state,
@@ -33,7 +33,6 @@ export const useTask = (state: Task, action: any): Task => {
       return {
         ...state,
         subtasks: [...state.subtasks, newSubtask],
-        // [key]: value,
       }
     case 'EDIT SUBTASK':
       value = value.target.value
@@ -42,22 +41,18 @@ export const useTask = (state: Task, action: any): Task => {
       return {
         ...state,
         subtasks: subtasksCopy,
-        // [key]: value,
       }
     case 'REMOVE SUBTASK':
       return {
         ...state,
         subtasks: state.subtasks.filter((subtask, index) => index !== value),
-        // [key]: value,
       }
     case 'UPDATE STATUS':
-      value = value.target.value
+      value = value.target.value.toLowerCase()
       return {
         ...state,
         [key]: value,
       }
-    // case 'EDIT SUBTASK': // subtask hook will handle
-    //   return state
 
     default:
       throw new Error(`Unknown action ${action.type}`)

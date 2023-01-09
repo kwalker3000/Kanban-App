@@ -24,8 +24,10 @@
 	display: inline-block;
     }
 
+    .checkbox_dark {
+	background-color: util.$dark-grey;
+    }
     .checkbox_active {
 	background-color: util.$purple;
     }
-
 }

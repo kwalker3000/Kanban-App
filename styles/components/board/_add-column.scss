@@ -45,6 +45,11 @@
 	    border-radius: 24px;
 	    padding: 0.9375rem 1.125rem;
 	}
+	.btn_active:hover,
+	.btn_active:focus {
+	    background: util.$purple_hover;
+	    transition: background-color 0.5s;
+	}
 	.btn-text {
 	    @include font.h3; 
 	}

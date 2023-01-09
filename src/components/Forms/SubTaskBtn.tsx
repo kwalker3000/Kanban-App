@@ -6,22 +6,27 @@ type BtnProp = {
   action: string
   btnText: string
   theme: Theme
-  addSubtask: () => void
+  actionTask: (type: string, key: string, value: string) => void
+  subtaskCount: number
 }
 
 export const SubTaskBtn = ({
   action,
   btnText,
   theme,
-  addSubtask,
+  actionTask,
+  subtaskCount,
 }: BtnProp): JSX.Element => {
-  const [act, _] = action.split(' ')
+  const [act, type] = action.split(' ')
   return (
     <button
       type="button"
       aria-label={`${act} subtask`}
-      className={`btn btn_${theme} btn_${action}`}
-      onClick={addSubtask}
+      className={`btn btn_${theme}--minor btn_active--${
+        theme == 'light' && type
+      }`}
+      onClick={() => actionTask('ADD SUBTASK', '', '')}
+      disabled={subtaskCount == 4}
     >
       {act == 'add' && (
         <span>

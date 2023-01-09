@@ -2,16 +2,13 @@ import React from 'react'
 import { Theme } from '../../@types/app'
 import { Task as TaskType } from '../../@types/board'
 
-//Components
-import { SubtaskForm } from '../Forms/SubtaskForm'
-
 type TaskProps = {
   theme: Theme
   task: TaskType
 }
 
-//TODO currently not using highlighted variables
 export const Task = ({ theme, task }: TaskProps) => {
+  // TODO seek way to fix redundent status checks
   let getSubtasksCompleted = () => {
     let subtasksCompleted = 0
     for (let subtask of task.subtasks) {

@@ -83,6 +83,16 @@
       color: util.$white;
       fill: util.$white; // svg
     }
+      .btn_active--light:hover,
+      .btn_active--light:focus {
+	color: util.$purple;
+	background: rgba(99, 95, 199, 0.10);
+      }
+      .btn_active--dark:hover,
+      .btn_active--dark:focus {
+	color: util.$purple;
+	background-color: util.$white;
+      }
     .operator {
       @include icon-add.icon-add;
     }

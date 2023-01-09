@@ -71,19 +71,15 @@ export const Board = ({
       <div className={`board board_${theme}`}>
         {<>{getColumns()}</>}
         <div className="board__add-column-wrapper">
-          {
-            isNewBoard ? (
-              <AddColumn
-                theme={theme}
-                isNewBoard={isNewBoard}
-                openPopup={openPopup}
-              />
-            ) : (
-              ''
-            ) /*(
-            <AddColumn theme={theme} isNewBoard={isNewBoard} />
-          )*/
-          }
+          {isNewBoard ? (
+            <AddColumn
+              theme={theme}
+              isNewBoard={isNewBoard}
+              openPopup={openPopup}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>

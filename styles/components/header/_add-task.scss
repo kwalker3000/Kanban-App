@@ -17,6 +17,7 @@
     }
   }
   .add-task__btn:disabled {
+    opacity: 0.25;
     cursor: not-allowed;
   }
   .add-task__btn-text {

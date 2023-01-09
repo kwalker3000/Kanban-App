@@ -18,8 +18,19 @@
   width: 90%;
   max-width: 480px;
   position: absolute;
-  top: 20%;
+  /* top: 10%; */
   left: 50%;
   transform: translate(-50%, 10%);
   z-index: 3;
+}
+
+//TODO check edit task cause overflow
+// check muliple devices
+// will require javascript to increase div
+.main {
+  /* height: max-content;
+       overflow: scroll;
+       position: relative; */
+  /* background-color: red; */
+  /* padding-bottom: 4rem; */
 }

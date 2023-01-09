@@ -29,6 +29,10 @@
   display: flex;
   cursor: pointer;
 }
+#sidebar .slider_active:hover {
+  background: #a8a4ff;
+  transition: background-color 0.5s;
+}
 #sidebar .slider__btn {
   all: unset;
   background-color: #fff;
@@ -117,6 +121,16 @@
   background-color: #635fc7;
   color: #fff;
   fill: #fff;
+}
+#sidebar .sidebar .btn_active--light:hover,
+#sidebar .sidebar .btn_active--light:focus {
+  color: #635fc7;
+  background: rgba(99, 95, 199, 0.1);
+}
+#sidebar .sidebar .btn_active--dark:hover,
+#sidebar .sidebar .btn_active--dark:focus {
+  color: #635fc7;
+  background-color: #fff;
 }
 #sidebar .sidebar .operator {
   /* padding-top: 5px;

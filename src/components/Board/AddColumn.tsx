@@ -25,7 +25,7 @@ export const AddColumn = ({ theme, isNewBoard, openPopup }: BoardProps) => {
       <div className="add-column__body">
         <button
           onClick={() => openPopup('taskPopup')}
-          className={`add-column__btn ${!isNewBoard && 'btn_theme'}`}
+          className={`add-column__btn ${!isNewBoard && 'btn_theme'} btn_active`}
         >
           {isNewBoard ? (
             <>

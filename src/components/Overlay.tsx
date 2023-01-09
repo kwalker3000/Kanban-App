@@ -7,6 +7,7 @@ type OverlayProps = {
 
 export const Overlay = ({ isOpen, closePopup }: OverlayProps) => {
   const display = isOpen() ? 'block' : 'none'
+  // const display = isOpen() ? 'none' : 'none'
   return (
     <div
       onClick={() => closePopup()}

@@ -18,10 +18,18 @@
   width: 90%;
   max-width: 480px;
   position: absolute;
-  top: 20%;
+  /* top: 10%; */
   left: 50%;
   transform: translate(-50%, 10%);
   z-index: 3;
+}
+
+.main {
+  /* height: max-content;
+       overflow: scroll;
+       position: relative; */
+  /* background-color: red; */
+  /* padding-bottom: 4rem; */
 }
 
 /*# sourceMappingURL=App.module.css.map */

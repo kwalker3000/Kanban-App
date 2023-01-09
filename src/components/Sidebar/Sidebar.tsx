@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { Theme } from '../../@types/app'
 import { Board } from '../../@types/board'
-import { useAppContext } from '../../context/useAppContext'
 
 // Components
 import { IconBoard } from '../elements/svg/iconBoard'
-import { IconAdd } from '../elements/svg/iconAdd'
 import { IconHideSidebar } from '../elements/svg/iconHideSidebar'
 import { IconShowSidebar } from '../elements/svg/iconShowSidebar'
 import { Slider } from './Slider'
@@ -17,11 +15,10 @@ type SidebarProps = {
   board: Board
   boardList: string[]
   handleActiveBoard: (index: number) => void
-  openPopup: (key: string) => void
+  openPopup: (key: string, isNewBoard: boolean) => void
   closePopup: () => void
 }
 
-// TODO pass theme
 export const Sidebar = ({
   theme,
   isMobile,
@@ -37,7 +34,7 @@ export const Sidebar = ({
 
   let handlePopup = () => {
     closePopup()
-    openPopup('boardPopup')
+    openPopup('boardPopup', true)
   }
 
   let boards = boardList.map((name, index) => {
@@ -46,7 +43,7 @@ export const Sidebar = ({
         key={index}
         onClick={() => handleActiveBoard(index)}
         className={`sidebar__list-item--btn ${
-          name == board.name && '_selected'
+          name == board.name ? '_selected' : 'btn_active--' + theme
         }`}
       >
         <IconBoard />

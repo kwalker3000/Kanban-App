@@ -25,13 +25,12 @@ export const Slider = ({ theme, toggleTheme }: SliderProps) => {
         <IconLightTheme />
         <div
           onClick={() => handleToggle()}
-          className={`slider__btn-wrapper`}
-          aria-label="toggle dark theme"
+          className={`slider__btn-wrapper slider_active`}
+          aria-label="toggle theme"
         >
           <button
-            // onClick={() => toggleTheme()} //TODO accesibility
             className={`slider__btn ${isToggle ? 'slide-right' : 'slide-left'}`}
-            aria-label="toggle dark theme"
+            aria-label="toggle theme"
           ></button>
         </div>
         <IconDarkTheme />
