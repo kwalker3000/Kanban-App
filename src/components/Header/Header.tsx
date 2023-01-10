@@ -3,7 +3,6 @@ import { Title, Theme } from '../../@types/app'
 import { Board } from '../../@types/board'
 
 //Components
-import { IconVerticalEllipsis } from '../elements/svg/iconVerticalEllipsis'
 import { AddTaskBtn } from './AddTaskBtn'
 import { LogoMobile } from '../elements/svg/logoMobile'
 import { LogoDark } from '../elements/svg/logoDark'
@@ -14,14 +13,10 @@ import { Edit } from '../Forms/FormComponents/Edit'
 type HeaderProps = {
   theme: Theme
   isMobile: boolean | undefined
-  // openPopup: (key: string) => void
   openPopup: (key: string, isNewBoard?: boolean, objToDelete?: string) => void
   closePopup: (exception?: boolean) => void
   isSidebarOpen: boolean
   board: Board
-  actionKanban: (type: string, key: string, value: string | Board) => void
-  handleActiveBoard: (index: number) => void
-  boardList: string[]
 }
 
 export const Header = ({
@@ -31,19 +26,14 @@ export const Header = ({
   closePopup,
   isSidebarOpen,
   board,
-  actionKanban,
-  handleActiveBoard,
-  boardList,
 }: HeaderProps): JSX.Element => {
   const [isSubmenu, setIsSubmenu] = useState(false)
   let toggleSubmenu = () => {
     setIsSubmenu((prev) => !prev)
   }
   let handleSubmenu = (action: string) => {
-    console.log('heye')
     toggleSubmenu()
     if (action == 'EDIT') {
-      // closePopup()
       openPopup('boardPopup', false)
     } else {
       openPopup('removePopup', false, 'board')

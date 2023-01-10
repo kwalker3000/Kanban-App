@@ -21,7 +21,7 @@ type Props = {
 }
 
 export const AppWrapper = ({ children }: Props): JSX.Element => {
-  // TODO handle duplicate boards, task, subtasks
+  // TODO handle duplicate task, subtasks
   const [theme, setTheme] = useState<Theme>('dark')
   const [kanban, dispatch] = useReducer(useKanban, data)
   const [activeBoard, setActiveBoard] = useState<Board>(kanban[1])

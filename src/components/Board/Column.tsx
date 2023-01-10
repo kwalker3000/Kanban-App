@@ -45,3 +45,5 @@ export const Column = ({
     </div>
   )
 }
+
+// TODO centering new empty board for large devices

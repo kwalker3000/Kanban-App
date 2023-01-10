@@ -186,9 +186,6 @@ const Home: NextPage = () => {
           isSidebarOpen={isPopupOpen.sidebarPopup || !isHidden}
           board={board}
           closePopup={closePopup}
-          actionKanban={actionKanban}
-          handleActiveBoard={handleActiveBoard}
-          boardList={boardList}
         />
       </header>
       {

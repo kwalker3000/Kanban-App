@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Theme } from '../../@types/app'
 import { Board } from '../../@types/board'
 
@@ -33,10 +33,6 @@ export const Sidebar = ({
   isHidden,
   toggleHidden,
 }: SidebarProps) => {
-  console.log(isMobile)
-  // TODO probably better to pass from index.tsx
-  // const [isHidden, setIsHidden] = useState(true)
-
   let handlePopup = () => {
     closePopup()
     openPopup('boardPopup', true)
@@ -102,8 +98,6 @@ export const Sidebar = ({
                   isHidden ? 'is-not-hidden' : 'is-hidden'
                 }`}
               >
-                {/*<IconHideSidebar />
-                <span className="sidebar__toggle-text">show sidebar</span>*/}
                 <IconShowSidebar />
               </button>
             </>

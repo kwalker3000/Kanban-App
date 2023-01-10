@@ -14,7 +14,6 @@ export const Dropdown = ({
   taskStatus,
   updateTask,
 }: DropdownProps) => {
-  //Todo i could pass dynamic list from useContext
   let status = ['todo', 'doing', 'done'].map((stat, i) => (
     <option key={i} className={`input input_${theme} option`} value={stat}>
       {stat[0].toUpperCase() + stat.slice(1)}

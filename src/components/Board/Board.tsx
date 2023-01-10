@@ -44,7 +44,7 @@ export const Board = ({
 
   let getColumns = () => {
     let cols = sortTasks(board)
-    let col = ['todo', 'doing', 'done'] //TODO make dynamic
+    let col = ['todo', 'doing', 'done']
     let columns: JSX.Element[] = []
     let index = 0
 

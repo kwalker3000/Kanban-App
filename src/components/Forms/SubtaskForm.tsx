@@ -3,39 +3,18 @@ import { Theme, InputEvent } from '../../@types/app'
 import { Status, Task } from '../../@types/board'
 
 // Components
-import { IconVerticalEllipsis } from '../elements/svg/iconVerticalEllipsis'
 import { Edit } from './FormComponents/Edit'
 import { Dropdown } from './FormComponents/Dropdown'
 import { Checkbox } from './FormComponents/Checkbox'
 
 type FormProps = {
   theme: Theme
-  taskObj: Task //TODO removed previous '?'
+  taskObj: Task
   actionBoard: (type: string, key: string, value: Task) => void
   openPopup: (key: string, isNewBoard: boolean, objToDelete?: string) => void
   closePopup: (exception?: boolean) => void
 }
-let initialState: Task = {
-  title: 'Get some coffee from the coffee shop.',
-  id: 1,
-  description:
-    "Need coffee for christmas party tomorrow. It would be best to get it from Moe's.",
-  status: 'todo',
-  subtasks: [
-    {
-      description: 'Research types of coffee everyone likes',
-      status: 'todo',
-    },
-    {
-      description: 'Outline nearby shops and get hours',
-      status: 'todo',
-    },
-    {
-      description: 'Make pros and cons of each coffee bean type',
-      status: 'todo',
-    },
-  ],
-}
+
 //TODO i am checking status count 2x here and once in Task component
 // can i consolidate??
 export const SubtaskForm = ({
@@ -45,7 +24,7 @@ export const SubtaskForm = ({
   openPopup,
   closePopup,
 }: FormProps) => {
-  const [task, setTask] = useState(taskObj || initialState)
+  const [task, setTask] = useState(taskObj)
   const [isSubmenu, setIsSubmenu] = useState(false)
   const [subtasksCompleted, setSubtasksCompleted] = useState(0)
 
@@ -59,11 +38,10 @@ export const SubtaskForm = ({
     } else {
       closePopup(true)
       openPopup('removePopup', false, 'task')
-      // closePopup()
-      // actionBoard('DELETE TASK', 'tasks', task)
     }
   }
-  // updates the status of the subtasks and tasks
+
+  // updates the status of the subtasks and task
   let handleClick = (index: number) => {
     let status: keyof typeof task
     status = 'status'
@@ -89,6 +67,7 @@ export const SubtaskForm = ({
       }
     })
   }
+
   let updateTask = (type: string = '', key: string, value: InputEvent) => {
     let val = value.target.value.toLowerCase()
     if (val)
@@ -98,7 +77,6 @@ export const SubtaskForm = ({
           if (val == 'done') {
             updatedSubtasks[i].status = 'done'
           } else if (val == 'todo') {
-            console.log('inside todo')
             updatedSubtasks[i].status = 'todo'
           }
         }
@@ -149,7 +127,6 @@ export const SubtaskForm = ({
             {subtask.description}
           </span>
         </label>
-        <div></div>
       </div>
     )
   })

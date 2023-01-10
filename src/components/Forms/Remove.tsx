@@ -7,7 +7,6 @@ import { RemoveBtn } from './RemoveBtn'
 
 type RemoveProps = {
   theme: Theme
-  // board: Board
   closePopup: () => void
   actionKanban: (type: string, key: string, value: string | Board) => void
   actionBoard: (type: string, key: string, value: Task) => void

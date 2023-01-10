@@ -58,7 +58,6 @@ export const TaskForm = ({
     let isInvalid = [
       form.title.length == 0,
       form.description.length == 0,
-      // form.subtasks.some((subtask) => subtask.description.length == 0),
       form.subtasks.length > 0 && form.subtasks[0].description.length == 0,
     ]
     setErrorStates((prevState) => {
@@ -73,7 +72,6 @@ export const TaskForm = ({
     return isInvalid.every((error) => error == false)
   }
 
-  console.log(task)
   let subtasks = task.subtasks.map((subtask, index) => {
     return (
       <div

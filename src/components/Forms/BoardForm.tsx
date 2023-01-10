@@ -42,7 +42,7 @@ export const BoardForm = ({
     return !isInvalid[0] && !isInvalid[1]
   }
 
-  let handleChange = (key: string, e: InputEvent): void => {
+  let handleChange = (e: InputEvent): void => {
     let { value } = e.target
     setNewBoardName(() => value)
     setErrorStates(initialErrorStates)
@@ -75,7 +75,7 @@ export const BoardForm = ({
                   (isEmptyError || isDuplicateError) && 'input_board--error'
                 }`}
                 placeholder="e.g. 3D Graphics"
-                onChange={(e) => handleChange('name', e)}
+                onChange={(e) => handleChange(e)}
                 value={newBoardName}
               />
               {isEmptyError && <p className="msg_error">Can&apos;t be empty</p>}
@@ -94,3 +94,5 @@ export const BoardForm = ({
     </div>
   )
 }
+
+//TODO add some shadow

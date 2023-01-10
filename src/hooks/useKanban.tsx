@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React from 'react'
 import { Kanban, Board } from '../@types/board'
 
 export const useKanban = (state: Kanban, action: any): Kanban => {

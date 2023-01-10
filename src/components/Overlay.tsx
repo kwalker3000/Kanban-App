@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 type OverlayProps = {
   isOpen: () => boolean
@@ -15,7 +15,6 @@ export const Overlay = ({
 }: OverlayProps) => {
   let isDisable = !isMobile && isSidebar
   const display = isOpen() && !isDisable ? 'block' : 'none'
-  // const display = isOpen() ? 'none' : 'none'
   return (
     <div
       onClick={() => closePopup()}

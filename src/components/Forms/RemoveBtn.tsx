@@ -1,6 +1,5 @@
 import React from 'react'
 import { Theme } from '../../@types/app'
-import { Task } from '../../@types/board'
 
 type BtnProp = {
   action: string
@@ -14,10 +13,7 @@ export const RemoveBtn = ({
   btnText,
   theme,
   handleClick,
-}: // task,
-// addTask,
-BtnProp): JSX.Element => {
-  console.log(action)
+}: BtnProp): JSX.Element => {
   action = action.toLowerCase()
   return (
     <button

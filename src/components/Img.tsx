@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
-//import PropTypes from 'prop-types'
 import Image from 'next/image'
 import { ImgProps } from '../@types/app'
 
 import placeholderImg from '../../public/vercel.svg'
 
 export const Img = ({ imgSrc, isRemote, text }: ImgProps) => {
-  // let isRemote = remote || false
-
   type Layout = 'fill' | 'responsive'
   let layout: Layout = isRemote ? 'fill' : 'responsive'
 

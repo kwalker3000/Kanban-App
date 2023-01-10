@@ -1,6 +1,5 @@
 import React from 'react'
 import { Theme } from '../../@types/app'
-// import { Task } from '../../@types/board'
 
 type BtnProp = {
   action: string

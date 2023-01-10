@@ -1,9 +1,6 @@
 import React from 'react'
 import { Theme } from '../../@types/app'
 
-//Components
-import { TaskBtn } from '../Forms/TaskBtn'
-
 type BoardProps = {
   theme: Theme
   isNewBoard: boolean

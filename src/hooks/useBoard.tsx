@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { Kanban, Board, Task } from '../@types/board'
+import { Board } from '../@types/board'
 
 // there is problem when setting value type to Task | Board
 // will work fine with only Task but conflicts arise when
@@ -25,6 +25,7 @@ export const useBoard = (state: Board, action: Action): Board => {
     }
     case 'EDIT TASK':
       //TODO when edit large task bodies it extends past boundaries
+      // currently fix is to limit number of subtasks to 4
       return {
         ...state,
         [key]: value,

@@ -1,7 +1,6 @@
 import React from 'react'
 
 export const LogoLight = () => {
-  console.log('yeeeeee')
   return (
     <svg width="153" height="26" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fillRule="evenodd">
