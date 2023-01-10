@@ -1,87 +1,95 @@
-#sidebar {
+.sidebar_id {
   position: relative;
   z-index: 2;
 }
-#sidebar .slider_dark {
+.sidebar_id .slider_dark {
   background-color: #20212c;
 }
-#sidebar .slider_light {
+.sidebar_id .slider_light {
   background-color: #f4f7fd;
 }
-#sidebar .slider {
+.sidebar_id .slider {
   border-radius: 6px;
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
+  margin-left: 1.5rem;
   display: flex;
   justify-content: center;
 }
-#sidebar .slider__content {
+.sidebar_id .slider__content {
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
   display: flex;
   align-items: center;
 }
-#sidebar .slider__content > svg {
+.sidebar_id .slider__content > svg {
   padding: 0 1.4rem 0 1.4rem;
 }
-#sidebar .slider__btn-wrapper {
+.sidebar_id .slider__btn-wrapper {
   background-color: #635fc7;
   border-radius: 1rem;
   width: 40px;
   display: flex;
   cursor: pointer;
 }
-#sidebar .slider_active:hover {
+.sidebar_id .slider_active:hover {
   background: #a8a4ff;
   transition: background-color 0.5s;
 }
-#sidebar .slider__btn {
+.sidebar_id .slider__btn {
   all: unset;
   background-color: #fff;
   border-radius: 50%;
   padding: 0.45rem;
   margin: 3px;
 }
-#sidebar .slide-right {
+.sidebar_id .slide-right {
   transform: translateX(135%);
   transition: transform 450ms ease-out;
 }
-#sidebar .slide-left {
+.sidebar_id .slide-left {
   transform: translateX(0);
   transition: transform 450ms ease-out;
 }
-#sidebar .head_level-3 {
+@media (min-width: 768px) {
+  .sidebar_id {
+    position: absolute;
+    /* max-width: 300px; */
+  }
+}
+.sidebar_id .head_level-3 {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin: 0;
   font-size: 0.938rem;
   line-height: 1.27em;
 }
-#sidebar .is-hidden {
+.sidebar_id .is-hidden {
   transform: translateX(-100%);
+  /* transition: transform 450ms ease-out; */
+}
+.sidebar_id .is-not-hidden-side {
+  transform: translateX(0);
+  /* transition: transform 450ms ease-out 250ms; */
   transition: transform 450ms ease-out;
 }
-#sidebar .is-not-hidden-side {
-  transform: translateX(0);
-  transition: transform 450ms ease-out 250ms;
-}
-#sidebar .sidebar_dark {
+.sidebar_id .sidebar_dark {
   background-color: #2b2c37;
   border-right: 1px solid #3e3f4e;
 }
-#sidebar .sidebar_light {
+.sidebar_id .sidebar_light {
   background-color: #fff;
   border-right: 1px solid #e4ebfa;
 }
-#sidebar .sidebar {
+.sidebar_id .sidebar {
   color: #828fa3;
   fill: #828fa3;
   max-width: 300px;
-  height: 95vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-@media (max-width: 574px) {
-  #sidebar .sidebar {
+@media (max-width: 768px) {
+  .sidebar_id .sidebar {
     border-radius: 8px;
     position: absolute;
     min-width: 265px;
@@ -92,10 +100,10 @@
     padding-bottom: 1rem;
   }
 }
-#sidebar .sidebar .sidebar__list {
+.sidebar_id .sidebar .sidebar__list {
   padding-right: 1.5rem;
 }
-#sidebar .sidebar .sidebar__list-title {
+.sidebar_id .sidebar .sidebar__list-title {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin: 0;
@@ -105,10 +113,10 @@
   text-transform: uppercase;
   padding: 1.25rem 0 1.25rem 2rem;
 }
-#sidebar .sidebar .sidebar__list-item--btn > svg {
+.sidebar_id .sidebar .sidebar__list-item--btn > svg {
   padding: 0 1rem 0 2rem;
 }
-#sidebar .sidebar .sidebar__list-item--btn {
+.sidebar_id .sidebar .sidebar__list-item--btn {
   all: unset;
   cursor: pointer;
   width: 100%;
@@ -117,22 +125,23 @@
   padding-top: 0.9375em;
   padding-bottom: 0.9375em;
 }
-#sidebar .sidebar ._selected {
+.sidebar_id .sidebar ._selected {
   background-color: #635fc7;
   color: #fff;
   fill: #fff;
 }
-#sidebar .sidebar .btn_active--light:hover,
-#sidebar .sidebar .btn_active--light:focus {
+.sidebar_id .sidebar .btn_active--light:hover,
+.sidebar_id .sidebar .btn_active--light:focus {
   color: #635fc7;
   background: rgba(99, 95, 199, 0.1);
+  fill: #635fc7;
 }
-#sidebar .sidebar .btn_active--dark:hover,
-#sidebar .sidebar .btn_active--dark:focus {
+.sidebar_id .sidebar .btn_active--dark:hover,
+.sidebar_id .sidebar .btn_active--dark:focus {
   color: #635fc7;
   background-color: #fff;
 }
-#sidebar .sidebar .operator {
+.sidebar_id .sidebar .operator {
   /* padding-top: 5px;
        padding-right: 2px;
        transform: scale(0.6);
@@ -143,27 +152,37 @@
   /* padding-top: 2px; */
   letter-spacing: 2px;
 }
-#sidebar .sidebar .add {
+.sidebar_id .sidebar .add {
   fill: #635fc7;
   color: #635fc7;
   padding-bottom: 2rem;
 }
-#sidebar .sidebar .sidebar-slider__wrapper {
+.sidebar_id .sidebar .sidebar-slider__wrapper {
   padding: 0 1.5rem 0 1.5rem;
+  padding: 0 1.5rem 0 0;
 }
-#sidebar .sidebar .sidebar__toggle-btn {
-  all: unset;
+.sidebar_id .sidebar .sidebar__toggle-btn {
+  /* all: unset; */
+  border: none;
+  background-color: transparent;
+  color: #828fa3;
   cursor: pointer;
+  width: 100%;
   padding: 0.9rem 1.25rem 0.9rem 0;
-  margin-bottom: 2.0375rem;
-  margin-top: 0.55rem;
+  /* margin-bottom: 2.0375rem; */
+  margin-bottom: 1.75rem;
+  /* margin-top: 0.55rem; */
+  margin-top: 1rem;
   display: flex;
   border-radius: 0 100px 100px 0;
 }
-#sidebar .sidebar .sidebar__toggle-btn:nth-child(odd) {
+.sidebar_id .sidebar .sidebar__toggle-btn:nth-child(odd) {
   fill: #fff;
 }
-#sidebar .sidebar .sidebar__toggle-text {
+.sidebar_id .sidebar .sidebar__toggle-btn > svg {
+  margin-left: 1.5rem;
+}
+.sidebar_id .sidebar .sidebar__toggle-text {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   margin: 0;
@@ -173,19 +192,43 @@
   margin-left: 0.9735rem;
   margin-right: 1.25rem;
 }
-#sidebar .sidebar .is-not-hidden {
+.sidebar_id .sidebar .is-not-hidden {
   background-color: #635fc7;
-  transform: translateX(60%);
+  transform: translateX(22%);
+  /* transform: translateX(222%); */
+  transform: translateX(122%);
   transition: transform 450ms ease-out 350ms;
   position: absolute;
   bottom: 0;
+  /* padding: 1rem; */
+  display: flex;
+  justify-content: flex-end;
 }
-#sidebar .sidebar .underneath {
+.sidebar_id .sidebar .show-btn_active:hover {
+  background-color: #a8a4ff;
+}
+.sidebar_id .sidebar .is-hidden {
+  background-color: #635fc7;
   fill: #fff;
+  /* transform: translateX(-115%); */
   transform: translateX(-115%);
-  transition: transform 450ms ease-in;
+  transform: translateX(-115%);
+  transform: translateX(-115%);
+  /*       transition: transform 450ms ease-in; */
   position: absolute;
   bottom: 0;
+}
+
+.extends {
+  /* padding-left: 100vw;
+       padding-right: 100vw; */
+  /* margin-left: -100vw; */
+  /* margin-right: -100vw; */
+}
+
+.translate {
+  transform: translateX(-100%);
+  transition: transform 450ms ease-in;
 }
 
 /*# sourceMappingURL=sidebar.css.map */

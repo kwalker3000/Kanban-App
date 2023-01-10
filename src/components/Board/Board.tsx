@@ -11,6 +11,7 @@ type BoardProps = {
   board: BoardType
   openPopup: (key: string) => void
   updateSubtaskEditKey: (status: Status, i: number) => void
+  isHidden: boolean
 }
 
 export const Board = ({
@@ -18,6 +19,7 @@ export const Board = ({
   board,
   openPopup,
   updateSubtaskEditKey,
+  isHidden,
 }: BoardProps) => {
   const [isNewBoard, setIsNewBoard] = useState(true)
 
@@ -68,7 +70,7 @@ export const Board = ({
 
   return (
     <div id="board">
-      <div className={`board board_${theme}`}>
+      <div className={`board board_${theme} ${!isHidden && 'board_shift'}`}>
         {<>{getColumns()}</>}
         <div className="board__add-column-wrapper">
           {isNewBoard ? (

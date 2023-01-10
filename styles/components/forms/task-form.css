@@ -55,10 +55,6 @@
   background: #ff9898;
   transition: background-color 0.5s;
 }
-#task-form .btn_active:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
 #task-form .btn_light--minor,
 #task-form .btn_cancel--light {
   background-color: rgba(99, 95, 199, 0.1);
@@ -67,6 +63,10 @@
 #task-form .btn_active--cancel_light:hover {
   background: rgba(99, 95, 199, 0.25);
   transition: background-color 0.5s;
+}
+#task-form .btn_active:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 #task-form .cross-btn {
   border: none;

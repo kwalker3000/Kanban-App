@@ -17,6 +17,8 @@ type SidebarProps = {
   handleActiveBoard: (index: number) => void
   openPopup: (key: string, isNewBoard: boolean) => void
   closePopup: () => void
+  isHidden: boolean
+  toggleHidden: () => void
 }
 
 export const Sidebar = ({
@@ -28,9 +30,12 @@ export const Sidebar = ({
   handleActiveBoard,
   openPopup,
   closePopup,
+  isHidden,
+  toggleHidden,
 }: SidebarProps) => {
+  console.log(isMobile)
   // TODO probably better to pass from index.tsx
-  const [isHidden, setIsHidden] = useState(false)
+  // const [isHidden, setIsHidden] = useState(true)
 
   let handlePopup = () => {
     closePopup()
@@ -53,7 +58,7 @@ export const Sidebar = ({
   })
 
   return (
-    <div id="sidebar">
+    <div className={`sidebar_id ${isHidden && 'translate'}`}>
       <div
         className={`sidebar sidebar_${theme} ${
           isHidden ? 'is-hidden' : 'is-not-hidden-side'
@@ -82,21 +87,23 @@ export const Sidebar = ({
           {!isMobile && (
             <>
               <button
-                onClick={() => setIsHidden((pre) => !pre)}
-                className={`sidebar__toggle-btn`}
+                onClick={() => toggleHidden()}
+                className={`sidebar__toggle-btn btn_active--${theme} ${
+                  !isMobile && 'extends'
+                }`}
               >
                 <IconHideSidebar />
                 <span className="sidebar__toggle-text">hide sidebar</span>
               </button>
 
               <button
-                onClick={() => setIsHidden((pre) => !pre)}
-                className={`sidebar__toggle-btn ${
-                  isHidden ? 'is-not-hidden' : 'underneath'
+                onClick={() => toggleHidden()}
+                className={`sidebar__toggle-btn show-btn_active ${
+                  isHidden ? 'is-not-hidden' : 'is-hidden'
                 }`}
               >
-                <IconHideSidebar />
-                <span className="sidebar__toggle-text">show sidebar</span>
+                {/*<IconHideSidebar />
+                <span className="sidebar__toggle-text">show sidebar</span>*/}
                 <IconShowSidebar />
               </button>
             </>

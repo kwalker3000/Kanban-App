@@ -6,6 +6,8 @@ import { Board } from '../../@types/board'
 import { IconVerticalEllipsis } from '../elements/svg/iconVerticalEllipsis'
 import { AddTaskBtn } from './AddTaskBtn'
 import { LogoMobile } from '../elements/svg/logoMobile'
+import { LogoDark } from '../elements/svg/logoDark'
+import { LogoLight } from '../elements/svg/logoLight'
 import { IconChevron } from './iconChevron'
 import { Edit } from '../Forms/FormComponents/Edit'
 
@@ -44,15 +46,7 @@ export const Header = ({
       // closePopup()
       openPopup('boardPopup', false)
     } else {
-      // closePopup()
-      // let nextBoard = boardList[0] == board.name ? 1 : 0
-      // if (boardList.length == 1) {
       openPopup('removePopup', false, 'board')
-      //   actionKanban('DELETE BOARD', 'boards', board)
-      // } else {
-      //   actionKanban('DELETE BOARD', 'boards', board)
-      //   handleActiveBoard(nextBoard)
-      // }
     }
   }
 
@@ -62,18 +56,35 @@ export const Header = ({
         className={`header header_${theme} ${isSidebarOpen && 'sidebar-state'}`}
       >
         <div className="head-wrapper">
-          {isMobile && (
-            <div className="header__logo logo-wrapper">
+          <div
+            className={`header__logo logo-wrapper header_${
+              !isMobile && isSidebarOpen && '_logo_sidebar'
+            }`}
+          >
+            {isMobile ? (
               <LogoMobile />
-            </div>
-          )}
-          <div></div>
+            ) : theme == 'dark' ? (
+              <LogoDark />
+            ) : (
+              <LogoLight />
+            )}
+          </div>
+          <div
+            className={`line line_${theme} line_${
+              !isMobile && isSidebarOpen && 'sidebar'
+            }`}
+          ></div>
           <h2 className={`header__head head_${theme} head_level-2`}>
             {board.name || undefined}
           </h2>
-          <div>
-            <IconChevron openPopup={openPopup} isSidebarOpen={isSidebarOpen} />
-          </div>
+          {isMobile && (
+            <div>
+              <IconChevron
+                openPopup={openPopup}
+                isSidebarOpen={isSidebarOpen}
+              />
+            </div>
+          )}
         </div>
         <div className="header__action-wrapper">
           <div className="header__btn-wrapper">

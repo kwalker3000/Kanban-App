@@ -31,14 +31,24 @@
     justify-content: space-between;
     align-items: center;
 
+    @media (min-width: util.$tablet - 125px) {
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+    }
     @media (min-width: util.$desktop) {
       padding-top: 1.25rem;
       padding-bottom: 1.75rem;
     }
+    position: relative;
   }
 
   .header__head {
     margin-right: 0.25rem;
+
+    @media (min-width: util.$tablet) {
+      margin-top: 0.15rem;
+      margin-left: 1.75rem;
+    }
   }
 
   .head-wrapper {
@@ -49,9 +59,31 @@
       margin: 0;
     }
   }
+  @media (min-width: util.$tablet) {
+    .line_dark {
+      background-color: util.$lines_dark;
+    }
+    .line_light {
+      background-color: util.$lines_light;
+    }
+    .line {
+      width: 1px;
+      height: 5rem;
+
+      position: absolute;
+      top: 0;
+      left: 12.5rem;
+    }
+    .line_sidebar {
+      left: 15.78rem;
+    }
+  }
 
   .header__logo {
     margin-right: 1rem;
+  }
+  .header__logo_sidebar {
+    margin-right: 4.5rem;
   }
 
   .header__action-wrapper {

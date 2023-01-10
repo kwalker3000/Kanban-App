@@ -11,15 +11,31 @@
 #board .board_dark {
   background-color: #20212c;
 }
+@media (min-width: 768px) {
+  #board .board_dark {
+    border-top: 1px solid #3e3f4e;
+  }
+}
 #board .board_light {
   background-color: #f4f7fd;
+}
+@media (min-width: 768px) {
+  #board .board_light {
+    border-top: 1px solid #e4ebfa;
+  }
 }
 #board .board {
   height: 100vh;
   /* height: 1000px; */
   display: flex;
-  /* overflow: scroll; */
+  overflow: scroll;
   position: relative;
+}
+#board .board_shift {
+  /* padding-left: 250px; */
+  transform: translateX(250px);
+  /* transition: transform 450ms ease-out 250ms; */
+  transition: transform 450ms ease-out;
 }
 
 .board__column-wrapper {

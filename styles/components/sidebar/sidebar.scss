@@ -3,22 +3,29 @@
 @use './slider';
 @use '../../elements/icon-add';
 
-#sidebar {
+.sidebar_id {
   @include slider.slider;
   position: relative;
+  @media (min-width: util.$tablet) {
+    position: absolute;
+    /* max-width: 300px; */
+  }
   z-index: 2;
 
   .head_level-3 {
     @include font.h3;
   }
 
+  //TODO tab and sidebar share causing confliction
+  // when using translate may or may not fix
   .is-hidden {
     transform: translateX(-100%);
-    transition: transform 450ms ease-out;
+    /* transition: transform 450ms ease-out; */
   }
   .is-not-hidden-side {
     transform: translateX(0);
-    transition: transform 450ms ease-out 250ms;
+    /* transition: transform 450ms ease-out 250ms; */
+    transition: transform 450ms ease-out;
   }
 
   .sidebar_dark {
@@ -35,15 +42,14 @@
     fill: util.$medium-grey; // svg
 
     max-width: 300px;
-    height: 95vh;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    // TODO maybe? changes display mode too early
-    // issue is app mobile setting different from css
-    @media (max-width: util.$tablet - 111px) {
+    // TODO maybe larger size?
+    @media (max-width: util.$tablet) {
       border-radius: util.$radius;
       position: absolute;
       min-width: 265px;
@@ -83,16 +89,17 @@
       color: util.$white;
       fill: util.$white; // svg
     }
-      .btn_active--light:hover,
-      .btn_active--light:focus {
-	color: util.$purple;
-	background: rgba(99, 95, 199, 0.10);
-      }
-      .btn_active--dark:hover,
-      .btn_active--dark:focus {
-	color: util.$purple;
-	background-color: util.$white;
-      }
+    .btn_active--light:hover,
+    .btn_active--light:focus {
+      color: util.$purple;
+      background: rgba(99, 95, 199, 0.1);
+      fill: util.$purple;
+    }
+    .btn_active--dark:hover,
+    .btn_active--dark:focus {
+      color: util.$purple;
+      background-color: util.$white;
+    }
     .operator {
       @include icon-add.icon-add;
     }
@@ -104,20 +111,30 @@
 
     .sidebar-slider__wrapper {
       padding: 0 1.5rem 0 1.5rem;
+      padding: 0 1.5rem 0 0;
     }
     .sidebar__toggle-btn {
-      all: unset;
+      /* all: unset; */
+      border: none;
+      background-color: transparent;
+      color: util.$medium-grey;
       cursor: pointer;
 
+      width: 100%;
       padding: 0.9rem 1.25rem 0.9rem 0;
-      margin-bottom: 2.0375rem;
-      margin-top: 0.55rem;
+      /* margin-bottom: 2.0375rem; */
+      margin-bottom: 1.75rem;
+      /* margin-top: 0.55rem; */
+      margin-top: 1rem;
 
       display: flex;
       border-radius: 0 100px 100px 0;
     }
     .sidebar__toggle-btn:nth-child(odd) {
       fill: util.$white;
+    }
+    .sidebar__toggle-btn > svg {
+      margin-left: 1.5rem;
     }
     .sidebar__toggle-text {
       @include font.h3;
@@ -128,20 +145,48 @@
     .is-not-hidden {
       background-color: util.$purple;
 
-      transform: translateX(60%);
+      transform: translateX(22%);
+      /* transform: translateX(222%); */
+      transform: translateX(122%);
+
       transition: transform 450ms ease-out 350ms;
 
       position: absolute;
       bottom: 0;
+      /* padding: 1rem; */
+      display: flex;
+      justify-content: flex-end;
     }
-    .underneath {
+    .show-btn_active:hover {
+      background-color: util.$purple_hover;
+    }
+    .is-not-hidden > svg {
+    }
+    .is-hidden {
+      background-color: util.$purple;
       fill: util.$white;
 
+      /* transform: translateX(-115%); */
       transform: translateX(-115%);
-      transition: transform 450ms ease-in;
+      transform: translateX(-115%);
+      transform: translateX(-115%);
+      /*       transition: transform 450ms ease-in; */
 
       position: absolute;
       bottom: 0;
     }
   }
 }
+
+.extends {
+  /* padding-left: 100vw;
+       padding-right: 100vw; */
+  /* margin-left: -100vw; */
+  /* margin-right: -100vw; */
+}
+
+.translate {
+  transform: translateX(-100%);
+  transition: transform 450ms ease-in;
+}
+//

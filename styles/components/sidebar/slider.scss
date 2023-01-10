@@ -1,60 +1,61 @@
 @use '../../util/util';
 
 @mixin slider {
-
-.slider_dark {
+  .slider_dark {
     background-color: util.$bg-theme_very-dark-grey;
-}
-.slider_light {
+  }
+  .slider_light {
     background-color: util.$bg-theme_light-grey;
-}
+  }
 
   .slider {
     border-radius: 6px;
-    padding-top: 0.9rem;
-    padding-bottom: 0.9rem;
+    margin-left: 1.5rem;
 
     display: flex;
     justify-content: center;
   }
 
-    .slider__content {
-	display: flex;
-	align-items: center;
-    }
+  .slider__content {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
 
-	.slider__content > svg {
-	    padding: 0 1.4rem 0 1.4rem;
-	}
-	.slider__btn-wrapper {
-	    background-color: util.$purple;
-	    border-radius: 1rem;
-	    width: 40px;
+    display: flex;
+    align-items: center;
+  }
 
-	    display: flex;
-	    cursor: pointer;
-	}
-	.slider_active:hover {
-	    background: util.$purple_hover;
-	    transition: background-color 0.5s;
-	}
+  .slider__content > svg {
+    padding: 0 1.4rem 0 1.4rem;
+  }
+  .slider__btn-wrapper {
+    background-color: util.$purple;
+    border-radius: 1rem;
+    width: 40px;
 
-	    .slider__btn {
-		all: unset;
+    display: flex;
+    cursor: pointer;
+  }
+  .slider_active:hover {
+    background: util.$purple_hover;
+    transition: background-color 0.5s;
+  }
 
-		background-color: util.$white;
-		border-radius: 50%;
+  .slider__btn {
+    all: unset;
 
-		padding: 0.45rem;
-		margin: 3px;
-	    }
+    background-color: util.$white;
+    border-radius: 50%;
 
-	    .slide-right {
-		transform: translateX(135%);
-		transition: transform 450ms ease-out;
-	    }
-	    .slide-left {
-		transform: translateX(0);
-		transition: transform 450ms ease-out;
-	    }
+    padding: 0.45rem;
+    margin: 3px;
+  }
+
+  .slide-right {
+    transform: translateX(135%);
+    transition: transform 450ms ease-out;
+  }
+  .slide-left {
+    transform: translateX(0);
+    transition: transform 450ms ease-out;
+  }
 }
