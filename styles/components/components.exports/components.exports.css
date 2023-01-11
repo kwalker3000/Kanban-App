@@ -975,7 +975,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sidebar_id .sidebar {
     border-radius: 8px;
     position: absolute;

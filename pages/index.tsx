@@ -2,37 +2,25 @@ import { useState, useEffect, useReducer } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-// import styles from '../styles/Home.module.css'
 import styles from '../styles/modules/App.module.css'
-import { Theme, Title } from '../src/@types/app'
+
+// Types
 import { Board as BoardType, Task, Status } from '../src/@types/board'
 
+// Custom Hooks
 import { useAppContext } from '../src/context/useAppContext'
 import { useBoard } from '../src/hooks/useBoard'
 
 // Components
 import { Header } from '../src/components/Header/Header'
-import { TaskForm } from '../src/components/Forms/TaskForm'
-import { SubtaskForm } from '../src/components/Forms/SubtaskForm'
-import { BoardForm } from '../src/components/Forms/BoardForm'
-import { Remove } from '../src/components/Forms/Remove'
+import { Popup } from '../src/components/Popup'
 import { Board } from '../src/components/Board/Board'
 import { Sidebar } from '../src/components/Sidebar/Sidebar'
 import { Overlay } from '../src/components/Overlay'
 
-const initialPopupState = {
-  taskPopup: false,
-  subtaskPopup: false,
-  boardPopup: {
-    isOpen: false,
-    isNew: false,
-  },
-  removePopup: {
-    isTask: false,
-    isBoard: false,
-  },
-  sidebarPopup: false,
-}
+// Initial State Values
+import { initPopupState } from '../lib/initialStates'
+
 type SubtaskEditType = {
   status: Status
   index: number
@@ -45,14 +33,13 @@ const initialSubtaskEditKey: SubtaskEditType = {
 const Home: NextPage = () => {
   // TODO add character limit
   const [isMobile, setIsMobile] = useState<boolean>(true)
-  const [isPopupOpen, setIsPopupOpen] = useState(initialPopupState)
+  const [isPopupOpen, setIsPopupOpen] = useState(initPopupState)
   const [subtaskEditKey, setSubtaskEditKey] = useState<SubtaskEditType>(
     initialSubtaskEditKey
   )
   const [isHidden, setIsHidden] = useState(true)
 
   let {
-    kanban,
     actionKanban,
     toggleTheme,
     theme,
@@ -63,7 +50,7 @@ const Home: NextPage = () => {
 
   const [board, setBoard] = useReducer(useBoard, activeBoard)
 
-  let { status: taskStatus, index: taskIndex } = subtaskEditKey
+  let { index: taskIndex } = subtaskEditKey
   // TODO should be able to simplify
   // also, below may return undefined
   // do i need safety check or can i use to my advantage?
@@ -72,7 +59,6 @@ const Home: NextPage = () => {
   let nextTaskId =
     board.tasks.length > 0 ? board.tasks[board.tasks.length - 1].id + 1 : 1
 
-  type BoardObj = Task
   let actionBoard = (type: string, key: string, value: Task | BoardType) => {
     setBoard({
       type,
@@ -91,7 +77,7 @@ const Home: NextPage = () => {
   }
 
   let isOpen = (openBoard = false, isNewBoard = false) => {
-    let key: keyof typeof initialPopupState
+    let key: keyof typeof initPopupState
     for (key in isPopupOpen) {
       if (key == 'boardPopup') {
         if (isPopupOpen[key].isOpen) {
@@ -129,7 +115,6 @@ const Home: NextPage = () => {
           },
         }
       }
-      // if (key == 'board')
       return {
         ...prevState,
         [key]: value,
@@ -137,7 +122,7 @@ const Home: NextPage = () => {
     })
   }
   let closePopup = (exception: boolean = false) => {
-    setIsPopupOpen(initialPopupState)
+    setIsPopupOpen(initPopupState)
     if (!exception) {
       setSubtaskEditKey(initialSubtaskEditKey)
     }
@@ -196,64 +181,38 @@ const Home: NextPage = () => {
       <main className={`${styles.main} ${!isHidden && styles.columns}`}>
         {isOpen() && (
           <div className={`${styles.popupWrapper}`}>
-            {isPopupOpen.taskPopup && (
-              <TaskForm
-                theme={theme}
-                nextTaskId={nextTaskId}
-                taskObj={t}
-                actionBoard={actionBoard}
-                closePopup={closePopup}
-              />
-            )}
-            {isPopupOpen.subtaskPopup && (
-              <SubtaskForm
-                theme={theme}
-                taskObj={t} //task
-                actionBoard={actionBoard}
-                openPopup={openPopup}
-                closePopup={closePopup}
-              />
-            )}
-            {isPopupOpen.boardPopup.isOpen && (
-              <BoardForm
-                theme={theme}
-                actionKanban={actionKanban}
-                closePopup={closePopup}
-                boardList={boardList}
-                boardName={!isPopupOpen.boardPopup.isNew && board.name}
-              />
-            )}
-            {(isPopupOpen.removePopup.isBoard ||
-              isPopupOpen.removePopup.isTask) && (
-              <Remove
-                theme={theme}
-                closePopup={closePopup}
-                actionKanban={actionKanban}
-                actionBoard={actionBoard}
-                handleActiveBoard={handleActiveBoard}
-                board={board}
-                boardList={boardList}
-                task={isPopupOpen.removePopup.isTask && t}
-              />
-            )}
+            <Popup
+              theme={theme}
+              actionKanban={actionKanban}
+              actionBoard={actionBoard}
+              board={board}
+              boardList={boardList}
+              boardName={!isPopupOpen.boardPopup.isNew && board.name}
+              handleActiveBoard={handleActiveBoard}
+              closePopup={closePopup}
+              openPopup={openPopup}
+              task={isPopupOpen.removePopup.isTask && t}
+              taskObj={t}
+              nextTaskId={nextTaskId}
+              isPopupOpen={isPopupOpen}
+            />
           </div>
         )}
-        <div className={`${!isMobile && styles.sidebar}`}>
-          {(isMobile && isPopupOpen.sidebarPopup) ||
-            (!isMobile && (
-              <Sidebar
-                isMobile={isMobile}
-                theme={theme}
-                toggleTheme={toggleTheme}
-                boardList={boardList}
-                board={board}
-                handleActiveBoard={handleActiveBoard}
-                openPopup={openPopup}
-                closePopup={closePopup}
-                isHidden={isHidden}
-                toggleHidden={toggleHidden}
-              />
-            ))}
+        <div>
+          {((isMobile && isPopupOpen.sidebarPopup) || !isMobile) && (
+            <Sidebar
+              isMobile={isMobile}
+              theme={theme}
+              toggleTheme={toggleTheme}
+              boardList={boardList}
+              board={board}
+              handleActiveBoard={handleActiveBoard}
+              openPopup={openPopup}
+              closePopup={closePopup}
+              isHidden={isHidden}
+              toggleHidden={toggleHidden}
+            />
+          )}
         </div>
         <div className={`${styles.board}`}>
           <Board
@@ -262,7 +221,6 @@ const Home: NextPage = () => {
             openPopup={openPopup}
             updateSubtaskEditKey={updateSubtaskEditKey}
             isHidden={isHidden}
-            // handleKanban={handleKanban}
           />
         </div>
       </main>

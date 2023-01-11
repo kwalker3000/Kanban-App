@@ -10,17 +10,15 @@ import { Dropdown } from './FormComponents/Dropdown'
 import { SubTaskBtn } from './SubTaskBtn'
 import { TaskBtn } from './TaskBtn'
 
+// Initial State Values
+import { initErrorStatesTask, initTaskState } from '../../../lib/initialStates'
+
 type FormProps = {
   theme: Theme
   taskObj: Task
   nextTaskId: number
   actionBoard: (type: string, key: string, value: Task) => void
   closePopup: () => void
-}
-let initialErrorStates = {
-  isTitleError: false,
-  isDescriptionError: false,
-  isSubtaskError: false,
 }
 
 export const TaskForm = ({
@@ -30,15 +28,9 @@ export const TaskForm = ({
   actionBoard,
   closePopup,
 }: FormProps) => {
-  let initialTaskState: Task = {
-    id: nextTaskId,
-    title: '',
-    description: '',
-    status: 'todo',
-    subtasks: [],
-  }
-  const [task, setTask] = useReducer(useTask, taskObj || initialTaskState)
-  const [errorStates, setErrorStates] = useState(initialErrorStates)
+  initTaskState.id = nextTaskId
+  const [task, setTask] = useReducer(useTask, taskObj || initTaskState)
+  const [errorStates, setErrorStates] = useState(initErrorStatesTask)
 
   let { isTitleError, isDescriptionError, isSubtaskError } = errorStates
   const actionTask = (
@@ -51,7 +43,7 @@ export const TaskForm = ({
       type: type,
       payload: { key, value, index },
     })
-    setErrorStates(initialErrorStates)
+    setErrorStates(initErrorStatesTask)
   }
 
   let checkValidForm = (form: Task) => {

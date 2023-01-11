@@ -54,7 +54,7 @@ export const Sidebar = ({
   })
 
   return (
-    <div className={`sidebar_id ${isHidden && 'translate'}`}>
+    <div className={`sidebar_id ${!isMobile && isHidden && 'translate'}`}>
       <div
         className={`sidebar sidebar_${theme} ${
           isHidden ? 'is-hidden' : 'is-not-hidden-side'

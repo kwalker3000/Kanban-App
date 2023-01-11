@@ -46,7 +46,7 @@
     justify-content: space-between;
 
     // TODO maybe larger size?
-    @media (max-width: util.$tablet) {
+    @media (max-width: util.$tablet - 1) {
       border-radius: util.$radius;
       position: absolute;
       min-width: 265px;

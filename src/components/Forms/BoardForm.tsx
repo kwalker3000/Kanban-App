@@ -4,17 +4,15 @@ import { Theme, InputEvent, FormEvent } from '../../@types/app'
 //Components
 import { BoardBtn } from './BoardBtn'
 
+// Initial State Values
+import { initErrorStatesBoard } from '../../../lib/initialStates'
+
 type BoardFormProps = {
   theme: Theme
   actionKanban: (type: string, key: string, value: string) => void
   closePopup: () => void
   boardList: string[]
   boardName?: string | false
-}
-
-let initialErrorStates = {
-  isEmptyError: false,
-  isDuplicateError: false,
 }
 
 export const BoardForm = ({
@@ -25,7 +23,7 @@ export const BoardForm = ({
   boardName,
 }: BoardFormProps) => {
   let [newBoardName, setNewBoardName] = useState(boardName || '')
-  let [errorStates, setErrorStates] = useState(initialErrorStates)
+  let [errorStates, setErrorStates] = useState(initErrorStatesBoard)
 
   let { isEmptyError, isDuplicateError } = errorStates
   let checkIsValid = (boardName: string) => {
@@ -45,7 +43,7 @@ export const BoardForm = ({
   let handleChange = (e: InputEvent): void => {
     let { value } = e.target
     setNewBoardName(() => value)
-    setErrorStates(initialErrorStates)
+    setErrorStates(initErrorStatesBoard)
   }
 
   let handleSubmit = (e: FormEvent) => {
@@ -94,5 +92,3 @@ export const BoardForm = ({
     </div>
   )
 }
-
-//TODO add some shadow
