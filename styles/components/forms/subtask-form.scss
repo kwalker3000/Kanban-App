@@ -179,10 +179,6 @@
     margin-bottom: 0.5rem;
 
     cursor: pointer;
-    // .subtask-wrapper > .checkbox {
-    // 	background-color: red;
-    // 	opacity: 0.5;
-    // }
 
     .subtask__label {
 	@include font.p2;
@@ -200,7 +196,6 @@
 .subtask-wrapper:hover,
 .subtask-wrapper:focus {
     background-color: rgba(99,95,199, 0.25);
-    //opacity: 0.25;
 }
 
 }

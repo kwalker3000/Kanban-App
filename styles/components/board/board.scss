@@ -20,7 +20,6 @@
 
   .board {
     height: 100vh;
-    /* height: 1000px; */
     display: flex;
     overflow: scroll;
     position: relative;
@@ -28,11 +27,10 @@
   .board_shift {
     /* padding-left: 250px; */
     transform: translateX(250px);
-    /* transition: transform 450ms ease-out 250ms; */
     transition: transform 450ms ease-out;
   }
 }
-// is this necessary?
+
 .board__column-wrapper {
   @include column.column;
   margin: 1.5rem;

@@ -26,7 +26,6 @@
 }
 #board .board {
   height: 100vh;
-  /* height: 1000px; */
   display: flex;
   overflow: scroll;
   position: relative;
@@ -34,7 +33,6 @@
 #board .board_shift {
   /* padding-left: 250px; */
   transform: translateX(250px);
-  /* transition: transform 450ms ease-out 250ms; */
   transition: transform 450ms ease-out;
 }
 
@@ -134,7 +132,6 @@
   line-height: 1.28em;
   text-align: center;
   color: #828fa3;
-  padding: 0 0.5rem;
 }
 .board__add-column-wrapper .add-column .operator {
   /* padding-top: 5px;

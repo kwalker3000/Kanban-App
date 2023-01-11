@@ -34,8 +34,6 @@
   }
 
   .form {
-    /* display: flex;
-	 flex-direction: column; */
 
     .form__label {
       display: flex;
@@ -66,9 +64,6 @@
     .input:focus {
       outline: 1px solid util.$purple;
     }
-      /* .input_error {
-	 outline: 1px solid util.$red;
-	 } */
     .input_dark {
       background-color: util.$dark-grey;
       color: util.$white;

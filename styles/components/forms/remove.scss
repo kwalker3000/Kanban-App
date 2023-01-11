@@ -6,9 +6,6 @@
 #remove {
     @include btn.task-btn;
 
-    // max-width: 343px;
-
-
 	.remove_dark {
 	    background-color: util.$dark-grey;
 	}
@@ -18,7 +15,6 @@
 
 .head_level-2 {
     @include font.h2;
-    // width: 50%;
 }
 .body_level-1 {
     @include font.p1;

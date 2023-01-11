@@ -106,13 +106,6 @@
 #task-form .task-form .task-form__head {
   margin-bottom: 1.5rem;
 }
-#task-form .form {
-  /* display: flex;
-  flex-direction: column; */
-  /* .input_error {
-  outline: 1px solid util.$red;
-  } */
-}
 #task-form .form .form__label {
   display: flex;
   flex-direction: column;

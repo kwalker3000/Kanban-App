@@ -1,46 +1,10 @@
-.popup {
-  /* width: 100vw; */
-
-  /* left: 0;
-       right: 0;
-       margin-left: auto;
-       margin-right: auto; */
-  /* border: 1px solid blue;
-       $headerHeight: 4rem;
-       height: calc(100vh - $headerHeight); */
-  /* position: absolute;
-       z-index: 2;
-       display: flex;
-       justify-content: center;
-       align-items: center; */
-}
 .popupWrapper {
   width: 90%;
   max-width: 480px;
-  position: absolute;
-  /* top: 10%; */
-  left: 50%;
+
   transform: translate(-50%, 10%);
+
+  position: absolute;
+  left: 50%;
   z-index: 3;
-}
-
-//TODO check edit task cause overflow
-// check muliple devices
-// will require javascript to increase div
-.main {
-  /* display: grid; */
-  /* grid-template-columns: 0 auto; */
-  /* grid-template-areas: 'sidebar board'; */
-}
-.columns {
-  /* display: grid; */
-  /* grid-template-columns: 250px auto; */
-  /* grid-template-areas: 'sidebar board'; */
-}
-
-.board {
-  grid-area: board;
-}
-.sidebar {
-  grid-area: sidebar;
 }
