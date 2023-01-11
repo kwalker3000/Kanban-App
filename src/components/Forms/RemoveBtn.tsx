@@ -14,15 +14,14 @@ export const RemoveBtn = ({
   theme,
   handleClick,
 }: BtnProp): JSX.Element => {
-  action = action.toLowerCase()
   return (
     <button
       type="button"
-      aria-label={`${action} subtask`}
-      className={`btn btn_${theme} btn_${action}--${theme} btn_active--${action}_${theme} btn_${action}`}
+      aria-label={`${btnText} subtask`}
+      className={`btn btn_${theme} btn_${btnText}--${theme} btn_active--${btnText}_${theme} btn_${btnText}`}
       onClick={() => handleClick(action)}
     >
-      <span className={`btn-text btn-text_${theme} btn-text_${action}`}>
+      <span className={`btn-text btn-text_${theme} btn-text_${btnText}`}>
         {btnText}
       </span>
     </button>

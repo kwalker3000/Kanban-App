@@ -15,7 +15,7 @@ export const AddColumn = ({ theme, isNewBoard, openPopup }: BoardProps) => {
       <div className="add-column__head">
         {isNewBoard && (
           <p className="add-column__head-text head_level-2">
-            This board is empty. Create a new column to get started.
+            This board is empty. Create a new task to get started.
           </p>
         )}
       </div>

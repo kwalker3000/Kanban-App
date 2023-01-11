@@ -70,7 +70,11 @@ export const Board = ({
 
   return (
     <div id="board">
-      <div className={`board board_${theme} ${!isHidden && 'board_shift'}`}>
+      <div
+        className={`board board_${theme} ${!isHidden && 'board_shift'} ${
+          isNewBoard && '_center'
+        }`}
+      >
         {<>{getColumns()}</>}
         <div className="board__add-column-wrapper">
           {isNewBoard ? (

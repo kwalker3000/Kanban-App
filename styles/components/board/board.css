@@ -30,9 +30,12 @@
   overflow: scroll;
   position: relative;
 }
+#board ._center {
+  justify-content: center;
+}
 #board .board_shift {
-  /* padding-left: 250px; */
-  transform: translateX(250px);
+  padding-left: 250px;
+  /* transform: translateX(250px); */
   transition: transform 450ms ease-out;
 }
 
@@ -123,6 +126,7 @@
 }
 .board__add-column-wrapper .add-column .add-column__head {
   margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
 }
 .board__add-column-wrapper .add-column .add-column__head-text {
   font-family: "Plus Jakarta Sans", sans-serif;

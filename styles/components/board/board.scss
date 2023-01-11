@@ -24,9 +24,13 @@
     overflow: scroll;
     position: relative;
   }
+  ._center {
+    justify-content: center;
+  }
   .board_shift {
-    /* padding-left: 250px; */
-    transform: translateX(250px);
+    padding-left: 250px;
+    // currently causes too much overflow on a new board
+    /* transform: translateX(250px); */
     transition: transform 450ms ease-out;
   }
 }

@@ -102,7 +102,6 @@ const Home: NextPage = () => {
           return true
         }
       } else if (isPopupOpen[key]) {
-        console.log(key)
         return true
       }
     }
@@ -122,7 +121,6 @@ const Home: NextPage = () => {
         }
       }
       if (key == 'removePopup') {
-        console.log('yessssir')
         return {
           ...prevState,
           removePopup: {
@@ -170,7 +168,6 @@ const Home: NextPage = () => {
     }
   }, [activeBoard, boardList[0]])
 
-  console.log(isPopupOpen)
   return (
     <div>
       <Head>

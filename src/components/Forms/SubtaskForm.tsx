@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Theme, InputEvent } from '../../@types/app'
 import { Status, Task } from '../../@types/board'
 
@@ -99,10 +99,11 @@ export const SubtaskForm = ({
     setSubtasksCompleted(score)
     return score
   }
+
   useEffect(() => {
     actionBoard('UPDATE TASK', 'tasks', task)
     updateSubtasksCompleted()
-  }, [task])
+  }, [task]) // eslint-disable-line react-hooks/exhaustive-deps
 
   let subtasks = task.subtasks.map((subtask, index) => {
     return (

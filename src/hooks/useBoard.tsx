@@ -38,18 +38,12 @@ export const useBoard = (state: Board, action: Action): Board => {
       }
     }
     case 'UPDATE TASK': {
-      let task = state.tasks.find((task) => task.id == value.id)!
-      //TODO
-      // prevent task from moving if stays in column
-      // confliction with dropdown
-      // let check = task.subtasks.every(
-      //   (subtask, index) => subtask.status == value.subtasks[index].status
-      // )
-      // if (check) {
-      //   return state
-      // }
-      let updatedTasks = state.tasks.filter((task) => task.id != value.id)
-      updatedTasks.push(value)
+      let taskIndex = state.tasks.findIndex((task) => task.id == value.id)
+      let updatedTasks = state.tasks.filter(
+        (task, index) => index !== taskIndex
+      )
+      updatedTasks.splice(taskIndex, 0, value)
+
       return {
         ...state,
         [key]: updatedTasks,
