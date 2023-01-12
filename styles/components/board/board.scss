@@ -5,6 +5,7 @@
 // only for layout
 
 #board {
+  height: 100%;
   .board_dark {
     background-color: util.$bg-theme_very-dark-grey;
     @media (min-width: util.$tablet) {
@@ -20,6 +21,7 @@
 
   .board {
     height: 100vh;
+    height: 100%;
     display: flex;
     overflow: scroll;
     position: relative;

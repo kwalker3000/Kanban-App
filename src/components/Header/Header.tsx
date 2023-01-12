@@ -28,6 +28,10 @@ export const Header = ({
   board,
 }: HeaderProps): JSX.Element => {
   const [isSubmenu, setIsSubmenu] = useState(false)
+  let name =
+    board.name && board.name.length >= 15
+      ? board.name.slice(0, 15) + '...'
+      : board.name
   let toggleSubmenu = () => {
     setIsSubmenu((prev) => !prev)
   }
@@ -64,9 +68,7 @@ export const Header = ({
               !isMobile && isSidebarOpen && 'sidebar'
             }`}
           ></div>
-          <h2 className={`header__head head_${theme} head_level-2`}>
-            {board.name || undefined}
-          </h2>
+          <h2 className={`header__head head_${theme} head_level-2`}>{name}</h2>
           {isMobile && (
             <div>
               <IconChevron

@@ -6,4 +6,9 @@ html {
   margin: 0;
   padding: 0;
   @include overlay.overlay;
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
 }

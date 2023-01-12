@@ -12,6 +12,7 @@ type BoardProps = {
   openPopup: (key: string) => void
   updateSubtaskEditKey: (status: Status, i: number) => void
   isHidden: boolean
+  isMobile: boolean
 }
 
 export const Board = ({
@@ -20,6 +21,7 @@ export const Board = ({
   openPopup,
   updateSubtaskEditKey,
   isHidden,
+  isMobile,
 }: BoardProps) => {
   const [isNewBoard, setIsNewBoard] = useState(true)
 
@@ -82,6 +84,7 @@ export const Board = ({
               theme={theme}
               isNewBoard={isNewBoard}
               openPopup={openPopup}
+              isMobile={isMobile}
             />
           ) : (
             ''

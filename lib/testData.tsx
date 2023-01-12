@@ -2,6 +2,7 @@ import { Kanban } from '../src/@types/board'
 
 let initialState: Kanban = [
   {
+    id: 1,
     name: 'Week 52',
     tasks: [
       {
@@ -43,6 +44,7 @@ let initialState: Kanban = [
     ],
   },
   {
+    id: 2,
     name: 'Education',
     tasks: [
       {

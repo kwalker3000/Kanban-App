@@ -53,6 +53,7 @@
   color: #828fa3;
 }
 #subtask-form .subtask-form {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
   padding: 1.5rem;
   padding-bottom: 0.5rem;
   border-radius: 6px;

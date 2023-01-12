@@ -39,6 +39,7 @@ export const Sidebar = ({
   }
 
   let boards = boardList.map((name, index) => {
+    name = name.length >= 15 ? name.slice(0, 15) + '...' : name
     return (
       <button
         key={index}

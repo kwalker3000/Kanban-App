@@ -10,17 +10,21 @@ import { initErrorStatesBoard } from '../../../lib/initialStates'
 type BoardFormProps = {
   theme: Theme
   actionKanban: (type: string, key: string, value: string) => void
+  actionBoard: (type: string, key: string, value: string) => void
   closePopup: () => void
   boardList: string[]
   boardName?: string | false
+  isNew: boolean
 }
 
 export const BoardForm = ({
   theme,
   actionKanban,
+  actionBoard,
   closePopup,
   boardList,
   boardName,
+  isNew,
 }: BoardFormProps) => {
   let [newBoardName, setNewBoardName] = useState(boardName || '')
   let [errorStates, setErrorStates] = useState(initErrorStatesBoard)
@@ -49,7 +53,12 @@ export const BoardForm = ({
   let handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (checkIsValid(newBoardName)) {
-      actionKanban('CREATE NEW BOARD', 'name', newBoardName)
+      if (isNew) {
+        console.log('i am newjj')
+        actionKanban('CREATE NEW BOARD', 'name', newBoardName)
+      } else {
+        actionBoard('EDIT BOARD', 'name', newBoardName)
+      }
       closePopup()
     }
   }

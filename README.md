@@ -6,4 +6,5 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
  - Add some tasks
  - Get things done
 
+
 * For learning purposes 

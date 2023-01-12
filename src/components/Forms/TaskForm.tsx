@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react'
 import { Theme, InputEvent, FormEvent } from '../../@types/app'
-import { Task } from '../../@types/board'
+import { Task, Board } from '../../@types/board'
 
 import { useTask } from '../../hooks/useTask'
 
@@ -18,7 +18,9 @@ type FormProps = {
   taskObj: Task
   nextTaskId: number
   actionBoard: (type: string, key: string, value: Task) => void
+  actionKanban: (type: string, key: string, value: Board) => void
   closePopup: () => void
+  board: Board
 }
 
 export const TaskForm = ({
@@ -27,6 +29,8 @@ export const TaskForm = ({
   nextTaskId,
   actionBoard,
   closePopup,
+  actionKanban,
+  board,
 }: FormProps) => {
   initTaskState.id = nextTaskId
   const [task, setTask] = useReducer(useTask, taskObj || initTaskState)
@@ -49,7 +53,7 @@ export const TaskForm = ({
   let checkValidForm = (form: Task) => {
     let isInvalid = [
       form.title.length == 0,
-      form.description.length == 0,
+      // form.description.length == 0,
       form.subtasks.length > 0 && form.subtasks[0].description.length == 0,
     ]
     setErrorStates((prevState) => {
@@ -104,6 +108,9 @@ export const TaskForm = ({
       actionBoard('CREATE NEW TASK', 'tasks', form)
     }
   }
+  useEffect(() => {
+    actionKanban('UPDATE BOARD', '', board)
+  }, [board])
 
   return (
     <div id="task-form">

@@ -8,6 +8,9 @@
   background: linear-gradient(rgba(43, 44, 55, 0.3), rgba(43, 44, 55, 0.2));
 }
 
+#board {
+  height: 100%;
+}
 #board .board_dark {
   background-color: #20212c;
 }
@@ -26,6 +29,7 @@
 }
 #board .board {
   height: 100vh;
+  height: 100%;
   display: flex;
   overflow: scroll;
   position: relative;
@@ -126,6 +130,8 @@
 }
 .board__add-column-wrapper .add-column .add-column__head {
   margin-bottom: 1.5rem;
+}
+.board__add-column-wrapper .add-column ._pad {
   padding-left: 1.5rem;
 }
 .board__add-column-wrapper .add-column .add-column__head-text {

@@ -1,4 +1,10 @@
-import React, { useState, createContext, useContext, useReducer } from 'react'
+import React, {
+  useState,
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+} from 'react'
 import { Theme } from '../@types/app'
 import { Kanban, Board } from '../@types/board'
 import { useKanban } from '../hooks/useKanban'
@@ -26,6 +32,9 @@ export const AppWrapper = ({ children }: Props): JSX.Element => {
   const [kanban, dispatch] = useReducer(useKanban, data)
   const [activeBoard, setActiveBoard] = useState<Board>(kanban[1])
 
+  let list = kanban.map((board) => board.name)
+  const [boardList, setBoardList] = useState(list)
+
   let toggleTheme = () => {
     setTheme((curTheme) => (curTheme == 'dark' ? 'light' : 'dark'))
   }
@@ -36,11 +45,14 @@ export const AppWrapper = ({ children }: Props): JSX.Element => {
       payload: { key, value },
     })
   }
-  let boardList = kanban.map((board) => board.name)
 
   let handleActiveBoard = (index: number) => {
     setActiveBoard(kanban[index])
   }
+  useEffect(() => {
+    let list = kanban.map((board) => board.name)
+    setBoardList((prev) => list)
+  }, [kanban])
 
   return (
     <AppContext.Provider

@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react'
 import { Board } from '../@types/board'
+import { useKanban } from './useKanban'
 
 // there is problem when setting value type to Task | Board
 // will work fine with only Task but conflicts arise when
@@ -16,6 +17,11 @@ export const useBoard = (state: Board, action: Action): Board => {
   switch (action.type) {
     case 'INITIALIZE BOARD':
       return value
+    case 'EDIT BOARD':
+      return {
+        ...state,
+        [key]: value,
+      }
     case 'CREATE NEW TASK': {
       let taskArray = state.tasks.filter((task) => task.id != value.id)
       return {

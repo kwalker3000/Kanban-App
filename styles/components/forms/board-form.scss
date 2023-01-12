@@ -3,20 +3,21 @@
 @use './btn';
 
 #board-form {
-    @include btn.task-btn;
+  @include btn.task-btn;
 
-.board-form_dark {
+  .board-form_dark {
     background-color: util.$dark-grey;
-}
-.board-form_light {
+  }
+  .board-form_light {
     background-color: util.$white;
-}
+  }
 
   .head_level-2 {
     @include font.h2;
   }
 
   .board-form {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     padding: 1.5rem;
     border-radius: 6px;
 
@@ -36,7 +37,6 @@
   }
 
   .form {
-
     .form__label {
       display: flex;
       flex-direction: column;
@@ -62,7 +62,7 @@
       border-radius: 4px;
       padding: 0.5rem 1rem 0.5rem;
 
-	outline: 1px solid util.$purple;
+      outline: 1px solid util.$purple;
       opacity: 1 important;
     }
     .input_dark {
@@ -79,9 +79,8 @@
     .input_light::placeholder {
       color: rgba(0, 0, 0, 0.5);
     }
-      .input_board--error {
-	  outline: 1px solid util.$red;
-      }
+    .input_board--error {
+      outline: 1px solid util.$red;
+    }
+  }
 }
-}
-

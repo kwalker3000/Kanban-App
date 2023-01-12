@@ -34,6 +34,7 @@ export const Remove = ({
         let nextBoard = boardList[0] == board.name ? 1 : 0
         if (boardList.length == 1) {
           actionKanban('DELETE BOARD', 'boards', board)
+          // handleActiveBoard(nextBoard)
         } else {
           actionKanban('DELETE BOARD', 'boards', board)
           handleActiveBoard(nextBoard)

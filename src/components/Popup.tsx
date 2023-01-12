@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Theme } from '../@types/app'
 import { Task, Board } from '../@types/board'
 import { PopupStateType } from '../../lib/initialStates'
@@ -12,7 +12,7 @@ import { Remove } from '../components/Forms/Remove'
 type PopupProps = {
   theme: Theme
   actionKanban: (type: string, key: string, value: string | Board) => void
-  actionBoard: (type: string, key: string, value: Task) => void
+  actionBoard: (type: string, key: string, value: Task | string) => void
   board: Board
   boardName?: string | false
   boardList: string[]
@@ -43,13 +43,18 @@ export const Popup = ({
   nextTaskId,
   isPopupOpen,
 }: PopupProps) => {
+  useEffect(() => {
+    actionKanban('UPDATE BOARD', '', board)
+  }, [board])
   return (
     <>
       {isPopupOpen.taskPopup && (
         <TaskForm
           theme={theme}
           actionBoard={actionBoard}
+          actionKanban={actionKanban}
           closePopup={closePopup}
+          board={board}
           taskObj={taskObj}
           nextTaskId={nextTaskId}
         />
@@ -67,8 +72,10 @@ export const Popup = ({
         <BoardForm
           theme={theme}
           actionKanban={actionKanban}
+          actionBoard={actionBoard}
           boardList={boardList}
           boardName={!isPopupOpen.boardPopup.isNew && boardName}
+          isNew={isPopupOpen.boardPopup.isNew}
           closePopup={closePopup}
         />
       )}

@@ -1,48 +1,47 @@
-
 @use '../../util/util';
 @use '../../typography/typography' as font;
 @use './btn';
 
 #remove {
-    @include btn.task-btn;
+  @include btn.task-btn;
 
-	.remove_dark {
-	    background-color: util.$dark-grey;
-	}
-	.remove_light {
-	    background-color: util.$white;
-	}
+  .remove_dark {
+    background-color: util.$dark-grey;
+  }
+  .remove_light {
+    background-color: util.$white;
+  }
 
-.head_level-2 {
+  .head_level-2 {
     @include font.h2;
-}
-.body_level-1 {
+  }
+  .body_level-1 {
     @include font.p1;
     color: util.$medium-grey;
-}
+  }
 
-.remove {
+  .remove {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     padding: 1.5rem;
     padding-bottom: 0.5rem;
     border-radius: 6px;
 
+    .header_dark {
+      color: util.$white;
+    }
+    .header_light {
+      color: util.$black;
+    }
 
-	.header_dark {
-	    color: util.$white;
-	}
-	.header_light {
-	    color: util.$black;
-	}
-
-	.remove__head {
-	    margin-bottom: 1.5rem;
-	    display: flex;
-	}
-	.remove__body {
-	    margin-bottom: 1.5rem;
-	}
-	.remove__btn-wrapper > button {
-	    margin-bottom: 1rem;
-	}
-}
+    .remove__head {
+      margin-bottom: 1.5rem;
+      display: flex;
+    }
+    .remove__body {
+      margin-bottom: 1.5rem;
+    }
+    .remove__btn-wrapper > button {
+      margin-bottom: 1rem;
+    }
+  }
 }

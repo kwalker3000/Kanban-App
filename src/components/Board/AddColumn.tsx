@@ -5,14 +5,20 @@ type BoardProps = {
   theme: Theme
   isNewBoard: boolean
   openPopup: (key: string) => void
+  isMobile: boolean
 }
 
-export const AddColumn = ({ theme, isNewBoard, openPopup }: BoardProps) => {
+export const AddColumn = ({
+  theme,
+  isNewBoard,
+  openPopup,
+  isMobile,
+}: BoardProps) => {
   return (
     <div
       className={`add-column add-column_${theme} ${!isNewBoard && 'bg-color'}`}
     >
-      <div className="add-column__head">
+      <div className={`add-column__head ${!isMobile && '_pad'}`}>
         {isNewBoard && (
           <p className="add-column__head-text head_level-2">
             This board is empty. Create a new task to get started.

@@ -5,6 +5,7 @@
 
 .sidebar_id {
   @include slider.slider;
+  height: 100%;
   position: relative;
   @media (min-width: util.$tablet) {
     position: absolute;
@@ -39,7 +40,7 @@
     fill: util.$medium-grey; // svg
 
     max-width: 300px;
-    height: 100vh;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -72,6 +73,7 @@
     }
     .sidebar__list-item--btn {
       all: unset;
+      border: none;
       cursor: pointer;
       width: 100%;
       border-radius: 0 100px 100px 0;

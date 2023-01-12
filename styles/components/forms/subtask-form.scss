@@ -3,199 +3,195 @@
 @use '../../elements/checkbox';
 
 #subtask-form {
-    @include checkbox.checkbox;
+  @include checkbox.checkbox;
 
-    width: 100%;
-    max-width: 480px;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, 10%);
-    z-index: 2;
+  width: 100%;
+  max-width: 480px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  z-index: 2;
 
-	.subtask-form_dark {
-	    background-color: util.$dark-grey;
-	}
-	.subtask-form_light {
-	    background-color: util.$white;
-	}
+  .subtask-form_dark {
+    background-color: util.$dark-grey;
+  }
+  .subtask-form_light {
+    background-color: util.$white;
+  }
 
-.head_level-2 {
+  .head_level-2 {
     @include font.h2;
     width: 95%;
-}
-.body_level-1 {
+  }
+  .body_level-1 {
     @include font.p1;
     color: util.$medium-grey;
-}
+  }
 
-.subtask-form {
+  .subtask-form {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     padding: 1.5rem;
     padding-bottom: 0.5rem;
     border-radius: 6px;
 
-	.header_dark {
-	    color: util.$white;
-	}
-	.header_light {
-	    color: util.$black;
-	}
-	.submenu_dark {
-	    background-color: util.$bg-theme_very-dark-grey;
-	}
-	.submenu_light {
-	    background-color: util.$white;
-	}
-
-	.subtask-form__head {
-	    margin-bottom: 1.5rem;
-	    display: flex;
-	    justify-content: space-between;
-	}
-	.subtask-form__body {
-	    margin-bottom: 1.5rem;
-	}
-	.subtask-form__submenu-wrapper {
-	    border-radius: util.$radius;
-	    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-
-	    position: absolute;
-	    right: 2.25rem;
-	    top: 3rem;
-
-	    .submenu__btn {
-		border: none;
-		background: transparent;
-		cursor: pointer;
-		padding: 0.25rem;
-	    }
-	    ._delete {
-		color: util.$red;
-	    }
-	}
-	.subtask-form__submenu-wrapper > div {
-	    padding: 0.5rem 0.75rem;
-
-	    display: flex;
-	    flex-direction: column;
-	}
-}
-
-.form {
-
-	.form__label {
-	    display: flex;
-	    flex-direction: column;
-	}
-
-	.form__label_dark {
-	    color: util.$white;
-	}
-	.form__label_light {
-	    color: util.$medium-grey;
-	}
-
-	.label {
-	    @include font.p2;
-	    margin-bottom: 1.5rem;
-	}
-
-	.input {
-	    @include font.p1;
-	    margin-top: 0.5rem;
-	    border: 1px solid rgba(130, 143, 163, 0.25);
-	    border-radius: 4px;
-	    padding: 0.5rem 1rem 0.5rem;
-
-	    opacity: 1 important;
-	}
-	.input:focus {
-	    outline: 1px solid util.$purple;
-	}
-	.input_error {
-	    outline: 1px solid util.$red;
-	}
-	.input_dark {
-	    background-color: util.$dark-grey;
-	    color: util.$white;
-	}
-	.input_dark::placeholder { 
-	    color: rgba(255, 255, 255, 0.5);
-	}
-	.input_light {
-	    background-color: util.$white;
-	    color: util.$black;
-	}
-	.input_light::placeholder { 
-	    color: rgba(0, 0, 0, 0.5);
-	}
-	.input_subtask {
-	    margin-bottom: 0.75rem;
-	    margin-right: 1rem;
-	    width: 100%;
-	}
-
-    textarea {
-	height: 104px;
+    .header_dark {
+      color: util.$white;
+    }
+    .header_light {
+      color: util.$black;
+    }
+    .submenu_dark {
+      background-color: util.$bg-theme_very-dark-grey;
+    }
+    .submenu_light {
+      background-color: util.$white;
     }
 
-	.subtask-wrapper {
-	    display: flex;
-	}
+    .subtask-form__head {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .subtask-form__body {
+      margin-bottom: 1.5rem;
+    }
+    .subtask-form__submenu-wrapper {
+      border-radius: util.$radius;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+
+      position: absolute;
+      right: 2.25rem;
+      top: 3rem;
+
+      .submenu__btn {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 0.25rem;
+      }
+      ._delete {
+        color: util.$red;
+      }
+    }
+    .subtask-form__submenu-wrapper > div {
+      padding: 0.5rem 0.75rem;
+
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .form {
+    .form__label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form__label_dark {
+      color: util.$white;
+    }
+    .form__label_light {
+      color: util.$medium-grey;
+    }
+
+    .label {
+      @include font.p2;
+      margin-bottom: 1.5rem;
+    }
+
+    .input {
+      @include font.p1;
+      margin-top: 0.5rem;
+      border: 1px solid rgba(130, 143, 163, 0.25);
+      border-radius: 4px;
+      padding: 0.5rem 1rem 0.5rem;
+
+      opacity: 1 important;
+    }
+    .input:focus {
+      outline: 1px solid util.$purple;
+    }
+    .input_error {
+      outline: 1px solid util.$red;
+    }
+    .input_dark {
+      background-color: util.$dark-grey;
+      color: util.$white;
+    }
+    .input_dark::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .input_light {
+      background-color: util.$white;
+      color: util.$black;
+    }
+    .input_light::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .input_subtask {
+      margin-bottom: 0.75rem;
+      margin-right: 1rem;
+      width: 100%;
+    }
+
+    textarea {
+      height: 104px;
+    }
+
+    .subtask-wrapper {
+      display: flex;
+    }
 
     .fieldset {
-	border: none;
-	padding: 0;
-	margin: 0;
-	margin-bottom: 1rem;
+      border: none;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 1rem;
     }
     .fieldset > legend,
     .fieldset > label {
-	margin-bottom: 1rem;
+      margin-bottom: 1rem;
     }
 
     .btn-wrapper {
-	margin-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     select {
-	text-transform: capitalize;
-	padding: 1rem;
+      text-transform: capitalize;
+      padding: 1rem;
     }
-    
-}
+  }
 
-    
-
-.wrapper_dark {
+  .wrapper_dark {
     background-color: util.$bg-theme_very-dark-grey;
-}
-.wrapper_light {
+  }
+  .wrapper_light {
     background-color: util.$bg-theme_light-grey;
-}
+  }
 
-.subtask-wrapper {
+  .subtask-wrapper {
     border-radius: 4px;
     margin-bottom: 0.5rem;
 
     cursor: pointer;
 
     .subtask__label {
-	@include font.p2;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	padding: 0.9125em 0.25em 1em 0.75em;
+      @include font.p2;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0.9125em 0.25em 1em 0.75em;
     }
     .description_active {
-	text-decoration: line-through;
-	opacity: 0.5;
+      text-decoration: line-through;
+      opacity: 0.5;
     }
-}
+  }
 
-.subtask-wrapper:hover,
-.subtask-wrapper:focus {
-    background-color: rgba(99,95,199, 0.25);
-}
-
+  .subtask-wrapper:hover,
+  .subtask-wrapper:focus {
+    background-color: rgba(99, 95, 199, 0.25);
+  }
 }

@@ -18,6 +18,7 @@
   }
 
   .task-form {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     padding: 1.5rem;
     border-radius: 6px;
 
@@ -34,11 +35,10 @@
   }
 
   .form {
-
     .form__label {
       display: flex;
       flex-direction: column;
-	position: relative;  //TODO necessary? conflict?
+      position: relative; //TODO necessary? conflict?
     }
 
     .form__label_dark {
@@ -55,11 +55,10 @@
 
     .input {
       @include font.p1;
-	margin-top: 0.5rem;
-	border: 1px solid rgba(130, 143, 163, 0.25);
+      margin-top: 0.5rem;
+      border: 1px solid rgba(130, 143, 163, 0.25);
       border-radius: 4px;
       padding: 0.5rem 1rem 0.5rem;
-
     }
     .input:focus {
       outline: 1px solid util.$purple;
@@ -83,18 +82,18 @@
       margin-right: 1rem;
       width: 100%;
     }
-      .input_subtask--error,
-      .input_title--error,
-      .input_description--error {
-	  outline: 1px solid util.$red;
-      }
+    .input_subtask--error,
+    .input_title--error,
+    .input_description--error {
+      outline: 1px solid util.$red;
+    }
 
     textarea {
       height: 104px;
     }
 
     .subtask-wrapper {
-    position: relative;
+      position: relative;
       display: flex;
     }
 
@@ -102,18 +101,18 @@
       border: none;
       padding: 0;
       margin: 0;
-	padding-top: 0.5rem;
+      padding-top: 0.5rem;
     }
-      .fieldset:nthchild(even) {
-	  background-color: red;
-      }
+    .fieldset:nthchild(even) {
+      background-color: red;
+    }
     .fieldset > legend,
     .fieldset > label {
       margin: 0;
-     }
-      .fieldset > div > input {
-	  margin-top: 0;
-      }
+    }
+    .fieldset > div > input {
+      margin-top: 0;
+    }
 
     .btn-wrapper {
       margin-bottom: 1.5rem;
@@ -127,13 +126,13 @@
 }
 
 .msg_error {
-      @include font.p1;
-    color: util.$red;
-    position: absolute;
-    top: 2rem;
-    right: 1rem;
+  @include font.p1;
+  color: util.$red;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
 }
 .msg_error--subtask {
-    top: 1rem;
-    right: 3rem;
+  top: 1rem;
+  right: 3rem;
 }

@@ -303,6 +303,7 @@
   line-height: 1.28em;
 }
 #task-form .task-form {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
   padding: 1.5rem;
   border-radius: 6px;
 }
@@ -475,6 +476,7 @@
   color: #828fa3;
 }
 #subtask-form .subtask-form {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
   padding: 1.5rem;
   padding-bottom: 0.5rem;
   border-radius: 6px;
@@ -713,6 +715,7 @@
   line-height: 1.28em;
 }
 #board-form .board-form {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
   padding: 1.5rem;
   border-radius: 6px;
 }
@@ -867,6 +870,7 @@
   color: #828fa3;
 }
 #remove .remove {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
   padding: 1.5rem;
   padding-bottom: 0.5rem;
   border-radius: 6px;
@@ -889,6 +893,7 @@
 }
 
 .sidebar_id {
+  height: 100%;
   position: relative;
   z-index: 2;
 }
@@ -970,7 +975,7 @@
   color: #828fa3;
   fill: #828fa3;
   max-width: 300px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1005,6 +1010,7 @@
 }
 .sidebar_id .sidebar .sidebar__list-item--btn {
   all: unset;
+  border: none;
   cursor: pointer;
   width: 100%;
   border-radius: 0 100px 100px 0;
@@ -1111,6 +1117,9 @@
   background: linear-gradient(rgba(43, 44, 55, 0.3), rgba(43, 44, 55, 0.2));
 }
 
+#board {
+  height: 100%;
+}
 #board .board_dark {
   background-color: #20212c;
 }
@@ -1129,6 +1138,7 @@
 }
 #board .board {
   height: 100vh;
+  height: 100%;
   display: flex;
   overflow: scroll;
   position: relative;
@@ -1229,6 +1239,8 @@
 }
 .board__add-column-wrapper .add-column .add-column__head {
   margin-bottom: 1.5rem;
+}
+.board__add-column-wrapper .add-column ._pad {
   padding-left: 1.5rem;
 }
 .board__add-column-wrapper .add-column .add-column__head-text {
