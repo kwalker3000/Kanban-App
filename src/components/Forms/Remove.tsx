@@ -9,7 +9,7 @@ type RemoveProps = {
   theme: Theme
   closePopup: () => void
   actionKanban: (type: string, key: string, value: string | Board) => void
-  actionBoard: (type: string, key: string, value: Task) => void
+  actionBoard: (type: string, key: string, value: Task | string) => void
   board: Board
   task: Task | false
   boardList: string[]
@@ -33,8 +33,7 @@ export const Remove = ({
       } else {
         let nextBoard = boardList[0] == board.name ? 1 : 0
         if (boardList.length == 1) {
-          actionKanban('DELETE BOARD', 'boards', board)
-          // handleActiveBoard(nextBoard)
+          actionBoard('RESET BOARD', 'tasks', '')
         } else {
           actionKanban('DELETE BOARD', 'boards', board)
           handleActiveBoard(nextBoard)

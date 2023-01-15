@@ -5,19 +5,30 @@ import React, {
   useReducer,
   useEffect,
 } from 'react'
+
+// Types
 import { Theme } from '../@types/app'
-import { Kanban, Board } from '../@types/board'
+import { Kanban, Board, Task } from '../@types/board'
+
+// Use Hooks
 import { useKanban } from '../hooks/useKanban'
+import { useBoard } from '../hooks/useBoard'
+
+// Dep Data
 import data from '../../lib/testData'
+import { saveKanban } from '../../lib/saveKanban'
 
 type ContextType = {
   theme: Theme
   kanban: Kanban
-  activeBoard: Board
+  board: Board
   handleActiveBoard: (index: number) => void
   boardList: string[]
   toggleTheme: () => void
   actionKanban: (type: string, key: string, value: string | Board) => void
+  actionBoard: (type: string, key: string, value: Task | Board | string) => void
+  updateUserId: (id: string) => void
+  userId: string | null
 }
 
 const AppContext = createContext<ContextType>({} as ContextType)
@@ -30,7 +41,8 @@ export const AppWrapper = ({ children }: Props): JSX.Element => {
   // TODO handle duplicate task, subtasks
   const [theme, setTheme] = useState<Theme>('dark')
   const [kanban, dispatch] = useReducer(useKanban, data)
-  const [activeBoard, setActiveBoard] = useState<Board>(kanban[1])
+  const [board, setBoard] = useReducer(useBoard, kanban[0])
+  const [userId, setUserId] = useState<string | null>(null)
 
   let list = kanban.map((board) => board.name)
   const [boardList, setBoardList] = useState(list)
@@ -39,20 +51,53 @@ export const AppWrapper = ({ children }: Props): JSX.Element => {
     setTheme((curTheme) => (curTheme == 'dark' ? 'light' : 'dark'))
   }
 
-  let actionKanban = (type: string, key: string, value: string | Board) => {
+  let actionKanban = (
+    type: string,
+    key: string,
+    value: string | Board | Kanban
+  ) => {
     dispatch({
       type: type,
       payload: { key, value },
     })
   }
 
+  let actionBoard = (
+    type: string,
+    key: string,
+    value: Task | Board | string
+  ) => {
+    setBoard({
+      type,
+      payload: { key, value },
+    })
+  }
+  let updateUserId = (id: string) => {
+    setUserId(id)
+  }
+
   let handleActiveBoard = (index: number) => {
-    setActiveBoard(kanban[index])
+    actionBoard('INITIALIZE BOARD', '', kanban[index])
   }
   useEffect(() => {
+    let isCancelled = false
     let list = kanban.map((board) => board.name)
     setBoardList((prev) => list)
-  }, [kanban])
+
+    let saveToDatabase = () => {
+      setTimeout(() => {
+        if (!isCancelled) {
+          if (userId) {
+            saveKanban(userId, kanban)
+          }
+        }
+      }, 5000)
+    }
+    saveToDatabase()
+    return () => {
+      isCancelled = true
+    }
+  }, [kanban, userId])
 
   return (
     <AppContext.Provider
@@ -61,9 +106,12 @@ export const AppWrapper = ({ children }: Props): JSX.Element => {
         toggleTheme,
         kanban,
         actionKanban,
-        activeBoard,
+        actionBoard,
+        board,
         handleActiveBoard,
         boardList,
+        updateUserId,
+        userId,
       }}
     >
       {children}

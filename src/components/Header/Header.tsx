@@ -9,6 +9,7 @@ import { LogoDark } from '../elements/svg/logoDark'
 import { LogoLight } from '../elements/svg/logoLight'
 import { IconChevron } from './iconChevron'
 import { Edit } from '../Forms/FormComponents/Edit'
+import { LogBtn } from '../auth/LogBtn'
 
 type HeaderProps = {
   theme: Theme
@@ -109,6 +110,7 @@ export const Header = ({
                       Delete Board
                     </span>
                   </button>
+                  <LogBtn />
                 </div>
               </div>
             )}

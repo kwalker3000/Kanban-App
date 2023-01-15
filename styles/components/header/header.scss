@@ -139,6 +139,14 @@
     display: flex;
     flex-direction: column;
   }
+  .log__btn > span > svg {
+    fill: util.$medium-grey;
+    margin-left: 0.75rem;
+  }
+  .log__btn {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .header_dark {

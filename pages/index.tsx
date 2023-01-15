@@ -1,15 +1,14 @@
-import { useState, useEffect, useReducer } from 'react'
+import { useState, useEffect, useReducer, useCallback } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/modules/App.module.css'
 
-// Types
-import { Board as BoardType, Task, Status } from '../src/@types/board'
+// Helper Library
+var _ = require('lodash')
 
 // Custom Hooks
 import { useAppContext } from '../src/context/useAppContext'
-import { useBoard } from '../src/hooks/useBoard'
 
 // Components
 import { Header } from '../src/components/Header/Header'
@@ -22,15 +21,25 @@ import { Overlay } from '../src/components/Overlay'
 import { initPopupState } from '../lib/initialStates'
 
 type SubtaskEditType = {
-  status: Status
-  index: number
+  id: number
 }
 const initialSubtaskEditKey: SubtaskEditType = {
-  status: 'todo',
-  index: -1,
+  id: -1,
 }
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ user, savedKanban }: any) => {
+  let {
+    actionKanban,
+    actionBoard,
+    toggleTheme,
+    theme,
+    board,
+    handleActiveBoard,
+    boardList,
+    updateUserId,
+    userId,
+  } = useAppContext()
+
   // TODO add character limit
   const [isMobile, setIsMobile] = useState<boolean>(true)
   const [isPopupOpen, setIsPopupOpen] = useState(initPopupState)
@@ -38,45 +47,22 @@ const Home: NextPage = () => {
     initialSubtaskEditKey
   )
   const [isHidden, setIsHidden] = useState(true)
+  const [isSavedKanbanLoaded, setIsSavedKanbanLoaded] = useState(false)
 
-  let {
-    kanban,
-    actionKanban,
-    toggleTheme,
-    theme,
-    activeBoard,
-    handleActiveBoard,
-    boardList,
-  } = useAppContext()
-
-  const [board, setBoard] = useReducer(useBoard, activeBoard)
-
-  let { index: taskIndex } = subtaskEditKey
+  let { id: taskId } = subtaskEditKey
   // TODO should be able to simplify
   // also, below may return undefined
   // do i need safety check or can i use to my advantage?
   // i am using id property but some places i refer to it as index
-  let t = board.tasks.find((task) => task.id == taskIndex)!
+  let t = board.tasks.find((task) => task.id == taskId)!
   let nextTaskId =
     board.tasks.length > 0 ? board.tasks[board.tasks.length - 1].id + 1 : 1
 
-  let actionBoard = (
-    type: string,
-    key: string,
-    value: Task | BoardType | string
-  ) => {
-    setBoard({
-      type,
-      payload: { key, value },
-    })
-  }
-
-  let updateSubtaskEditKey = (status: Status, i: number) => {
+  let updateSubtaskEditKey = (id: number) => {
     setSubtaskEditKey((prevState) => {
       return {
         ...prevState,
-        status,
-        index: i,
+        id,
       }
     })
   }
@@ -129,6 +115,7 @@ const Home: NextPage = () => {
   let closePopup = (exception: boolean = false) => {
     setIsPopupOpen(initPopupState)
     if (!exception) {
+      // when editing Board or Task
       setSubtaskEditKey(initialSubtaskEditKey)
     }
   }
@@ -136,12 +123,31 @@ const Home: NextPage = () => {
     setIsHidden((pre) => !pre)
   }
 
-  useEffect(() => {
-    if (!boardList.some((name) => name == activeBoard.name)) {
-      handleActiveBoard(0)
+  let getExistingKanban = () => {
+    if (!isSavedKanbanLoaded && savedKanban !== null) {
+      let { boards } = savedKanban
+      actionBoard('INITIALIZE BOARD', '', boards[0])
+      actionKanban('INITIALIZE KANBAN', '', boards)
+      setIsSavedKanbanLoaded(true)
     }
-    actionBoard('INITIALIZE BOARD', '', activeBoard)
-    // actionKanban('UPDATE BOARD', '', board)
+  }
+
+  let checkKanbanExists = useCallback(() => {
+    if (user.id && !userId) {
+      updateUserId(user.id)
+      getExistingKanban()
+    }
+    // not concerned about others deps
+  }, [userId]) // eslint-disable-line react-hooks/exhaustive-deps
+  let updateKanban = useCallback(() => {
+    actionKanban('UPDATE BOARD', '', board)
+
+    //actionKanban returns new state each time
+  }, [board]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    checkKanbanExists()
+    updateKanban()
 
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -156,8 +162,7 @@ const Home: NextPage = () => {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [activeBoard, boardList[0]])
-  // }, [activeBoard, boardList[0]])
+  }, [checkKanbanExists, updateKanban])
 
   return (
     <div className={`${styles.app}`}>
@@ -231,6 +236,40 @@ const Home: NextPage = () => {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(ctx) {
+  let { PrismaClient } = require('@prisma/client')
+  let { authOptions } = require('./api/auth/[...nextauth]')
+  let { unstable_getServerSession } = require('next-auth/next')
+
+  const prisma = new PrismaClient()
+  let session = await unstable_getServerSession(ctx.req, ctx.res, authOptions)
+  let user = session === null ? {} : session.user
+
+  let savedKanban
+  if (user.id) {
+    try {
+      savedKanban = await prisma.kanban.findFirst({
+        where: {
+          userId: user.id,
+        },
+        select: {
+          boards: true,
+        },
+      })
+    } catch (e) {
+      console.error(e)
+      return
+    }
+  }
+
+  return {
+    props: {
+      user,
+      savedKanban,
+    },
+  }
 }
 
 export default Home

@@ -43,9 +43,6 @@ export const Popup = ({
   nextTaskId,
   isPopupOpen,
 }: PopupProps) => {
-  useEffect(() => {
-    actionKanban('UPDATE BOARD', '', board)
-  }, [board])
   return (
     <>
       {isPopupOpen.taskPopup && (

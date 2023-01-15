@@ -54,7 +54,6 @@ export const BoardForm = ({
     e.preventDefault()
     if (checkIsValid(newBoardName)) {
       if (isNew) {
-        console.log('i am newjj')
         actionKanban('CREATE NEW BOARD', 'name', newBoardName)
       } else {
         actionBoard('EDIT BOARD', 'name', newBoardName)

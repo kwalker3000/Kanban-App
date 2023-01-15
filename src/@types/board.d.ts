@@ -11,11 +11,11 @@ export type Task = {
   status: Status
   subtasks: Subtask[] // | []
 }
-
-export type Column = {
-  status: Status
-  tasks: Task[] | []
-}
+//
+// export type Column = {
+//   status: Status
+//   tasks: Task[] | []
+// }
 
 export type Board = {
   id: number

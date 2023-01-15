@@ -8,7 +8,7 @@ import { Task } from './Task'
 type ColumnProps = {
   theme: Theme
   openPopup: (key: string) => void
-  updateSubtaskEditKey: (status: Status, i: number) => void
+  updateSubtaskEditKey: (id: number) => void
   taskArray: TaskType[]
 }
 
@@ -21,8 +21,8 @@ export const Column = ({
   let tasks = taskArray.map((task, index) => {
     return (
       <div
-        key={index}
-        onClick={() => handleClick(task.status, task.id)}
+        key={task.id}
+        onClick={() => handleClick(task.id)}
         className="column__task-wrapper"
         tabIndex={0}
       >
@@ -30,9 +30,10 @@ export const Column = ({
       </div>
     )
   })
-  let handleClick = (status: Status, index: number) => {
+  let handleClick = (id: number) => {
+    console.log('opening subtask')
     openPopup('subtaskPopup')
-    updateSubtaskEditKey(status, index)
+    updateSubtaskEditKey(id)
   }
 
   return (

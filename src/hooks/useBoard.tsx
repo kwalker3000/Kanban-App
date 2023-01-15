@@ -22,6 +22,13 @@ export const useBoard = (state: Board, action: Action): Board => {
         ...state,
         [key]: value,
       }
+    case 'RESET BOARD': {
+      return {
+        ...state,
+        name: 'New Project',
+        [key]: [],
+      }
+    }
     case 'CREATE NEW TASK': {
       let taskArray = state.tasks.filter((task) => task.id != value.id)
       return {

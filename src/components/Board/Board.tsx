@@ -10,7 +10,7 @@ type BoardProps = {
   theme: Theme
   board: BoardType
   openPopup: (key: string) => void
-  updateSubtaskEditKey: (status: Status, i: number) => void
+  updateSubtaskEditKey: (id: number) => void
   isHidden: boolean
   isMobile: boolean
 }

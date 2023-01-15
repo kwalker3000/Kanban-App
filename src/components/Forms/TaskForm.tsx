@@ -108,9 +108,10 @@ export const TaskForm = ({
       actionBoard('CREATE NEW TASK', 'tasks', form)
     }
   }
-  useEffect(() => {
-    actionKanban('UPDATE BOARD', '', board)
-  }, [board])
+  // useEffect(() => {
+  //   console.log('update...')
+  //   actionKanban('UPDATE BOARD', '', board)
+  // }, [board.tasks.length])
 
   return (
     <div id="task-form">

@@ -1,20 +1,23 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 
+import { LogoGitHub } from '../elements/svg/logoGitHub'
+
 export const LogBtn = () => {
   const { data: session } = useSession()
   if (session) {
     return (
-      <>
-        Signed in as {session.user} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
+      <button className="submenu__btn" onClick={() => signOut()}>
+        <span className="submenu__btn-txt body_level-1 _log">Sign out</span>
+      </button>
     )
   } else {
     return (
-      <>
-        Not signed in <br />
-        <button onClick={() => signIn()}>Sign in</button>
-      </>
+      <button className="submenu__btn log__btn" onClick={() => signIn()}>
+        <span className="submenu__btn-txt body_level-1 _log">Sign in</span>
+        <span>
+          <LogoGitHub />
+        </span>
+      </button>
     )
   }
 }
