@@ -2,7 +2,7 @@ import React from 'react'
 import { Theme } from '../../@types/app'
 import { Board, Task } from '../../@types/board'
 
-//Components
+// Components
 import { RemoveBtn } from './RemoveBtn'
 
 type RemoveProps = {

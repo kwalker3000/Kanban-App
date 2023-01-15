@@ -1,11 +1,7 @@
-import { useState, useEffect, useReducer, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/modules/App.module.css'
-
-// Helper Library
-var _ = require('lodash')
 
 // Custom Hooks
 import { useAppContext } from '../src/context/useAppContext'
@@ -56,7 +52,7 @@ const Home: NextPage = ({ user, savedKanban }: any) => {
   // i am using id property but some places i refer to it as index
   let t = board.tasks.find((task) => task.id == taskId)!
   let nextTaskId =
-    board.tasks.length > 0 ? board.tasks[board.tasks.length - 1].id + 1 : 1
+    board.tasks.length > 0 ? Math.max(...board.tasks.map((task) => task.id)) : 1
 
   let updateSubtaskEditKey = (id: number) => {
     setSubtaskEditKey((prevState) => {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Title, Theme } from '../../@types/app'
+import { Theme } from '../../@types/app'
 import { Board } from '../../@types/board'
 
-//Components
+// Components
 import { AddTaskBtn } from './AddTaskBtn'
 import { LogoMobile } from '../elements/svg/logoMobile'
 import { LogoDark } from '../elements/svg/logoDark'

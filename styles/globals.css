@@ -1043,14 +1043,8 @@
   background-color: #fff;
 }
 .sidebar_id .sidebar .operator {
-  /* padding-top: 5px;
-       padding-right: 2px;
-       transform: scale(0.6);
-       width: 12px;
-       height: 12px; */
   font-size: 0.7rem;
   font-weight: 700;
-  /* padding-top: 2px; */
   letter-spacing: 2px;
 }
 .sidebar_id .sidebar .add {
@@ -1261,14 +1255,8 @@
   color: #828fa3;
 }
 .board__add-column-wrapper .add-column .operator {
-  /* padding-top: 5px;
-       padding-right: 2px;
-       transform: scale(0.6);
-       width: 12px;
-       height: 12px; */
   font-size: 0.7rem;
   font-weight: 700;
-  /* padding-top: 2px; */
   letter-spacing: 2px;
 }
 .board__add-column-wrapper .add-column .add-column__btn {

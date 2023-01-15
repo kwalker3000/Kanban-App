@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Theme, InputEvent, FormEvent } from '../../@types/app'
 
-//Components
+// Components
 import { BoardBtn } from './BoardBtn'
 
 // Initial State Values

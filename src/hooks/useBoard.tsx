@@ -1,6 +1,4 @@
-import React, { useReducer } from 'react'
 import { Board } from '../@types/board'
-import { useKanban } from './useKanban'
 
 // there is problem when setting value type to Task | Board
 // will work fine with only Task but conflicts arise when

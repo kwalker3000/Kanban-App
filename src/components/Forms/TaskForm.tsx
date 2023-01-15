@@ -4,7 +4,7 @@ import { Task, Board } from '../../@types/board'
 
 import { useTask } from '../../hooks/useTask'
 
-//Components
+// Components
 import { Cross } from './FormComponents/Cross'
 import { Dropdown } from './FormComponents/Dropdown'
 import { SubTaskBtn } from './SubTaskBtn'
@@ -29,8 +29,6 @@ export const TaskForm = ({
   nextTaskId,
   actionBoard,
   closePopup,
-  actionKanban,
-  board,
 }: FormProps) => {
   initTaskState.id = nextTaskId
   const [task, setTask] = useReducer(useTask, taskObj || initTaskState)
@@ -53,7 +51,6 @@ export const TaskForm = ({
   let checkValidForm = (form: Task) => {
     let isInvalid = [
       form.title.length == 0,
-      // form.description.length == 0,
       form.subtasks.length > 0 && form.subtasks[0].description.length == 0,
     ]
     setErrorStates((prevState) => {
@@ -61,7 +58,7 @@ export const TaskForm = ({
         ...prevState,
         isTitleError: isInvalid[0],
         isDescriptionError: false, // currently allowing empty field
-        isSubtaskError: isInvalid[2],
+        isSubtaskError: isInvalid[1],
       }
     })
 
@@ -108,10 +105,6 @@ export const TaskForm = ({
       actionBoard('CREATE NEW TASK', 'tasks', form)
     }
   }
-  // useEffect(() => {
-  //   console.log('update...')
-  //   actionKanban('UPDATE BOARD', '', board)
-  // }, [board.tasks.length])
 
   return (
     <div id="task-form">

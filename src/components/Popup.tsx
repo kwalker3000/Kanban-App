@@ -22,9 +22,6 @@ type PopupProps = {
   task: Task | false
   taskObj: Task
   nextTaskId: number
-  // closePopup: () => void
-  // actionKanban: (type: string, key: string, value: string) => void
-  // closePopup: () => void
   isPopupOpen: PopupStateType
 }
 

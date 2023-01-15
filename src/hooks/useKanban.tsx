@@ -17,7 +17,6 @@ export const useKanban = (state: Kanban, action: any): Kanban => {
       return [...state, newBoard]
 
     case 'UPDATE BOARD': {
-      let testBoard = state.find((board) => board.id == value.id)
       let boardIndex = state.findIndex((board) => board.id == value.id)
       let updatedBoards = state.filter((board, index) => index !== boardIndex)
       updatedBoards.splice(boardIndex, 0, value)

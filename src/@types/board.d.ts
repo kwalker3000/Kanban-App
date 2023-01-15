@@ -9,13 +9,8 @@ export type Task = {
   title: string
   description: string
   status: Status
-  subtasks: Subtask[] // | []
+  subtasks: Subtask[]
 }
-//
-// export type Column = {
-//   status: Status
-//   tasks: Task[] | []
-// }
 
 export type Board = {
   id: number

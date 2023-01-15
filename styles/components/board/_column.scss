@@ -3,8 +3,6 @@
 @use './add-column';
 @use './task';
 
-// @include add-column.add-column;
-
 @mixin column {
   .column {
     .column__head {

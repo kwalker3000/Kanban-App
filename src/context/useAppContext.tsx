@@ -14,8 +14,10 @@ import { Kanban, Board, Task } from '../@types/board'
 import { useKanban } from '../hooks/useKanban'
 import { useBoard } from '../hooks/useBoard'
 
-// Dep Data
-import data from '../../lib/testData'
+// Initial State Values
+import { initKanban } from '../../lib/initialStates'
+
+// Database handles
 import { saveKanban } from '../../lib/saveKanban'
 
 type ContextType = {
@@ -39,8 +41,10 @@ type Props = {
 
 export const AppWrapper = ({ children }: Props): JSX.Element => {
   // TODO handle duplicate task, subtasks
+  // update* should be ok.
+  // tasks have unique ids and subtasks indexed in an immutable array
   const [theme, setTheme] = useState<Theme>('dark')
-  const [kanban, dispatch] = useReducer(useKanban, data)
+  const [kanban, dispatch] = useReducer(useKanban, initKanban)
   const [board, setBoard] = useReducer(useBoard, kanban[0])
   const [userId, setUserId] = useState<string | null>(null)
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-//Components
+// Components
 import { IconVerticalEllipsis } from '../../elements/svg/iconVerticalEllipsis'
 
 type EditProps = {

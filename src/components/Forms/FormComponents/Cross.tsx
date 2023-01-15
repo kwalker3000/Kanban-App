@@ -1,6 +1,6 @@
 import React from 'react'
 
-//Components
+// Components
 import { IconCross } from '../../elements/svg/iconCross'
 
 type Props = {

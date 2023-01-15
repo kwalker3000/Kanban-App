@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Theme } from '../../../@types/app'
 
-//Components
+// Components
 import { IconCheck } from '../../elements/svg/iconCheck'
 
 type CheckboxProps = {

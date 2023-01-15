@@ -1,4 +1,4 @@
-import { Task } from '../src/@types/board'
+import { Task, Kanban } from '../src/@types/board'
 
 export type PopupStateType = {
   taskPopup: boolean
@@ -45,3 +45,11 @@ export const initTaskState: Task = {
   status: 'todo',
   subtasks: [],
 }
+
+export const initKanban: Kanban = [
+  {
+    id: 1,
+    name: 'New Board',
+    tasks: [],
+  },
+]
