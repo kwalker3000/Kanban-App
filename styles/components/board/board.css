@@ -66,6 +66,15 @@
   padding: 0.45rem;
   margin-right: 0.75rem;
 }
+.board__column-wrapper .column .column__head ._todo {
+  background-color: #c75f8f;
+}
+.board__column-wrapper .column .column__head ._doing {
+  background-color: #c3c75f;
+}
+.board__column-wrapper .column .column__head ._done {
+  background-color: #5fc797;
+}
 .board__column-wrapper .column .column__task-wrapper {
   margin-bottom: 1.45rem;
   cursor: pointer;

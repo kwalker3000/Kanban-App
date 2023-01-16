@@ -22,6 +22,15 @@
 
         margin-right: 0.75rem;
       }
+      ._todo {
+        background-color: #c75f8f;
+      }
+      ._doing {
+        background-color: #c3c75f;
+      }
+      ._done {
+        background-color: #5fc797;
+      }
     }
 
     .column__task-wrapper {

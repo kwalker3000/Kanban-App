@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Theme } from '../../@types/app'
-import { Task as TaskType, Status } from '../../@types/board'
+import { Task as TaskType } from '../../@types/board'
 
 // Components
 import { Task } from './Task'
@@ -39,7 +39,7 @@ export const Column = ({
   return (
     <div className={`column column_${theme}`}>
       <div className="column__head">
-        <div className={`status_theme`}></div>
+        <div className={`status_theme _${taskArray[0].status}`}></div>
         <h3 className="head_level-4">{taskArray[0].status}</h3>
       </div>
       {tasks}

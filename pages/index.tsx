@@ -52,7 +52,9 @@ const Home: NextPage = ({ user, savedKanban }: any) => {
   // i am using id property but some places i refer to it as index
   let t = board.tasks.find((task) => task.id == taskId)!
   let nextTaskId =
-    board.tasks.length > 0 ? Math.max(...board.tasks.map((task) => task.id)) : 1
+    board.tasks.length > 0
+      ? Math.max(...board.tasks.map((task) => task.id)) + 1
+      : 1
 
   let updateSubtaskEditKey = (id: number) => {
     setSubtaskEditKey((prevState) => {
