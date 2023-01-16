@@ -56,7 +56,7 @@ Your users should be able to:
 
 I had worked previously with NextJs in creating a full-stack website. I enjoyed the experience and knew I wanted to use the framework again for this project as I also wanted to make this one full stack.
 
-Since the work was building things I was already familiar with, most of the project dealt with re-solidifying what I have learned so far. However, there were certain areas of focus in particular that required extra attention:
+Since the work was building things I was already familiar with, most of the project dealt with re-solidifying what I have learned so far. However, there were certain areas of focus that required extra attention:
 
  1. ***Implementation:*** How should the various components interact on a single page?
  2. ***Theme propagation:*** How should I propagate the color theme throughout the application?
@@ -68,16 +68,15 @@ Since the work was building things I was already familiar with, most of the proj
 <img alt="application flow chart" src="./public/assets/screenshots/application-flow.png" width=600>
 
 **Theme propagation:**<br>
- I understand there are many popular frameworks for styling with javascript and promoted with this purpose in mind. However, I am comfortable working with CSS and I like having it seperated from the html. It made things easier being a single-page application. Though, I could have handled multiple pages making use of React's useContext API
+ I understand there are many popular frameworks for styling with javascript and promoted with this purpose in mind. However, I am comfortable working with CSS and I like having my styles seperated from my source code. My solution was to pass `theme` prop throughout the application and CSS classes where altered based on the value of `theme`<br> <br>`className={'name_${theme}'}`<br><br> 
+ It made things easier being a single-page application. Though, I can handle multiple pages making use of React's useContext API
    
 **Form handling:**<br>
- I found it best to have them wrapped in a component on the main window and pass props based on which form was called. It allowed me to share many of the styles used and create a uniform look. I don't think much difficulty arises from keeping track of props, but I understand this may not be the right solution for a larger application.
+ I found it best to have them wrapped in a component inside the main application component and pass props based on which form was called. It allowed for easy style sharing and gave a uniform look. I don't think much difficulty arises from keeping track of props, but I understand this may not be the right solution for a larger application.
    
 **CSS:**<br>
- I messed up. My original plan was to use CSS grid like I had used previously. Then I decided to switch and not use. Layout is fine but feels fragile and that was apparent when implementing the sidebar for larger layouts.
--  On previous projects I tried hard to keep objects seperated and treated as blocks.
-I felt it greatly reduced the chance of conflict, allowed for better scaling, and made things easier to fix when required. However, it also did require some extra diligence and didn't take advantage of CSS's natural cascading feature.
-- This time I was a little more lose on block separation and took some liberties utilizing the cascade property, which allowed me to develop more quickly and repurpose some code I otherwise wouldn't have. This was great, but problems started to arise later on as some conflicts began to show.
+ I messed up. My original plan was to use CSS grid like I had used previously. Then I decided to switch and not make use. Layout is fine but feels fragile. That was apparent when implementing the sidebar for larger layouts.<br> 
+On previous projects I tried hard to keep objects seperated and treated as blocks. I felt it greatly reduced the chance of conflict, allowed for better scaling, and made things easier to fix when required. However, it also required extra diligence and didn't take advantage of CSS's natural cascading feature. This project I was a little more lose on block separation and took some liberties utilizing the cascade property, which allowed me to develop more quickly and repurpose some code I otherwise wouldn't have. That was great, but problems started to arise later on as some conflicts began to show.
    
 ### Built with
 
@@ -96,7 +95,13 @@ I felt it greatly reduced the chance of conflict, allowed for better scaling, an
 
 How to utilize and take advantage of Typescript with React.
 
-It was difficult at first. I found things confusing and felt it made development overcomplicated. I was quite comfortable with typed languages like C++ and Haskell, but Typescript, I wanted to throw out. I understood its advantage but despised it. And searched for excuses to drop it. However, I slowly worked at getting more and more comfortable. Now I don't think I will ever build another project without Typescript. Since ReactJs involves a lot of passing props between components I found it very useful to be able to take advantage ot the type stubs made because of Typescript. It reduced many unnecessary errors.
+It was difficult at first. I found things confusing and felt it made development overcomplicated. I was quite comfortable with typed languages like C++ and Haskell, but Typescript, I wanted to throw out. I understood its advantage but despised it. I searched for excuses to drop it. However, I slowly worked at getting more and more comfortable. Now I don't think I will ever build another project without Typescript.<br> Since ReactJs involves a lot of passing props between components I found it very useful to be able to take advantage of the type stubs made because of Typescript. It reduced many unnecessary errors.<br>
+
+  `actionBoard: (type: string, key: string, value: Task | Board | string) => void`
+
+### Continued development
+
+Testing. I am not doing enough. I understand its importance but implementing it on the front-end, when a lot of what is important for frontend is appearance, I'm finding to be a challenge. 
 
 ### Useful resources
 
